@@ -1,4 +1,4 @@
-# Ata de Reunião - 05/11/2024
+# Ata de Reunião - 12/11/2024
 
 ## Participantes
 
@@ -10,6 +10,7 @@
 - Ryan
 - Renan
 - Arthur Leite
+- Gabriel Dantas
 - Wildemberg Sales **(Cliente)**
 
 ## Início e término

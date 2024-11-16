@@ -7,7 +7,8 @@ nav:
   - Documento de Arquitetura: "documento-arquitetura/documento-arquitetura.md"
   - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
   - Atas de Reunião:
-    - Ata 1: "atas-reuniao/ata-reuniao-1.md"
+      - Ata 1: "atas-reuniao/ata-reuniao-1.md"
+      - Ata 2: "atas-reuniao/ata-reuniao-2.md"
 
 theme:
   name: material
