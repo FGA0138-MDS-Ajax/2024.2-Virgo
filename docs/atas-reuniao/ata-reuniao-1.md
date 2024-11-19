@@ -26,8 +26,7 @@ A reunião foi iniciada às XX:XX e finalizada às XX:XX
 
 Reunião realizada no **Microft Teams.**
 
-Espaço para colocar o link do youtube
-
+<iframe width="630" height="315" src="https://youtu.be/F7px4_9lXrs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
 ## Histórico de versão
 
 | Versão |    Data    |  Descrição da Alteração   | Nome(s) Integrante(s) |
