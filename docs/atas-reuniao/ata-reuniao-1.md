@@ -40,7 +40,8 @@ A reunião foi iniciada às 19:00 e finalizada às 19:50
 
 Reunião realizada no **Microft Teams.**
 
-<iframe width="630" height="315" src="https://youtu.be/F7px4_9lXrs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F7px4_9lXrs?si=PytFnNR6VtLiF4dV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Histórico de versão
 
 | Versão |    Data    |  Descrição da Alteração     | Nome(s) Integrante(s) |

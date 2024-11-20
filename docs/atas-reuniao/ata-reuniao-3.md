@@ -26,7 +26,7 @@ A reunião foi iniciada às XX:XX e finalizada às XX:XX
 
 Reunião realizada no **Microft Teams.**
 
-<iframe width="630" height="315" src="https://www.youtube.com/watch?v=wQ7-g96wuYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wQ7-g96wuYg?si=tv5qbdRioPy0zEIL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Histórico de versão
 
