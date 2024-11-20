@@ -3,13 +3,13 @@
 ## Participantes
 
 - João Lobo
-- Leonardo Barcellos
 - Pedro Camilo
 - Maria Eduarda
 - Lucas
 - Ryan
 - Renan
-- Arthur Leite
+- Gabriel Dantas
+- Kauan José
 - Wildemberg Sales **(Cliente)**
 
 ## Início e término
@@ -26,9 +26,7 @@ A reunião foi iniciada às XX:XX e finalizada às XX:XX
 
 Reunião realizada no **Microft Teams.**
 
-
-<iframe width="630" height="315" src="https://www.youtube.com/watch?v=wQ7-g96wuYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
-
+<iframe width="630" height="315" src="https://www.youtube.com/watch?v=wQ7-g96wuYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Histórico de versão
 
