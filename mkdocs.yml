@@ -2,19 +2,25 @@ site_name: Documentação Virgo
 
 nav:
   - Página Inicial: index.md
-
+  - Documento de Visão: "documento-visao/documento-visao.md"
+  - Documento de Requisitos: "documento-requisitos/documento-requisitos.md"
+  - Documento de Arquitetura: "documento-arquitetura/documento-arquitetura.md"
+  - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
   - Atas de reuniao:
       - Cliente:
           - Ata 1: "atas-reuniao/cliente/ata-reuniao-1.md"
           - Ata 2: "atas-reuniao/cliente/ata-reuniao-2.md"
           - Ata 3: "atas-reuniao/cliente/ata-reuniao-3.md"
+          - Ata 4: "atas-reuniao/cliente/ata-reuniao-4.md"
+          
       - Equipe:
           - Ata 1: "atas-reuniao/equipe/ata-reuniao-1-equipe.md"
-
-  - Documento de Visão: "documento-visao/documento-visao.md"
-  - Documento de Requisitos: "documento-requisitos/documento-requisitos.md"
-  - Documento de Arquitetura: "documento-arquitetura/documento-arquitetura.md"
-  - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
+          - Ata 2: "atas-reuniao/equipe/ata-reuniao-2-equipe.md"
+          - Ata 3: "atas-reuniao/equipe/ata-reuniao-3-equipe.md"
+          - Ata 4: "atas-reuniao/equipe/ata-reuniao-4-equipe.md"
+          - Ata 5: "atas-reuniao/equipe/ata-reuniao-5-equipe.md"
+          
+          
 
 theme:
   name: material
