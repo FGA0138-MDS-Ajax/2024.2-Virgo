@@ -1,26 +1,64 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { Prisma } from '@prisma/client';
+import { DatabaseService } from 'src/database/database.service';
+import { NotFoundException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(private readonly databaseService: DatabaseService) {}
+
+  async create(createUserDto: Prisma.UserCreateInput) {
+    const user = {
+      ...createUserDto,
+      password: await bcrypt.hash(createUserDto.password, 10),
+    };
+    return this.databaseService.user.create({ data: user });
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(role?: 'AGRONOMO' | 'AGRICULTOR') {
+    if (role) {
+      return this.databaseService.user.findMany({
+        where: {
+          role: role,
+        },
+      });
+    } else {
+      return this.databaseService.user.findMany();
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    if (!id) {
+      throw new NotFoundException('User not found');
+    }
+    return this.databaseService.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: Prisma.UserUpdateInput) {
+    return this.databaseService.user.update({
+      where: { id: id },
+      data: updateUserDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    return this.databaseService.user.delete({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  async findByEmail(email: string) {
+    return this.databaseService.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
   }
 }
