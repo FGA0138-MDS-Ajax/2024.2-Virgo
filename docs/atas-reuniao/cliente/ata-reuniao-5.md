@@ -41,3 +41,4 @@ Reunião realizada no **Microft Teams.**
 | Versão |    Data    |  Descrição da Alteração      | Nome(s) Integrante(s) |
 | :----: | :--------: | :--------------------------: | :-------------------: |
 |  1.0   | 28/11/2024 | Criação de ata de reunião    |       Ryan Salles     |
+|  1.1   | 05/12/2024 | Adicionado link da gravação  |       Renan Camara    |
