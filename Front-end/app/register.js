@@ -1,5 +1,4 @@
 import { useRouter } from "expo-router";
-import { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -7,23 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Pressable,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-
-function MyCheckbox() {
-  const [checked, setChecked] = useState(false);
-  return (
-    <Pressable
-      role="checkbox"
-      aria-checked={checked}
-      style={[styles.checkboxBase, checked && styles.checkboxChecked]}
-      onPress={() => setChecked(!checked)}
-    >
-      {checked && <Ionicons name="checkmark" size={24} color="white" />}
-    </Pressable>
-  );
-}
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -43,27 +26,9 @@ export default function LoginScreen() {
       <Text style={styles.title}>Cadastro</Text>
       <TextInput
         style={styles.input}
-        placeholder="Nome"
-        placeholderTextColor="#aaa"
-        keyboardType="deafault"
-      />
-      <TextInput
-        style={styles.input}
         placeholder="E-mail"
         placeholderTextColor="#aaa"
         keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="CPF"
-        placeholderTextColor="#aaa"
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="CREA"
-        placeholderTextColor="#aaa"
-        keyboardType="numeric"
       />
       <TextInput
         style={styles.input}
@@ -77,7 +42,6 @@ export default function LoginScreen() {
         placeholderTextColor="#aaa"
         secureTextEntry
       />
-      <MyCheckbox />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
@@ -125,18 +89,5 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
-  },
-  checkboxBase: {
-    width: 24,
-    height: 24,
-    borderWidth: 2,
-    borderColor: "#000",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 15,
-    borderRadius: 5,
-  },
-  checkboxChecked: {
-    backgroundColor: "#000", // Cor de fundo quando marcado
   },
 });
