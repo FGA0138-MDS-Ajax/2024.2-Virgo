@@ -34,16 +34,23 @@ export default function LoginScreen() {
       <TextInput
         style={styles.input}
         placeholder="E-mail"
-        placeholderTextColor="#aaa"
+        placeholderTextColor="#1A4D2E"
         keyboardType="email-address"
       />
 
       <TextInput
         style={styles.input}
         placeholder="Senha"
-        placeholderTextColor="#aaa"
-        secureTextEntry
+        placeholderTextColor="#1A4D2E"
+        //secureTextEntry={!passwordVisible}
       />
+
+      {/*
+      <TouchableOpacity
+          style={styles.eyeButton}
+          onPress={() => setPasswordVisible(!passwordVisible)}
+      />
+      */}
 
       <TouchableOpacity style={styles.forgotPasswordContainer} onPress={handleForgotPassword}>
         <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
     width: 270,
     height: 45,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#277345',
     borderRadius: 6,
     paddingHorizontal: 10,
     marginBottom: 15,
