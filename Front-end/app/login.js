@@ -1,9 +1,11 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function LoginScreen() {
   const router = useRouter();
-
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const handleLogin = () => {
     // Simula o login
     console.log('Login bem-sucedido, redirecionando para (tabs)...');
@@ -38,20 +40,26 @@ export default function LoginScreen() {
         keyboardType="email-address"
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        placeholderTextColor="#1A4D2E"
-        //secureTextEntry={!passwordVisible}
-      />
-
-      {/*
-      <TouchableOpacity
+      {/* Campo de senha com botão de visibilidade */}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.passwordInput}
+          placeholder="Senha"
+          placeholderTextColor="#1A4D2E"
+          secureTextEntry={!passwordVisible}
+        />
+        <TouchableOpacity
           style={styles.eyeButton}
           onPress={() => setPasswordVisible(!passwordVisible)}
-      />
-      */}
-
+        >
+          <Ionicons
+            name={passwordVisible ? 'eye-off' : 'eye'}
+            size={24}
+            color="gray"
+          />
+        </TouchableOpacity>
+      </View>
+      
       <TouchableOpacity style={styles.forgotPasswordContainer} onPress={handleForgotPassword}>
         <Text style={styles.forgotPasswordText}>Esqueceu a senha?</Text>
       </TouchableOpacity>
@@ -99,6 +107,29 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     color: '#000',
     backgroundColor: '#fff',
+  },
+  inputContainer: {
+    width: 270,
+    height: 45,
+    position: 'relative', // Necessário para posicionar o botão de forma absoluta
+    marginBottom: 15,
+  },
+  passwordInput: {
+    width: '100%',
+    height: '100%',
+    borderWidth: 1,
+    borderColor: '#277345',
+    borderRadius: 6,
+    paddingHorizontal: 10,
+    paddingRight: 40, // Garante que o texto não fique sob o botão
+    color: '#000',
+    backgroundColor: '#fff',
+  },
+  eyeButton: {
+    position: 'absolute', // Coloca o botão dentro do input
+    right: 10, // Alinha à direita
+    top: 10, // Centraliza verticalmente no input
+    zIndex: 1, // Garante que o botão fique sobre o input
   },
   forgotPasswordContainer: {
     alignSelf: 'flex-end',
