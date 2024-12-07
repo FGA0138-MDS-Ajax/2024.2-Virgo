@@ -4,8 +4,11 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function LoginScreen() {
+  
   const router = useRouter();
+  
   const [passwordVisible, setPasswordVisible] = useState(false);
+  
   const handleLogin = () => {
     // Simula o login
     console.log('Login bem-sucedido, redirecionando para (tabs)...');
@@ -74,6 +77,7 @@ export default function LoginScreen() {
           Não possui uma conta? <Text style={styles.registerLink}>Cadastrar</Text>
         </Text>
       </TouchableOpacity>
+    
     </View>
   );
 }
