@@ -35,6 +35,11 @@ export default function WelcomeScreen() {
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Criar conta</Text>
       </TouchableOpacity>
+
+      {/* Mensagem sobre Termos de Serviço */}
+      <Text style={styles.termsText}>
+        Ao criar uma conta, você concorda com os Termos de Serviço, incluindo nossa Política de Privacidade.
+      </Text>
     </View>
   );
 }
@@ -76,5 +81,17 @@ const styles = StyleSheet.create({
     color: '#057B44', 
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  termsContainer: {
+    width: 270, // Largura igual à do botão
+    marginTop: 10, // Espaço entre o botão e a mensagem
+  },
+  termsText: {
+    width: 250, // Mesma largura do botão
+    fontSize: 10, // Fonte reduzida
+    color: '#1A4D2E',
+    textAlign: 'left', // Alinhado à esquerda
+    marginTop: 10, // Espaço entre o botão e o texto
+    lineHeight: 14, // Melhor espaçamento para fonte pequena
   },
 });
