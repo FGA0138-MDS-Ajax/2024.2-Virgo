@@ -27,12 +27,12 @@ export default function WelcomeScreen() {
       <Text style={styles.title}>Plant Check</Text>
 
       {/* Botão "Já tenho conta" */}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={[styles.button, styles.shadow]} onPress={handleLogin}>
         <Text style={styles.buttonText}>Já tenho conta</Text>
       </TouchableOpacity>
 
       {/* Botão "Criar conta" */}
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+      <TouchableOpacity style={[styles.button, styles.shadow]} onPress={handleRegister}>
         <Text style={styles.buttonText}>Criar conta</Text>
       </TouchableOpacity>
 
@@ -79,22 +79,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
+  shadow: {
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 4 }, 
+    shadowOpacity: 0.25, 
+    shadowRadius: 4, 
+    elevation: 5, 
+  },
   buttonText: {
     color: '#057B44', 
     fontSize: 16,
     fontWeight: 'bold',
   },
   termsText: {
-    width: 260, // Mesma largura do botão
-    fontSize: 10, // Fonte reduzida
+    width: 270, 
+    fontSize: 10, 
     color: '#1A4D2E',
-    textAlign: 'left', // Alinhado à esquerda
+    textAlign: 'left', 
     marginTop: 10,
-    marginLeft: 10, // Espaço entre o botão e o texto
-    lineHeight: 14, // Melhor espaçamento para fonte pequena
+    marginLeft: 10, 
+    lineHeight: 14, 
   },
   linkText: {
-    color: '#0D2717', // Cor para "Termos de Serviço" e "Política de Privacidade"
-    fontWeight: 'bold', // Negrito
+    color: '#0D2717', 
+    fontWeight: 'bold', 
   },
 });
