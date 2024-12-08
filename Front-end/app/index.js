@@ -42,6 +42,16 @@ export default function WelcomeScreen() {
         <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo nossa{' '}
         <Text style={styles.linkText}>Política de Privacidade</Text>.
       </Text>
+
+      {/* Mensagem do rodapé */}
+      <View style={styles.footerContainer}>
+        <Text style={styles.footerText}>
+          Já possui uma conta?{' '}
+          <Text style={styles.footerLink} onPress={handleLogin}>
+            Login
+          </Text>
+        </Text>
+      </View>
     </View>
   );
 }
@@ -103,5 +113,21 @@ const styles = StyleSheet.create({
   linkText: {
     color: '#0D2717', 
     fontWeight: 'bold', 
+  },
+  footerContainer: {
+    width: 270, 
+    position: 'absolute',
+    bottom: 20, 
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  footerText: {
+    fontSize: 18,
+    color: '#277345',
+  },
+  footerLink: {
+    fontSize: 18,
+    color: '#0D2717',
+    fontWeight: 'bold',
   },
 });
