@@ -34,7 +34,18 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="register" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="AgricultorOrAgronomo"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RegisterAgricultor"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="RegisterAgronomo"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />

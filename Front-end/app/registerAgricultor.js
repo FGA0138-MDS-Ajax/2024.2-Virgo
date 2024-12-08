@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Checkbox from "expo-checkbox";
+import { useState } from "react";
+import Icon from "react-native-vector-icons/MaterialIcons"; // Instale a biblioteca react-native-vector-icons
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -17,13 +20,18 @@ export default function LoginScreen() {
     router.replace("(tabs)");
   };
 
+  const [isChecked, setChecked] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/images/icone_folha.png")}
-        style={styles.logo}
-      />
       <Text style={styles.title}>Cadastro</Text>
+      <View style={styles.line} />
+      <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        placeholderTextColor="#aaa"
+        keyboardType="default"
+      />
       <TextInput
         style={styles.input}
         placeholder="E-mail"
@@ -42,8 +50,20 @@ export default function LoginScreen() {
         placeholderTextColor="#aaa"
         secureTextEntry
       />
+      <View style={styles.row}>
+        <Checkbox
+          style={styles.checkbox}
+          color={isChecked ? "#000" : undefined}
+          value={isChecked}
+          onValueChange={setChecked}
+        />
+        <Text>
+          Ao criar uma conta, você concorda com os Termos de Serviço, incluindo
+          nossa Política de Privacidade
+        </Text>
+      </View>
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
+        <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
     </View>
   );
@@ -62,9 +82,9 @@ const styles = StyleSheet.create({
     marginBottom: 20, // Espaço entre o logo e o título
   },
   title: {
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   input: {
     width: "80%",
@@ -73,9 +93,12 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderRadius: 8,
     paddingHorizontal: 10,
-    marginBottom: 15,
+    marginBottom: 20,
     color: "#000", // Garante que o texto digitado seja visível
     backgroundColor: "#fff", // Fundo branco para evitar conflito
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2, // Opacidade da sombra no iOS
+    shadowRadius: 5, // Raio da sombra no iOS
   },
   button: {
     width: "80%",
@@ -89,5 +112,23 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginBottom: 15,
+    paddingLeft: 60,
+    paddingRight: 60,
+  },
+  checkbox: {
+    marginRight: 8,
+  },
+  line: {
+    width: "50%", // Ajusta a largura da linha
+    height: 2, // Espessura da linha
+    backgroundColor: "#057B44", // Cor da linha
+    marginTop: 0, // Espaço entre o texto e a linha
+    marginBottom: 35,
   },
 });
