@@ -6,10 +6,10 @@ export default function forgotPassword() {
   
   const router = useRouter();
 
-  const handleSend = () => {
+  const handleEmailToken = () => {
     // Simula o login
     console.log('Login bem-sucedido, redirecionando para (tabs)...');
-    router.push('/forgotPasswordCheckEmail'); // Caminho real da tela de recuperação
+    router.replace('(tabs)');
   };
 
   return (
@@ -17,22 +17,26 @@ export default function forgotPassword() {
       {/* Card */}
       <View style={styles.card}>
         {/* Título */}
-        <Text style={styles.cardTitle}>Esqueci minha senha</Text>
+        <Text style={styles.cardTitle}>Verifique seu email</Text>
 
         <Text style={styles.cardContent}>
-          Digite o seu e-mail no campo abaixo e você receberá um código para trocar sua senha.
+          Um email com um código de verificação foi enviado para EMAIL
         </Text>
 
         <TextInput
         style={styles.input}
-        placeholder="E-mail"
+        placeholder="Código de confirmação"
         placeholderTextColor="#1A4D2E"
         keyboardType="email-address"
         />
 
-        <TouchableOpacity style={styles.button} onPress={handleSend}>
+        <TouchableOpacity style={styles.button} onPress={handleEmailToken}>
           <Text style={styles.buttonText}>Enviar</Text>
         </TouchableOpacity>
+
+        <Text style={styles.cardContent}>
+          Não recebeu o código? Reenviar código
+        </Text>
       </View>
     </View>
   );
