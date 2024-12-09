@@ -6,9 +6,11 @@ export default function forgotPassword() {
     <View style={styles.container}>
       {/* Card */}
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Título do Card</Text>
+        {/* Título */}
+        <Text style={styles.cardTitle}>Esqueci minha senha</Text>
+
         <Text style={styles.cardContent}>
-          Este é o conteúdo do card. 
+          Digite o seu e-mail no campo abaixo e você receberá um código para trocar sua senha.
         </Text>
       </View>
     </View>
@@ -32,19 +34,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25, 
     shadowRadius: 4, 
     elevation: 5, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
     padding: 20, 
+    justifyContent: 'flex-start', 
+    alignItems: 'center', 
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#1A4D2E',
-    marginBottom: 10, 
+    color: '#0D2717',
+    marginBottom: 20, 
+    textAlign: 'center', 
   },
   cardContent: {
-    fontSize: 14,
-    color: '#757575',
+    fontSize: 12,
+    color: '#1A4D2E',
     textAlign: 'center',
   },
 });
