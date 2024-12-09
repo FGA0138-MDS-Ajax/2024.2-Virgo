@@ -1,7 +1,17 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function forgotPassword() {
+  
+  const router = useRouter();
+
+  const handleSend = () => {
+    // Simula o login
+    console.log('Login bem-sucedido, redirecionando para (tabs)...');
+    router.replace('(tabs)');
+  };
+
   return (
     <View style={styles.container}>
       {/* Card */}
@@ -19,6 +29,10 @@ export default function forgotPassword() {
         placeholderTextColor="#1A4D2E"
         keyboardType="email-address"
         />
+
+        <TouchableOpacity style={styles.button} onPress={handleSend}>
+          <Text style={styles.buttonText}>Enviar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -50,17 +64,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#0D2717',
     marginBottom: 20,
-    marginTop: 51, 
+    marginTop: 10, 
     textAlign: 'center', 
   },
   cardContent: {
     fontSize: 12,
     color: '#1A4D2E',
     textAlign: 'center',
+    marginBottom: 20,
+    fontWeight: 'bold',
   },
   input: {
-    width: 270,
-    height: 45,
+    width: 284,
+    height: 39,
     borderWidth: 1,
     borderColor: '#277345',
     borderRadius: 6,
@@ -68,5 +84,19 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     color: '#000',
     backgroundColor: '#fff',
+    marginBottom: 20,
+  },
+  button: {
+    width: 270,
+    height: 55,
+    backgroundColor: '#057B44',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 6,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
