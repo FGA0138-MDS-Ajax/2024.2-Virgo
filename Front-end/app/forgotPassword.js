@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#0D2717',
     marginBottom: 20,
-    marginTop: 10, 
+    marginTop: 20, 
     textAlign: 'center', 
   },
   cardContent: {
@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    width: 270,
-    height: 55,
+    width: 284,
+    height: 42,
     backgroundColor: '#057B44',
     justifyContent: 'center',
     alignItems: 'center',
