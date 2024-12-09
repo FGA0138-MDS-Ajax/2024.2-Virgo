@@ -23,7 +23,7 @@ export default function LoginScreen() {
 
   const handleForgotPassword = () => {
     console.log('Redirecionando para /forgot-password...');
-    router.push('/forgot-password'); // Caminho real da tela de recuperação
+    router.push('/forgotPassword'); // Caminho real da tela de recuperação
   };
 
   return (
