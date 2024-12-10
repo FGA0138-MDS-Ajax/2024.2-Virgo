@@ -61,4 +61,13 @@ export class UsersService {
       },
     });
   }
+
+  async updatePassword(userId: string, newPassword: string) {
+    return this.databaseService.user.update({
+      where: { id: userId },
+      data: {
+        password: newPassword, 
+      },
+    });
+  }
 }
