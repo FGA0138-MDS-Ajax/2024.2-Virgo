@@ -61,4 +61,14 @@ export class UsersService {
       },
     });
   }
+
+  async updatePassword(userId: string, newPassword: string) {
+    const senha = await bcrypt.hash(newPassword,10);
+    return this.databaseService.user.update({
+      where: { id: userId },
+      data: {
+        password: senha, 
+      },
+    });
+  }
 }
