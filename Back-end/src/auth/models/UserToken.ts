@@ -1,3 +1,3 @@
-export interface UserToken{
-    access_token: string;
+export interface UserToken {
+  access_token: string;
 }
