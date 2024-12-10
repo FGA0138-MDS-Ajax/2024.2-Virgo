@@ -36,7 +36,7 @@ export default function RootLayout() {
         title: '',
         headerStyle: { backgroundColor: '#057B44' },
         headerBackTitle: 'Voltar',
-        headerBackTitleStyle: { fontSize: 16, color: '#000' },
+        headerTintColor: '#FFFFFF',
         headerTitleAlign: 'center',
       }}
       >
