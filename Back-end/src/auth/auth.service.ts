@@ -51,13 +51,13 @@ export class AuthService {
         const transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
-            user: 'seu-email@gmail.com',  
-            pass: 'sua-senha',
+            user: 'cuidarverde@gmail.com',  
+            pass: 'omab pcqn mvay lvzd',
           }
         });
     
         const mailOptions = {
-          from: 'seu-email@gmail.com',
+          from: 'cuidarverde@gmail.com',
           to: email,
           subject: 'Sua senha temporária',
           text: `Sua senha temporária é: ${temporaryPassword}. 
