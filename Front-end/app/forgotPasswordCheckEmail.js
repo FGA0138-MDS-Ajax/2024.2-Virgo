@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function forgotPassword() {
   
@@ -9,13 +9,25 @@ export default function forgotPassword() {
   const handleEmailToken = () => {
     // Simula o login
     console.log('Login bem-sucedido, redirecionando para (tabs)...');
-    router.replace('(tabs)');
+    router.push('/forgotPasswordCheckEmail'); // Caminho real da tela de recuperação
+  };
+
+  const handleResendCode = () => {
+    // Simula o login
+    console.log('Login bem-sucedido, redirecionando para (tabs)...');
+    router.push('/forgotPasswordCheckEmail'); // Caminho real da tela de recuperação
   };
 
   return (
     <View style={styles.container}>
       {/* Card */}
       <View style={styles.card}>
+
+        <Image
+          source={require('../assets/images/app-mail.png')}
+          style={styles.logo}
+        />
+
         {/* Título */}
         <Text style={styles.cardTitle}>Verifique seu email</Text>
 
@@ -35,7 +47,10 @@ export default function forgotPassword() {
         </TouchableOpacity>
 
         <Text style={styles.cardContent}>
-          Não recebeu o código? Reenviar código
+          Não recebeu o código?{' '}
+          <Text style={styles.linkText} onPress={handleResendCode}>
+            Reenviar código
+          </Text>
         </Text>
       </View>
     </View>
@@ -51,7 +66,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 316,
-    height: 290,
+    height: 390,
     backgroundColor: '#fff',
     borderRadius: 6, 
     shadowColor: '#000',
@@ -62,6 +77,10 @@ const styles = StyleSheet.create({
     padding: 20, 
     justifyContent: 'flex-start', 
     alignItems: 'center', 
+  },
+  logo: {
+    width: 80,
+    height: 84,
   },
   cardTitle: {
     fontSize: 24,
@@ -89,6 +108,7 @@ const styles = StyleSheet.create({
     color: '#000',
     backgroundColor: '#fff',
     marginBottom: 20,
+    textAlign: 'center',
   },
   button: {
     width: 284,
@@ -97,10 +117,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 6,
+    marginBottom: 20,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  linkText: {
+    color: '#000',
+    fontWeight: 'bold', 
   },
 });
