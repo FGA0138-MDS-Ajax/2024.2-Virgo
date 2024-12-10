@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useState } from "react";
-import Icon from "react-native-vector-icons/MaterialIcons"; // Instale a biblioteca react-native-vector-icons
+import IconAgricultor from "../assets/svg/icon-agricultor.svg" //instalar 
+import IconAgronomo from "../assets/svg/icon-agronomo.svg"
+
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -32,14 +33,11 @@ export default function LoginScreen() {
         style={styles.optionAgricultor}
         onPress={handleRegisterAgricultor}
       >
-        <Image
-          source={require("../assets/images/icon agricultor.png")}
-          style={styles.iconAgricultor}
-        />
+        <IconAgricultor style={styles.iconAgricultor}></IconAgricultor>
         <View style={styles.textContainer}>
           <Text style={styles.optionTitle}>Eu sou agricultor</Text>
           <Text style={styles.optionDescription}>
-            Produzo alimentos e cuido das plantações diretamente no campo.
+            Produzo e cuido das plantações diretamente no campo.
           </Text>
         </View>
       </TouchableOpacity>
@@ -47,10 +45,7 @@ export default function LoginScreen() {
         style={styles.optionAgronomo}
         onPress={handleRegiterAgronomo}
       >
-        <Image
-          source={require("../assets/images/icon agronomo.png")}
-          style={styles.iconAgronomo}
-        />
+        <IconAgronomo></IconAgronomo>
         <View style={styles.textContainer}>
           <Text style={styles.optionTitle}>Eu sou agrônomo</Text>
           <Text style={styles.optionDescription}>
@@ -58,9 +53,6 @@ export default function LoginScreen() {
             plantações.
           </Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Próximo</Text>
       </TouchableOpacity>
     </View>
   );
@@ -142,6 +134,7 @@ const styles = StyleSheet.create({
   iconAgricultor: {
     width: 40,
     height: 40,
+    marginRight: 5,
   },
   iconAgronomo: {
     width: 40,

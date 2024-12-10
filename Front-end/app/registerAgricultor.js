@@ -1,15 +1,9 @@
-import { useRouter } from "expo-router";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, SafeAreaView } from 'react-native';
 import Checkbox from "expo-checkbox";
-import { useState } from "react";
-import Icon from "react-native-vector-icons/MaterialIcons"; // Instale a biblioteca react-native-vector-icons
+
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -21,35 +15,70 @@ export default function LoginScreen() {
   };
 
   const [isChecked, setChecked] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordVisible2, setPasswordVisible2] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Cadastro</Text>
       <View style={styles.line} />
-      <TextInput
-        style={styles.input}
-        placeholder="Nome"
-        placeholderTextColor="#aaa"
-        keyboardType="default"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        placeholderTextColor="#aaa"
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        placeholderTextColor="#aaa"
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirmar senha"
-        placeholderTextColor="#aaa"
-        secureTextEntry
-      />
+      <View style={styles.label}>
+        <Ionicons name='person' size={24} color="gray" paddingRight={5}/>
+        <TextInput
+          style={styles.passinput}
+          placeholder="Nome"
+          placeholderTextColor="#aaa"
+          keyboardType="default"
+        />
+      </View>
+
+      <View style={styles.label}>
+        <Ionicons name='mail' size={24} color="gray" paddingRight={5}/>
+        <TextInput
+          style={styles.passinput}
+          placeholder="E-mail"
+          placeholderTextColor="#aaa"
+          keyboardType="email-address"
+        />
+      </View>
+
+      <View style={styles.label}>
+        <TextInput
+          style={styles.passinput}
+          placeholder="Senha"
+          placeholderTextColor="#aaa"
+          secureTextEntry={!passwordVisible}
+        />
+        <TouchableOpacity
+          style={styles.eyeButton}
+          onPress={() => setPasswordVisible(!passwordVisible)}
+        >
+          <Ionicons
+            name={passwordVisible ? 'eye-off' : 'eye'}
+            size={24}
+            color="gray"
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.label}>
+        <TextInput
+          style={styles.passinput}
+          placeholder="Senha"
+          placeholderTextColor="#aaa"
+          secureTextEntry={!passwordVisible2}
+        />
+        <TouchableOpacity
+          style={styles.eyeButton}
+          onPress={() => setPasswordVisible2(!passwordVisible2)}
+        >
+          <Ionicons
+            name={passwordVisible2 ? 'eye-off' : 'eye'}
+            size={24}
+            color="gray"
+          />
+        </TouchableOpacity>
+      </View>
       <View style={styles.row}>
         <Checkbox
           style={styles.checkbox}
@@ -65,7 +94,7 @@ export default function LoginScreen() {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -86,7 +115,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  input: {
+  label: {
+    flex: "1",
+    flexDirection: "row",
     width: "80%",
     height: 50,
     borderWidth: 1,
@@ -99,6 +130,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2, // Opacidade da sombra no iOS
     shadowRadius: 5, // Raio da sombra no iOS
+    alignItems: "center",
   },
   button: {
     width: "80%",
@@ -130,5 +162,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#057B44", // Cor da linha
     marginTop: 0, // Espaço entre o texto e a linha
     marginBottom: 35,
+  },
+  passsection: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  passinput: {
+    width:"88%",
+    backgroundColor: '#fff',
+    color: '#424242',
+  },
+  eyeButton: {
+    position: 'absolute', // Coloca o botão dentro do input
+    right: 10, // Alinha à direita
+    top: 10, // Centraliza verticalmente no input
+    zIndex: 1, // Garante que o botão fique sobre o input
   },
 });
