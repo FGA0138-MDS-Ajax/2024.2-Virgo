@@ -9,13 +9,7 @@ export default function forgotPassword() {
   const handleEmailToken = () => {
     // Simula o login
     console.log('Login bem-sucedido, redirecionando para (tabs)...');
-    router.push('/forgotPasswordCheckEmail'); // Caminho real da tela de recuperação
-  };
-
-  const handleResendCode = () => {
-    // Simula o login
-    console.log('Login bem-sucedido, redirecionando para (tabs)...');
-    router.push('/forgotPasswordCheckEmail'); // Caminho real da tela de recuperação
+    router.push('/forgotPasswordReset'); // Caminho real da tela de recuperação
   };
 
   return (
@@ -48,7 +42,7 @@ export default function forgotPassword() {
 
         <Text style={styles.cardContent}>
           Não recebeu o código?{' '}
-          <Text style={styles.linkText} onPress={handleResendCode}>
+          <Text style={styles.linkText} onPress={handleEmailToken}>
             Reenviar código
           </Text>
         </Text>
