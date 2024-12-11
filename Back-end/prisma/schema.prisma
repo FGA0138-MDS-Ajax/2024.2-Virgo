@@ -24,8 +24,8 @@ model Agronomo {
   id      String @id @default(uuid()) @unique
   userId  String @unique
   user    User   @relation("AgronomoRelation", fields: [userId], references: [id])
-  cpf     String
-  crea    String
+  cpf     String  @unique
+  crea    String @unique
 }
 
 enum Role {
