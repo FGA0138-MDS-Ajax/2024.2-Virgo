@@ -1,84 +1,161 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, SafeAreaView } from 'react-native';
 import Checkbox from "expo-checkbox";
 
 
 export default function LoginScreen() {
   const router = useRouter();
-
-  const handleLogin = () => {
-    // Simula o login
-    console.log("Cadastro bem-sucedido, redirecionando para (tabs)...");
-    router.replace("(tabs)");
-  };
-
   const [isChecked, setChecked] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [errors, setErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    validateForm(); // Aciona a validação quando algum argumento muda 
+  }, [name, email, password1, password2, isChecked]);
+
+  const validateForm = () => {
+    let errors = {};
+    // Validações
+    if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(name)) {
+      errors.name = 'Nome não pode conter números ou caracteres especiais';
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.email = 'Email inválido.';
+    }
+
+    if (password1.length < 6) {
+      errors.password1 = 'A senha precisa ter no mínimo 6 dígitos.';
+    }
+
+    if (!(password2 == password1)) {
+      errors.password2 = 'As senhas precisam ser iguais.';
+    }
+
+    if (!isChecked) {
+      errors.isChecked = 'termos não aceitos';
+    }
+    setErrors(errors);
+    setIsFormValid(Object.keys(errors).length === 0);
+  };
+
+  const handleSubmit = () => {
+    if (isFormValid) {
+      console.log('Forms Validados!');
+    } else {
+      console.log('Forms com Erro (?).');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Cadastro</Text>
       <View style={styles.line} />
-      <View style={styles.label}>
-        <Ionicons name='person' size={24} color="gray" paddingRight={5}/>
-        <TextInput
-          style={styles.passinput}
-          placeholder="Nome"
-          placeholderTextColor="#aaa"
-          keyboardType="default"
-        />
+      <View style={styles.register}>
+
+        <View style={styles.label}> 
+          <View style={styles.input}>
+            <Ionicons name='person' size={24} color="gray" paddingRight={5}/>
+            <TextInput
+              style={styles.passinput}
+              placeholder="Nome"
+              placeholderTextColor="#aaa"
+              keyboardType="default"
+              value={name}
+              onChangeText={setName}
+            />
+          </View>
+          {name !== '' && errors.name && (
+            <Text style={styles.error}>
+              {errors.name}
+            </Text>
+          )}
+        </View>
+
+        <View style={styles.label}>      
+          <View style={styles.input}>
+            <Ionicons name='mail' size={24} color="gray" paddingRight={5}/>
+            <TextInput
+              style={styles.passinput}
+              placeholder="E-mail"
+              placeholderTextColor="#aaa"
+              keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
+            />
+          </View>
+          {email !== '' && errors.email && (
+            <Text style={styles.error}>
+              {errors.email}
+            </Text>
+          )}
+        </View>
+
+        <View style={styles.label}> 
+          <View style={styles.input}>
+            <TextInput
+              style={styles.passinput}
+              placeholder="Senha"
+              placeholderTextColor="#aaa"
+              secureTextEntry={!passwordVisible}
+              value={password1}
+              onChangeText={setPassword1}
+            />
+            <TouchableOpacity
+              style={styles.eyeButton}
+              onPress={() => setPasswordVisible(!passwordVisible)}
+            >
+              <Ionicons
+                name={passwordVisible ? 'eye-off' : 'eye'}
+                size={24}
+                color="gray"
+              />
+            </TouchableOpacity>
+          </View>
+          {password1 !== '' && errors.password1 && (
+            <Text style={styles.error}>
+              {errors.password1}
+            </Text>
+          )}
+        </View>
+
+        <View style={styles.label}>
+          <View style={styles.input}>
+            <TextInput
+              style={styles.passinput}
+              placeholder="Confirmar Senha"
+              placeholderTextColor="#aaa"
+              secureTextEntry={!passwordVisible2}
+              value={password2}
+              onChangeText={setPassword2}
+            />
+            <TouchableOpacity
+              style={styles.eyeButton}
+              onPress={() => setPasswordVisible2(!passwordVisible2)}
+            >
+              <Ionicons
+                name={passwordVisible2 ? 'eye-off' : 'eye'}
+                size={24}
+                color="gray"
+              />
+            </TouchableOpacity>
+          </View>
+          {password2 !== '' && errors.password2 && (
+            <Text style={styles.error}>
+              {errors.password2}
+            </Text>
+          )}
+        </View>
       </View>
 
-      <View style={styles.label}>
-        <Ionicons name='mail' size={24} color="gray" paddingRight={5}/>
-        <TextInput
-          style={styles.passinput}
-          placeholder="E-mail"
-          placeholderTextColor="#aaa"
-          keyboardType="email-address"
-        />
-      </View>
-
-      <View style={styles.label}>
-        <TextInput
-          style={styles.passinput}
-          placeholder="Senha"
-          placeholderTextColor="#aaa"
-          secureTextEntry={!passwordVisible}
-        />
-        <TouchableOpacity
-          style={styles.eyeButton}
-          onPress={() => setPasswordVisible(!passwordVisible)}
-        >
-          <Ionicons
-            name={passwordVisible ? 'eye-off' : 'eye'}
-            size={24}
-            color="gray"
-          />
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.label}>
-        <TextInput
-          style={styles.passinput}
-          placeholder="Senha"
-          placeholderTextColor="#aaa"
-          secureTextEntry={!passwordVisible2}
-        />
-        <TouchableOpacity
-          style={styles.eyeButton}
-          onPress={() => setPasswordVisible2(!passwordVisible2)}
-        >
-          <Ionicons
-            name={passwordVisible2 ? 'eye-off' : 'eye'}
-            size={24}
-            color="gray"
-          />
-        </TouchableOpacity>
-      </View>
       <View style={styles.row}>
         <Checkbox
           style={styles.checkbox}
@@ -91,9 +168,11 @@ export default function LoginScreen() {
           nossa Política de Privacidade
         </Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      
+      <TouchableOpacity style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]} disabled={!isFormValid} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
+
     </SafeAreaView>
   );
 }
@@ -105,6 +184,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f5f5f5",
   },
+  register: {
+    width: "80%",
+    gap: "15",
+    marginBottom: "10"
+  },
   logo: {
     width: 179, // Ajuste conforme necessário
     height: 179,
@@ -115,16 +199,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-  label: {
+  input: {
     flex: "1",
     flexDirection: "row",
-    width: "80%",
+    width: "100%",
     height: 50,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 8,
     paddingHorizontal: 10,
-    marginBottom: 20,
     color: "#000", // Garante que o texto digitado seja visível
     backgroundColor: "#fff", // Fundo branco para evitar conflito
     shadowOffset: { width: 0, height: 3 },
@@ -181,4 +264,15 @@ const styles = StyleSheet.create({
     top: 10, // Centraliza verticalmente no input
     zIndex: 1, // Garante que o botão fique sobre o input
   },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    marginLeft: "5",
+    width: "90%",
+    marginTop: "0",
+  },
+  label: {
+    flexDirection: "column",
+    gap: "2",
+  }
 });
