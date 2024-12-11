@@ -24,6 +24,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/mapped-types": "^2.0.6",
+    "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/throttler": "^6.2.1",
     "@prisma/client": "^6.0.1",
@@ -33,6 +34,7 @@
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.7",
     "nodemailer": "^6.9.16",
+    "passport-local": "^1.0.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
