@@ -1,14 +1,14 @@
-## logo do Projeto
+### logo do Projeto
 
 # Nome do projeto
 
 ## Descrição do projeto
 
-### Badges ( colocar a versão dele, link para licença, quantidade de issues, status da build, status dos testes.)
+## Badges ( colocar a versão dele, link para licença, quantidade de issues, status da build, status dos testes.)
 
 ### Tabela de Conteúdos
 
-# Tabela de conteúdos
+## Tabela de conteúdos
 
 <!--ts-->
 
