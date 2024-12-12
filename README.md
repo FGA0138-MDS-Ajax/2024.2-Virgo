@@ -6,8 +6,6 @@
 
 ## Badges ( colocar a versão dele, link para licença, quantidade de issues, status da build, status dos testes.)
 
-### Tabela de Conteúdos
-
 ## Tabela de conteúdos
 
 <!--ts-->
