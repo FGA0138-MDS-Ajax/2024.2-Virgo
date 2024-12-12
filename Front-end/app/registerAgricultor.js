@@ -1,47 +1,53 @@
-import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import React, { useState,useEffect } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, SafeAreaView } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+} from "react-native";
 import Checkbox from "expo-checkbox";
-
 
 export default function LoginScreen() {
   const router = useRouter();
   const [isChecked, setChecked] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password1, setPassword1] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
-    validateForm(); // Aciona a validação quando algum argumento muda 
+    validateForm(); // Aciona a validação quando algum argumento muda
   }, [name, email, password1, password2, isChecked]);
 
   const validateForm = () => {
     let errors = {};
     // Validações
     if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(name)) {
-      errors.name = 'Nome não pode conter números ou caracteres especiais';
+      errors.name = "Nome não pode conter números ou caracteres especiais";
     }
 
     if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = 'Email inválido.';
+      errors.email = "Email inválido.";
     }
 
     if (password1.length < 6) {
-      errors.password1 = 'A senha precisa ter no mínimo 6 dígitos.';
+      errors.password1 = "A senha precisa ter no mínimo 6 dígitos.";
     }
 
     if (!(password2 == password1)) {
-      errors.password2 = 'As senhas precisam ser iguais.';
+      errors.password2 = "As senhas precisam ser iguais.";
     }
 
     if (!isChecked) {
-      errors.isChecked = 'termos não aceitos';
+      errors.isChecked = "termos não aceitos";
     }
     setErrors(errors);
     setIsFormValid(Object.keys(errors).length === 0);
@@ -49,9 +55,9 @@ export default function LoginScreen() {
 
   const handleSubmit = () => {
     if (isFormValid) {
-      console.log('Forms Validados!');
+      console.log("Forms Validados!");
     } else {
-      console.log('Forms com Erro (?).');
+      console.log("Forms com Erro (?).");
     }
   };
 
@@ -60,10 +66,9 @@ export default function LoginScreen() {
       <Text style={styles.title}>Cadastro</Text>
       <View style={styles.line} />
       <View style={styles.register}>
-
-        <View style={styles.label}> 
+        <View style={styles.label}>
           <View style={styles.input}>
-            <Ionicons name='person' size={24} color="gray" paddingRight={5}/>
+            <Ionicons name="person" size={24} color="gray" paddingRight={5} />
             <TextInput
               style={styles.passinput}
               placeholder="Nome"
@@ -73,16 +78,14 @@ export default function LoginScreen() {
               onChangeText={setName}
             />
           </View>
-          {name !== '' && errors.name && (
-            <Text style={styles.error}>
-              {errors.name}
-            </Text>
+          {name !== "" && errors.name && (
+            <Text style={styles.error}>{errors.name}</Text>
           )}
         </View>
 
-        <View style={styles.label}>      
+        <View style={styles.label}>
           <View style={styles.input}>
-            <Ionicons name='mail' size={24} color="gray" paddingRight={5}/>
+            <Ionicons name="mail" size={24} color="gray" paddingRight={5} />
             <TextInput
               style={styles.passinput}
               placeholder="E-mail"
@@ -92,14 +95,12 @@ export default function LoginScreen() {
               onChangeText={setEmail}
             />
           </View>
-          {email !== '' && errors.email && (
-            <Text style={styles.error}>
-              {errors.email}
-            </Text>
+          {email !== "" && errors.email && (
+            <Text style={styles.error}>{errors.email}</Text>
           )}
         </View>
 
-        <View style={styles.label}> 
+        <View style={styles.label}>
           <View style={styles.input}>
             <TextInput
               style={styles.passinput}
@@ -114,16 +115,14 @@ export default function LoginScreen() {
               onPress={() => setPasswordVisible(!passwordVisible)}
             >
               <Ionicons
-                name={passwordVisible ? 'eye-off' : 'eye'}
+                name={passwordVisible ? "eye-off" : "eye"}
                 size={24}
                 color="gray"
               />
             </TouchableOpacity>
           </View>
-          {password1 !== '' && errors.password1 && (
-            <Text style={styles.error}>
-              {errors.password1}
-            </Text>
+          {password1 !== "" && errors.password1 && (
+            <Text style={styles.error}>{errors.password1}</Text>
           )}
         </View>
 
@@ -142,16 +141,14 @@ export default function LoginScreen() {
               onPress={() => setPasswordVisible2(!passwordVisible2)}
             >
               <Ionicons
-                name={passwordVisible2 ? 'eye-off' : 'eye'}
+                name={passwordVisible2 ? "eye-off" : "eye"}
                 size={24}
                 color="gray"
               />
             </TouchableOpacity>
           </View>
-          {password2 !== '' && errors.password2 && (
-            <Text style={styles.error}>
-              {errors.password2}
-            </Text>
+          {password2 !== "" && errors.password2 && (
+            <Text style={styles.error}>{errors.password2}</Text>
           )}
         </View>
       </View>
@@ -168,11 +165,14 @@ export default function LoginScreen() {
           nossa Política de Privacidade
         </Text>
       </View>
-      
-      <TouchableOpacity style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]} disabled={!isFormValid} onPress={handleSubmit}>
+
+      <TouchableOpacity
+        style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]}
+        disabled={!isFormValid}
+        onPress={handleSubmit}
+      >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-
     </SafeAreaView>
   );
 }
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   register: {
     width: "80%",
     gap: "15",
-    marginBottom: "10"
+    marginBottom: "10",
   },
   logo: {
     width: 179, // Ajuste conforme necessário
@@ -248,24 +248,24 @@ const styles = StyleSheet.create({
   },
   passsection: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
   passinput: {
-    width:"88%",
-    backgroundColor: '#fff',
-    color: '#424242',
+    width: "88%",
+    backgroundColor: "#fff",
+    color: "#424242",
   },
   eyeButton: {
-    position: 'absolute', // Coloca o botão dentro do input
+    position: "absolute", // Coloca o botão dentro do input
     right: 10, // Alinha à direita
     top: 10, // Centraliza verticalmente no input
     zIndex: 1, // Garante que o botão fique sobre o input
   },
   error: {
-    color: 'red',
+    color: "red",
     fontSize: 12,
     marginLeft: "5",
     width: "90%",
@@ -274,5 +274,5 @@ const styles = StyleSheet.create({
   label: {
     flexDirection: "column",
     gap: "2",
-  }
+  },
 });

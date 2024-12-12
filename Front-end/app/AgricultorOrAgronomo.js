@@ -7,21 +7,24 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import IconAgricultor from "../assets/svg/icon-agricultor.svg" //instalar 
-import IconAgronomo from "../assets/svg/icon-agronomo.svg"
-
+import IconAgricultor from "../assets/svg/icon-agricultor.svg"; //instalar
+import IconAgronomo from "../assets/svg/icon-agronomo.svg";
 
 export default function LoginScreen() {
   const router = useRouter();
 
   const handleRegisterAgricultor = () => {
     // Simula o login
-    console.log("Cadastro bem-sucedido, redirecionando para (tabs)...");
+    console.log(
+      "Selecionado tipo de usuário agricultor redirecionando para (registerAgricultor)..."
+    );
     router.push("/registerAgricultor");
   };
   const handleRegiterAgronomo = () => {
     // Simula o login
-    console.log("Cadastro bem-sucedido, redirecionando para (tabs)...");
+    console.log(
+      "Selecionado tipo de usuário agrônomo redirecionando para (registerAgronomo)..."
+    );
     router.push("/registerAgronomo");
   };
 
