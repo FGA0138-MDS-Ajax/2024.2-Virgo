@@ -12,6 +12,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -29,8 +30,22 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack
+      screenOptions={{
+        headerShown: true,
+        title: '',
+        headerStyle: { backgroundColor: '#057B44' },
+        headerBackTitle: 'Voltar',
+        headerTintColor: '#FFFFFF',
+        headerTitleAlign: 'center',
+      }}
+      >
+        <Stack.Screen name="index"/>
+        <Stack.Screen name="login"/>
+        <Stack.Screen name="forgotPassword"/>
+        <Stack.Screen name="forgotPasswordCheckEmail"/>
+        <Stack.Screen name="forgotPasswordReset"/>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
