@@ -1,6 +1,8 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import IconLogo from "../assets/svg/icon-logo.svg"
+
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -12,16 +14,13 @@ export default function WelcomeScreen() {
 
   const handleRegister = () => {
     console.log('Redirecionando para /register...');
-    router.push('/register'); // Redireciona para a tela de cadastro
+    router.push('/AgricultorOrAgronomo'); // Redireciona para a tela de cadastro
   };
 
   return (
     <View style={styles.container}>
       {/* Logo */}
-      <Image
-        source={require('../assets/images/app-icon-logo.png')}
-        style={styles.logo}
-      />
+      <IconLogo height="200" style={styles.logo}></IconLogo>
 
       {/* Nome do app */}
       <Text style={styles.title}>Cuidar Verde</Text>
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
-    marginBottom: 20,
+    marginBottom: 30,
     marginTop: -200,
   },
   icon: {
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 40,
+    color: '#0D2717',
   },
   button: {
     width: 270,

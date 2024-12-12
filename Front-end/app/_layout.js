@@ -12,11 +12,12 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+
 export default function RootLayout() {
+  
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
   useEffect(() => {
@@ -30,21 +31,7 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen
-          name="AgricultorOrAgronomo"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="RegisterAgricultor"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="RegisterAgronomo"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack
       screenOptions={{
         headerShown: true,
@@ -57,6 +44,8 @@ export default function RootLayout() {
       >
         <Stack.Screen name="index"/>
         <Stack.Screen name="login"/>
+        <Stack.Screen name="AgricultorOrAgronomo"/>
+        <Stack.Screen name="registerAgricultor"/>
         <Stack.Screen name="forgotPassword"/>
         <Stack.Screen name="forgotPasswordCheckEmail"/>
         <Stack.Screen name="forgotPasswordReset"/>

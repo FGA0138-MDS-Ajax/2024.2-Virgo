@@ -3,6 +3,8 @@ import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
+import IconLogo from "../assets/svg/icon-logo.svg"
+
 export default function LoginScreen() {
   
   const router = useRouter();
@@ -26,13 +28,15 @@ export default function LoginScreen() {
     router.push('/forgotPassword'); // Caminho real da tela de recuperação
   };
 
+  const handleAgricultorOrAgronomo = () => {
+    console.log('Redirecionando para /AgricultorOrAgronomo...')
+    router.push('/AgricultorOrAgronomo')
+  }
+
   return (
     <View style={styles.container}>
       
-      <Image
-        source={require('../assets/images/app-icon-logo.png')}
-        style={styles.logo}
-      />
+      <IconLogo height="200" style={styles.logo}></IconLogo>
 
       <Text style={styles.title}>Entrar</Text>
       
@@ -74,7 +78,7 @@ export default function LoginScreen() {
       {/* Texto de redirecionamento para cadastro */}
       <TouchableOpacity style={styles.registerContainer} onPress={handleRegister}>
         <Text style={styles.registerText}>
-          Não possui uma conta? <Text style={styles.registerLink}>Cadastrar</Text>
+          Não possui uma conta? <Text style={styles.registerLink} onPress={handleAgricultorOrAgronomo}>Cadastrar</Text>
         </Text>
       </TouchableOpacity>
     
@@ -93,13 +97,14 @@ const styles = StyleSheet.create({
   logo: {
   width: 200,
   height: 200,
-  marginBottom: 70, 
+  marginBottom: 50, 
   marginTop: -70,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#0D2717',
   },
   input: {
     width: 270,
@@ -142,7 +147,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordText: {
     fontSize: 14,
-    color: '#057B44',
+    color: '#0D2717',
     fontWeight: 'bold',
   },
   button: {
@@ -164,11 +169,11 @@ const styles = StyleSheet.create({
   },
   registerText: {
     fontSize: 14,
-    color: '#057B44',
+    color: '#0D2717',
     textAlign: 'center',
   },
   registerLink: {
-    color: '#000000',
+    color: '#0D2717',
     fontWeight: 'bold',
   },
 });

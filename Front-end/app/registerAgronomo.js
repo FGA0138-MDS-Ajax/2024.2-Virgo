@@ -42,7 +42,7 @@ export default function LoginScreen() {
       errors.email = "Email inválido.";
     }
 
-    if (password1.length < 6) {
+    if (password1.length < 8) {
       errors.password1 = "A senha precisa ter no mínimo 6 dígitos.";
     }
 
@@ -54,11 +54,15 @@ export default function LoginScreen() {
       errors.isChecked = "termos não aceitos";
     }
 
-    if (!cpf) {
+    if (cpf.length < 11) {
       errors.cpf = "CPF inválido";
     }
 
-    if (!crea) {
+    if (!/^[0-9]*$/.test(cpf)) {
+      errors.cpf = "CPF inválido";
+    }
+
+    if (crea.length < 10) {
       errors.crea = "CREA inválido";
     }
 
@@ -120,11 +124,12 @@ export default function LoginScreen() {
               placeholder="CPF"
               placeholderTextColor="#aaa"
               keyboardType="numeric"
+              maxLength={11}
               value={cpf}
               onChangeText={setCPF}
             />
           </View>
-          {errors.cpf && <Text style={styles.error}>{errors.cpf}</Text>}
+          {cpf !== "" && errors.cpf && <Text style={styles.error}>{errors.cpf}</Text>}
         </View>
 
         <View style={styles.label}>
@@ -138,7 +143,7 @@ export default function LoginScreen() {
               onChangeText={setCREA}
             />
           </View>
-          {errors.crea && <Text style={styles.error}>{errors.crea}</Text>}
+          {crea !== "" && errors.crea && <Text style={styles.error}>{errors.crea}</Text>}
         </View>
 
         <View style={styles.label}>
@@ -201,9 +206,10 @@ export default function LoginScreen() {
           value={isChecked}
           onValueChange={setChecked}
         />
-        <Text>
-          Ao criar uma conta, você concorda com os Termos de Serviço, incluindo
-          nossa Política de Privacidade
+        <Text style={styles.termsText}>
+          Ao criar uma conta, você concorda com os{' '}
+          <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo nossa{' '}
+          <Text style={styles.linkText}>Política de Privacidade</Text>.
         </Text>
       </View>
 
@@ -239,6 +245,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginBottom: 10,
+    color: "#0D2717"
   },
   input: {
     flex: "1",
@@ -315,5 +322,9 @@ const styles = StyleSheet.create({
   label: {
     flexDirection: "column",
     gap: "2",
+  },
+  linkText: {
+    color: '#0D2717', 
+    fontWeight: 'bold', 
   },
 });
