@@ -12,13 +12,24 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role Role
-  createdAt DateTime @default(now())  
+  role      Role
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Agronomo   Agronomo?   @relation("AgronomoRelation")
+}
+
+
+model Agronomo {
+  userId  String @unique
+  user    User   @relation("AgronomoRelation", fields: [userId], references: [id])
+  cpf     String  @unique
+  crea    String @unique
 }
 
 enum Role {
   AGRICULTOR
   AGRONOMO
 }
+
 
