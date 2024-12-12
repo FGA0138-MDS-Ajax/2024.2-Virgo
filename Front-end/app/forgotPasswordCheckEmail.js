@@ -1,24 +1,29 @@
-import { useRouter } from 'expo-router';
-import React from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useRouter } from "expo-router";
+import React from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function forgotPassword() {
-  
   const router = useRouter();
 
-  const handleEmailToken = () => {
+  const handleLogin = () => {
     // Simula o login
-    console.log('Login bem-sucedido, redirecionando para (tabs)...');
-    router.push('/forgotPasswordReset'); // Caminho real da tela de recuperação
+    console.log("Login bem-sucedido, redirecionando para (tabs)...");
+    router.push("/login"); // Caminho real da tela de recuperação
   };
 
   return (
     <View style={styles.container}>
       {/* Card */}
       <View style={styles.card}>
-
         <Image
-          source={require('../assets/images/app-mail.png')}
+          source={require("../assets/images/app-mail.png")}
           style={styles.logo}
         />
 
@@ -26,26 +31,14 @@ export default function forgotPassword() {
         <Text style={styles.cardTitle}>Verifique seu email</Text>
 
         <Text style={styles.cardContent}>
-          Um email com um código de verificação foi enviado para EMAIL
+          Você recebeu uma nova SENHA, use ela para entrar no aplicativo. Caso
+          queira mudar sua senha dentro do aplicativo, vá para perfil e alterar
+          senha
         </Text>
 
-        <TextInput
-        style={styles.input}
-        placeholder="Código de confirmação"
-        placeholderTextColor="#1A4D2E"
-        keyboardType="email-address"
-        />
-
-        <TouchableOpacity style={styles.button} onPress={handleEmailToken}>
-          <Text style={styles.buttonText}>Enviar</Text>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Voltar para tela de Entrar</Text>
         </TouchableOpacity>
-
-        <Text style={styles.cardContent}>
-          Não recebeu o código?{' '}
-          <Text style={styles.linkText} onPress={handleEmailToken}>
-            Reenviar código
-          </Text>
-        </Text>
       </View>
     </View>
   );
@@ -54,23 +47,23 @@ export default function forgotPassword() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    backgroundColor: '#FEFEFE',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FEFEFE",
   },
   card: {
     width: 316,
     height: 390,
-    backgroundColor: '#fff',
-    borderRadius: 6, 
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 }, 
-    shadowOpacity: 0.4, 
-    shadowRadius: 5, 
-    elevation: 4, 
-    padding: 20, 
-    justifyContent: 'flex-start', 
-    alignItems: 'center', 
+    backgroundColor: "#fff",
+    borderRadius: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 5,
+    elevation: 4,
+    padding: 20,
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   logo: {
     width: 80,
@@ -78,48 +71,49 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#0D2717',
+    fontWeight: "bold",
+    color: "#0D2717",
     marginBottom: 20,
-    marginTop: 20, 
-    textAlign: 'center', 
+    marginTop: 20,
+    textAlign: "center",
   },
   cardContent: {
-    fontSize: 12,
-    color: '#1A4D2E',
-    textAlign: 'center',
+    fontSize: 13,
+    color: "#1A4D2E",
+    textAlign: "center",
     marginBottom: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
+    padding: 5,
   },
   input: {
     width: 284,
     height: 39,
     borderWidth: 1,
-    borderColor: '#277345',
+    borderColor: "#277345",
     borderRadius: 6,
     paddingHorizontal: 10,
     marginBottom: 15,
-    color: '#000',
-    backgroundColor: '#fff',
+    color: "#000",
+    backgroundColor: "#fff",
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   button: {
     width: 284,
     height: 42,
-    backgroundColor: '#057B44',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#057B44",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 6,
     marginBottom: 20,
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   linkText: {
-    color: '#000',
-    fontWeight: 'bold', 
+    color: "#000",
+    fontWeight: "bold",
   },
 });
