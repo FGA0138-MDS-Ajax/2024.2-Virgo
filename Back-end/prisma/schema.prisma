@@ -23,7 +23,6 @@ model User {
 model Agronomo {
   userId  String @unique
   user    User   @relation("AgronomoRelation", fields: [userId], references: [id])
-  cpf     String  @unique
   crea    String @unique
 }
 

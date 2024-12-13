@@ -28,8 +28,4 @@ export class CreateUserDto {
   @ValidateIf((o) => o.role === 'AGRONOMO')
   @IsString()
   crea?: string;
-
-  @ValidateIf((o) => o.role === 'AGRONOMO')
-  @IsString()
-  cpf?: string;
 }
