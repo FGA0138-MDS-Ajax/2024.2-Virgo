@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="./images/cuidar-logo-svg.svg" height="250"alt="Docusaurus">
+    <img src="./images/cuidar-logo-white.svg" height="250"alt="Docusaurus">
 </h1>
 <h1 align="center">
 
