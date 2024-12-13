@@ -5,12 +5,13 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
+  Button,
   View,
+  TouchableOpacity,
   SafeAreaView,
 } from "react-native";
 import Checkbox from "expo-checkbox";
-
+import axios from "axios"
 //FAZER VALIDAÇÃO INPUT CPF E CREA INDIVIDUAIS
 
 export default function LoginScreen() {
@@ -19,7 +20,6 @@ export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
   const [name, setName] = useState("");
-  const [cpf, setCPF] = useState("");
   const [crea, setCREA] = useState("");
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
@@ -27,10 +27,12 @@ export default function LoginScreen() {
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
+  const url = "http://192.168.0.2:3000/api/users/"
+  
   useEffect(() => {
     validateForm(); // Aciona a validação quando algum argumento muda
-  }, [name, email, password1, password2, isChecked, cpf, crea]);
-
+  }, [name, email, password1, password2, isChecked, crea]);
+  
   const validateForm = () => {
     let errors = {};
     // Validações
@@ -54,14 +56,6 @@ export default function LoginScreen() {
       errors.isChecked = "termos não aceitos";
     }
 
-    if (cpf.length < 11) {
-      errors.cpf = "CPF inválido";
-    }
-
-    if (!/^[0-9]*$/.test(cpf)) {
-      errors.cpf = "CPF inválido";
-    }
-
     if (crea.length < 10) {
       errors.crea = "CREA inválido";
     }
@@ -70,13 +64,36 @@ export default function LoginScreen() {
     setIsFormValid(Object.keys(errors).length === 0);
   };
 
-  const handleSubmit = () => {
+
+  const handleSubmit = (name,email,password,crea) => {
     if (isFormValid) {
-      console.log("Forms Validados!");
+      console.log("Validando Forms!");
+      axios.post(url, {
+        name: name,
+        email: email,
+        password: password,
+        role : "AGRONOMO",
+        crea : crea
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log("gg paizao")
+        router.push("/home");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      console.log(
+        "Usuário cadastrado!, redirecionando a home..."
+      );
+
     } else {
       console.log("Forms com Erro (?).");
     }
+    
   };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -115,21 +132,6 @@ export default function LoginScreen() {
           {email !== "" && errors.email && (
             <Text style={styles.error}>{errors.email}</Text>
           )}
-        </View>
-
-        <View style={styles.label}>
-          <View style={styles.input}>
-            <TextInput
-              style={styles.passinput}
-              placeholder="CPF"
-              placeholderTextColor="#aaa"
-              keyboardType="numeric"
-              maxLength={11}
-              value={cpf}
-              onChangeText={setCPF}
-            />
-          </View>
-          {cpf !== "" && errors.cpf && <Text style={styles.error}>{errors.cpf}</Text>}
         </View>
 
         <View style={styles.label}>
@@ -216,7 +218,7 @@ export default function LoginScreen() {
       <TouchableOpacity
         style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]}
         disabled={!isFormValid}
-        onPress={handleSubmit}
+        onPress={() => handleSubmit(name,email,password2,cpf,crea)}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
