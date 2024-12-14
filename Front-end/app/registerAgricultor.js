@@ -10,6 +10,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import Checkbox from "expo-checkbox";
+import axios from "axios";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -22,6 +23,8 @@ export default function LoginScreen() {
   const [password2, setPassword2] = useState("");
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const url = "http://192.168.0.199:3000/api/users/";
 
   useEffect(() => {
     validateForm(); // Aciona a validação quando algum argumento muda
@@ -53,9 +56,26 @@ export default function LoginScreen() {
     setIsFormValid(Object.keys(errors).length === 0);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (name, email, password, crea) => {
     if (isFormValid) {
-      console.log("Forms Validados!");
+      console.log("Validando Forms!");
+      axios
+        .post(url, {
+          name: name,
+          email: email,
+          password: password,
+          role: "AGRICULTOR",
+        })
+        .then(function (response) {
+          console.log(response);
+          console.log("gg paizao");
+          router.push("/home");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      console.log("Usuário cadastrado!, redirecionando a home...");
     } else {
       console.log("Forms com Erro (?).");
     }
@@ -161,16 +181,16 @@ export default function LoginScreen() {
           onValueChange={setChecked}
         />
         <Text style={styles.termsText}>
-          Ao criar uma conta, você concorda com os{' '}
-          <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo nossa{' '}
-          <Text style={styles.linkText}>Política de Privacidade</Text>.
+          Ao criar uma conta, você concorda com os{" "}
+          <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo
+          nossa <Text style={styles.linkText}>Política de Privacidade</Text>.
         </Text>
       </View>
 
       <TouchableOpacity
         style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]}
         disabled={!isFormValid}
-        onPress={handleSubmit}
+        onPress={() => handleSubmit(name, email, password2)}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
@@ -199,7 +219,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginBottom: 10,
-    color: "#0D2717"
+    color: "#0D2717",
   },
   input: {
     flex: "1",
@@ -278,7 +298,7 @@ const styles = StyleSheet.create({
     gap: "2",
   },
   linkText: {
-    color: '#0D2717', 
-    fontWeight: 'bold', 
+    color: "#0D2717",
+    fontWeight: "bold",
   },
 });
