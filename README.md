@@ -1,19 +1,17 @@
-## logo do Projeto
+<h1 align="center">
+    <img src="./images/cuidar-logo-white.svg" height="250"alt="Docusaurus">
+</h1>
+<h1 align="center">
 
-# Nome do projeto
+  ![Static Badge](https://img.shields.io/badge/version-1.0-blue?style=flat-square) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/FGA0138-MDS-Ajax/2024.2-Virgo/ci.yml?style=flat-square&logo=github)
+ ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/FGA0138-MDS-Ajax/2024.2-Virgo?style=flat-square) ![NPM Version](https://img.shields.io/npm/v/npm?style=flat-square&color=red) ![GitHub repo size](https://img.shields.io/github/repo-size/FGA0138-MDS-Ajax/2024.2-Virgo?style=flat-square&color=purple)
 
-## Descrição do projeto
+</h1>
 
-### Badges ( colocar a versão dele, link para licença, quantidade de issues, status da build, status dos testes.)
 
-### Tabela de Conteúdos
+## Sobre
+Plantar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagnóstico e manejo de doenças nas plantas, utilizando tecnologias de inteligência artificial para análise de imagens e reconhecimento de doenças através de um aplicativo mobile.
 
-# Tabela de conteúdos
-
-<!--ts-->
-
-- [Sobre](#Sobre)
-- [Tabela de Conteudo](#tabela-de-conteudo)
 - [Instalação](#instalacao)
 - [Como usar](#como-usar)
   - [Pre Requisitos](#pre-requisitos)
@@ -23,17 +21,20 @@
   - [Combo](#combo)
 - [Tests](#testes)
 - [Tecnologias](#tecnologias)
-<!--te-->
 
-### Status do Projeto
+## Status do Projeto
 
-### Features
+## Features
 
 - [x] Cadastro de usuário agricultor
 - [x] Cadastro de usuário agrônomo
 - [ ] Histórico de plantas
 
-### Pré-requisitos e como rodar a aplicação/testes
+## Instalação
+### 1. Clonar o repositório
+```
+git clone https://github.com/FGA0138-MDS-Ajax/2024.2-Virgo.git
+```
 
 ### 🛠 Tecnologias
 
