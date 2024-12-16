@@ -14,7 +14,9 @@ export default function forgotPassword() {
 
   const handleLogin = () => {
     // Simula o login
-    console.log("Login bem-sucedido, redirecionando para (tabs)...");
+    console.log(
+      "Recebeu a senha no email, redirecionando para tela de login..."
+    );
     router.push("/login"); // Caminho real da tela de recuperação
   };
 
