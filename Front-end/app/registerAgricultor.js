@@ -56,7 +56,7 @@ export default function LoginScreen() {
     setIsFormValid(Object.keys(errors).length === 0);
   };
 
-  const handleSubmit = (name, email, password, crea) => {
+  const handleSubmit = (name, email, password) => {
     if (isFormValid) {
       console.log("Validando Forms!");
       axios
