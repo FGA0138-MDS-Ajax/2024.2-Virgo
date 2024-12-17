@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import IconLogo from "../assets/svg/icon-logo.svg"
+import IconLogo from "../assets/svg/icon-logo.svg";
 
 
 export default function WelcomeScreen() {
@@ -22,8 +22,11 @@ export default function WelcomeScreen() {
       {/* Logo */}
       <IconLogo height="200" style={styles.logo}></IconLogo>
 
-      {/* Nome do app */}
-      <Text style={styles.title}>Cuidar Verde</Text>
+      {/* Imagem PNG abaixo do logo */}
+      <Image
+        source={require("../assets/images/cuidar-verde.png")}
+        style={styles.pngImage}
+      />
 
       {/* Botão "Já tenho conta" */}
       <TouchableOpacity style={[styles.button, styles.shadow]} onPress={handleLogin}>
@@ -104,5 +107,8 @@ const styles = StyleSheet.create({
   linkText: {
     color: '#0D2717', 
     fontWeight: 'bold', 
+  },
+  pngImage: {
+    marginBottom: 20,
   },
 });

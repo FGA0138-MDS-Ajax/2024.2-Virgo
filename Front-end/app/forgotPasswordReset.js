@@ -45,7 +45,7 @@ export default function forgotPassword() {
         </TouchableOpacity>
       </View>
 
-      {/* Campo de senha com botão de visibilidade */}
+      {/* Campo de confirmar senha com botão de visibilidade */}
       <View style={styles.inputContainer2}>
         <TextInput
           style={styles.passwordInput}
