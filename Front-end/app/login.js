@@ -2,12 +2,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  Image,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import IconLogo from "../assets/svg/icon-logo.svg";
 
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FEFEFE",
+    backgroundColor: "#F5F5F5",
     paddingBottom: 20,
   },
   logo: {

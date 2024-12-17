@@ -4,9 +4,8 @@ import {
   Image,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 export default function forgotPassword() {
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FEFEFE",
+    backgroundColor: "#F5F5F5",
   },
   card: {
     width: 316,

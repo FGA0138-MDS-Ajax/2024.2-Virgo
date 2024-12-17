@@ -36,9 +36,9 @@ export default function RootLayout() {
       screenOptions={{
         headerShown: true,
         title: '',
-        headerStyle: { backgroundColor: '#057B44' },
+        headerStyle: { backgroundColor: '#F5F5F5' },
         headerBackTitle: 'Voltar',
-        headerTintColor: '#FFFFFF',
+        headerTintColor: '#007AFF',
         headerTitleAlign: 'center',
       }}
       >

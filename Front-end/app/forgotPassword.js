@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -7,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import axios from "axios";
 
 export default function forgotPassword() {
   const router = useRouter();
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FEFEFE",
+    backgroundColor: "#F5F5F5",
   },
   card: {
     width: 316,
