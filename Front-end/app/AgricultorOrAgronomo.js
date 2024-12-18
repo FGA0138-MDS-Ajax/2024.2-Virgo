@@ -1,17 +1,20 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import {
-  Image,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import IconAgricultor from "../assets/svg/icon-agricultor.svg"; //instalar
 import IconAgronomo from "../assets/svg/icon-agronomo.svg";
 
 export default function LoginScreen() {
   const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
 
   const handleRegisterAgricultor = () => {
     // Simula o login
@@ -30,6 +33,12 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
+
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>O que você é?</Text>
       <View style={styles.line} />
       <TouchableOpacity
@@ -68,6 +77,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 16,
+  },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20, 
+    zIndex: 10, 
   },
   title: {
     fontSize: 35,

@@ -2,12 +2,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  Image,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import IconLogo from "../assets/svg/icon-logo.svg";
 
@@ -86,10 +85,6 @@ export default function LoginScreen() {
       });
   };
 
-  const handleBack = () => {
-    router.back();
-  };
-
   const handleRegister = () => {
     // Redireciona para a tela de cadastro
     console.log("Redirecionando para /register...");
@@ -108,14 +103,6 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      
-      {/* Botão de voltar */}
-      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-        <Image
-          source={require("../assets/images/botao-voltar.png")} 
-          style={styles.backButtonImage} 
-        />
-      </TouchableOpacity>
 
       <IconLogo height="200" style={styles.logo}></IconLogo>
 
@@ -198,12 +185,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5F5F5",
     paddingBottom: 20,
-  },
-  backButton: {
-    position: "absolute",
-    top: 70,
-    left: 20, 
-    zIndex: 10, 
   },
   logo: {
     width: 200,
