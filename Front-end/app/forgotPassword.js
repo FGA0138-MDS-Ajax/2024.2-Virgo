@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -63,8 +64,18 @@ export default function forgotPassword() {
       });
   };
 
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <View style={styles.container}>
+
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+      </TouchableOpacity>
+
       {/* Card */}
       <View style={styles.card}>
         {/* Título */}
@@ -106,6 +117,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5F5F5",
   },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20, 
+    zIndex: 10, 
+  },
   card: {
     width: 316,
     height: 290,
@@ -124,8 +141,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#0D2717",
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: 10,
+    marginTop: 10,
     textAlign: "center",
   },
   cardContent: {
@@ -143,12 +160,9 @@ const styles = StyleSheet.create({
     borderColor: "#277345",
     borderRadius: 6,
     paddingHorizontal: 10,
-    marginBottom: 4,
     color: "#000",
     backgroundColor: "#fff",
-  },
-  emailForm: {
-    marginBottom: 10,
+    marginBottom: -10,
   },
   button: {
     width: 284,
