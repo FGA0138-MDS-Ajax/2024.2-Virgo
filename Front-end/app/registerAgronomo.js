@@ -1,17 +1,16 @@
 import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
+import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
-  Button,
-  View,
   TouchableOpacity,
-  SafeAreaView,
+  View
 } from "react-native";
-import Checkbox from "expo-checkbox";
-import axios from "axios";
 //FAZER VALIDAÇÃO INPUT CPF E CREA INDIVIDUAIS
 
 export default function LoginScreen() {
@@ -90,8 +89,18 @@ export default function LoginScreen() {
     }
   };
 
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>Cadastro</Text>
       <View style={styles.line} />
       <View style={styles.register}>
@@ -229,6 +238,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f5f5f5",
+  },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20, 
+    zIndex: 10, 
   },
   register: {
     width: "80%",
