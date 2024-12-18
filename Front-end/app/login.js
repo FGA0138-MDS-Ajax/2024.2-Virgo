@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordContainer: {
     alignSelf: "flex-end",
-    marginRight: "18%", //
+    marginRight: "16%", //
     marginBottom: 20,
   },
   forgotPasswordText: {

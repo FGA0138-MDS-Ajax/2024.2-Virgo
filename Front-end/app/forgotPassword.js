@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 6,
+    marginTop: 10,
   },
   buttonText: {
     color: "#fff",
@@ -180,6 +181,6 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     fontSize: 15,
-    marginBottom: 15,
+    marginTop: 12,
   },
 });

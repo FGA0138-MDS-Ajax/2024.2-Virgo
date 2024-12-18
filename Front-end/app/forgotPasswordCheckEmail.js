@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -11,6 +12,10 @@ import {
 export default function forgotPassword() {
   const router = useRouter();
 
+  const handleBack = () => {
+    router.back();
+  };
+
   const handleLogin = () => {
     // Simula o login
     console.log(
@@ -21,6 +26,12 @@ export default function forgotPassword() {
 
   return (
     <View style={styles.container}>
+
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+      </TouchableOpacity>
+
       {/* Card */}
       <View style={styles.card}>
         <Image
@@ -51,6 +62,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5F5F5",
+  },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20, 
+    zIndex: 10, 
   },
   card: {
     width: 316,
