@@ -1,6 +1,6 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -15,6 +15,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   
+  const router = useRouter();
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -34,23 +35,22 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack
       screenOptions={{
-        headerShown: true,
         title: '',
+        headerShown: false,
         headerStyle: { backgroundColor: '#F5F5F5' },
-        headerBackTitle: 'Voltar',
-        headerTintColor: '#007AFF',
-        headerTitleAlign: 'center',
       }}
       >
-        <Stack.Screen name="index"/>
-        <Stack.Screen name="login"/>
-        <Stack.Screen name="AgricultorOrAgronomo"/>
-        <Stack.Screen name="registerAgricultor"/>
-        <Stack.Screen name="forgotPassword"/>
-        <Stack.Screen name="forgotPasswordCheckEmail"/>
-        <Stack.Screen name="forgotPasswordReset"/>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
-        <Stack.Screen name="+not-found" />
+        <>
+          <Stack.Screen name="index"/>
+          <Stack.Screen name="login"/>
+          <Stack.Screen name="AgricultorOrAgronomo"/>
+          <Stack.Screen name="registerAgricultor"/>
+          <Stack.Screen name="forgotPassword"/>
+          <Stack.Screen name="forgotPasswordCheckEmail"/>
+          <Stack.Screen name="forgotPasswordReset"/>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
+          <Stack.Screen name="+not-found" />
+        </>
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
