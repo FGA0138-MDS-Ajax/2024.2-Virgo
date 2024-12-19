@@ -1,12 +1,10 @@
-# Página Inicial
+![Logo](./assets/cuidar-logo-white.svg)
 
-## logo do Projeto
-
-## Nome do projeto
-
-### Descrição do projeto
+## Descrição do projeto
+Cuidar Verde é um projeto de software de IA desenvolvido por estudantes da disciplina de Métodos de Desenvolvimento de Software da Universidade de Brasília - Faculdade do Gama com o auxílio e mentoria do professor Ricardo Ajax e do monitor Wildemberg Sales.
 
 ## Sobre o Projeto
+O software tem como objetivo auxiliar pequenos e médios agricultores no diagnóstico e manejo de doenças nas plantas, utilizando tecnologias de inteligência artificial para análise de imagens e reconhecimento de doenças através de um aplicativo mobile.
 
 ## Colaboradores
 

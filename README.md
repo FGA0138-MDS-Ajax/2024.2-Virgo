@@ -10,7 +10,7 @@
 
 ## Sobre
 
-Plantar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagnóstico e manejo de doenças nas plantas, utilizando tecnologias de inteligência artificial para análise de imagens e reconhecimento de doenças através de um aplicativo mobile.
+Cuidar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagnóstico e manejo de doenças nas plantas, utilizando tecnologias de inteligência artificial para análise de imagens e reconhecimento de doenças através de um aplicativo mobile.
 
 - [Instalação](#instalacao)
 - [Como usar](#como-usar)
