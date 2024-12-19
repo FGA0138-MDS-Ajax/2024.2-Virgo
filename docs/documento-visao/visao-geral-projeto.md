@@ -28,7 +28,16 @@ Os procedimentos definidos para o projeto garantem que cada etapa do desenvolvim
 
 ### **Métodos**
 
-O principal método utilizado no desenvolvimento será o treinamento de um modelo de inteligência artificial com redes neurais convolucionais (CNN). Esse tipo de rede é particularmente eficiente na classificação de imagens e é amplamente utilizado em problemas de visão computacional. O treinamento do modelo será realizado com dados supervisionados, utilizando uma base de imagens rotuladas que representam tanto plantas saudáveis quanto plantas com doenças específicas. Cada planta terá seu dataset fornecido pela plataforma kaggle.
+O principal método utilizado no desenvolvimento será o treinamento de um modelo de inteligência artificial com redes neurais convolucionais (CNN). A CNN é um tipo de rede neural projetada para processar dados estruturados em forma de grades. Ela utiliza três camadas:
+
+- **Camada de Convolução**:
+- Usa filtros para detectar padrões em diferentes partes da imagem.
+- **Camada de Pooling**:
+- Reduz a dimensão dos dados e mantém as informações principais, o que melhora a eficiência do modelo
+- **Camadas Conectadas**:
+- Ela pegam os padrões detectados e os tranformam em previsões.
+
+Esse tipo de rede é particularmente eficiente na classificação de imagens e é amplamente utilizado em problemas de visão computacional. O treinamento do modelo será realizado com dados supervisionados, utilizando uma base de imagens rotuladas que representam tanto plantas saudáveis quanto plantas com doenças específicas. Cada planta terá seu dataset fornecido pela plataforma kaggle.
 
 ### **Ferramentas**
 
