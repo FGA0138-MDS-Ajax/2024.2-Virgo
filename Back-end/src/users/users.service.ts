@@ -11,7 +11,7 @@ export class UsersService {
   constructor(private readonly databaseService: DatabaseService) {}
 
   async create(createUserDto: CreateUserDto) {
-    const { cpf, crea, role, password, ...rest } = createUserDto;
+    const { crea, role, password, ...rest } = createUserDto;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -19,11 +19,10 @@ export class UsersService {
       ...rest,
       password: hashedPassword,
       role,
-      ...(role === 'AGRONOMO' && cpf && crea
+      ...(role === 'AGRONOMO' && crea
         ? {
             Agronomo: {
               create: {
-                cpf,
                 crea,
               },
             },
@@ -61,7 +60,6 @@ export class UsersService {
     const {
       currentPassword,
       newPassword,
-      cpf,
       crea,
       role,
       password,
@@ -87,10 +85,9 @@ export class UsersService {
     let agronomoData:
       | Prisma.AgronomoUpdateOneWithoutUserNestedInput
       | undefined;
-    if (cpf || crea) {
+    if (crea) {
       agronomoData = {
         update: {
-          cpf,
           crea,
         },
       };
