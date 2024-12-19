@@ -2,7 +2,20 @@
 
 A equipe adotou a metodologia ágil **SCRUM**, com adaptações específicas para incluir reuniões semanais com o cliente e a equipe. Essa abordagem tem como objetivo promover entregas incrementais de valor e alinhar as expectativas de todas as partes envolvidas.
 
+A imagem abaixo mostra de maneira ilustrativa, como funciona a metodologia Scrum que será aplicada no projeto, mencionada no texto anterior.
+
+![Scrum](../assets/scrum.jpg)
+
+**Imagem 2:** Metodologia Scrum -
+**Fonte:** [Benner - Tecnologia: Scrum](https://www.benner.com.br/tecnologia/2023/12/scrum/)
+
 O desenvolvimento será conduzido em Sprints semanais, permitindo entregas frequentes e um fluxo contínuo de feedback do cliente.
+
+Abaixo, a imagem resume como funciona uma sprint, aplicada ao desenvolvimento do nosso projeto.
+![Sprint](../assets/sprint.png)
+
+**Imagem 2:** Resumo de como uma sprint funciona -
+**Fonte:** [Artia - Sprint](https://artia.com/blog/sprint/)
 
 ### Reuniões Semanais
 

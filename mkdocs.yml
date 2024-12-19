@@ -6,7 +6,7 @@ nav:
       - Visão do Produto: "documento-visao/visao-geral-produto.md"
       - Visão Geral do Projeto: "documento-visao/visao-geral-projeto.md"
       - Processo de Desenvolvimento de Software: "documento-visao/processo-dev-software.md"
-      - Declaração de Escopo do Projeto: "documento-visao/dec-escopo-projeto.md"
+      - Declaração de Escopo do Projeto: "documento-visao/declaração-escopo-projeto.md"
   - Documento de Requisitos: "documento-requisitos/documento-requisitos.md"
   - Documento de Arquitetura: "documento-arquitetura/documento-arquitetura.md"
   - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
@@ -59,3 +59,5 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption

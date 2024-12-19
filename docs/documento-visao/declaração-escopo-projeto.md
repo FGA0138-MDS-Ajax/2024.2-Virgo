@@ -2,26 +2,26 @@
 
 ### MVP: Escopo e Funcionalidades Essenciais
 
-| ID   | Eu como...       | Gostaria de...                                         | Para...                                                     | Válida | Prioridade de |
-| ---- | ---------------- | ------------------------------------------------------ | ----------------------------------------------------------- | ------ | ------------- |
-| US01 | Usuário          | Me cadastrar no aplicativo                             | Necessidade / Benefício                                     | Sim    | Must          |
-| US02 | Usuário          | Logar no aplicativo                                    | Necessidade / Benefício                                     | Sim    | Must          |
-| US03 | Usuário          | Recuperar a senha, caso eu esqueça                     | Recuperar os dados do usuário                               | Sim    | Must          |
-| US04 | Usuário          | Sair da minha conta                                    | Poder sair da conta no dispositivo                          | Sim    | Must          |
-| US06 | Usuário          | Tirar uma foto da planta                               | Identificar sua doença                                      | Sim    | Must          |
-| US07 | Usuário          | Utilizar uma foto do meu celular                       | Facilitar e agilizar o processo de análise                  | Sim    | Must          |
-| US08 | Usuário          | Ver um histórico das últimas 10 plantas                | Evitar fotos repetidas                                      | Sim    | Should        |
-| US09 | Usuário          | Ter um feedback caso a foto tenha problemas            | Saiba que preciso enviar uma nova foto                      | Sim    | Must          |
-| US10 | Usuário          | Ser informado se a foto contém objetos irrelevantes    | Melhorar a qualidade da imagem e evitar erro de diagnóstico | Sim    | Must          |
-| US11 | Usuário          | Ter uma instrução de como tirar foto                   | Garantir que a imagem seja processada corretamente pela IA  | Sim    | Must          |
-| US12 | Usuário          | Um guia de enquadramento da foto                       | Saber como posicionar a planta na câmera                    | Sim    | Must          |
-| US13 | Usuário          | Tirar a foto novamente, caso a primeira tenha problema | Capturar uma segunda imagem mais adequada                   | Sim    | Must          |
-| US14 | Usuário Agrônomo | Informar se o diagnóstico foi correto                  | Melhorar a precisão da IA                                   | Sim    | Must          |
-| US18 | Usuário          | Saber como a planta pode adquirir uma doença           | Prevenir isso de alguma forma                               | Sim    | Should        |
-| US19 | Usuário          | Ter uma IA capaz de analisar fotos de planta           | Identificar doenças automaticamente                         | Sim    | Must          |
-| US20 | Usuário          | Ter acesso aos relatórios da IA                        | Compreender quão performática é a IA                        | Sim    | Must          |
+| ID   | Eu como...       | Gostaria de...                                         | Para...                                                                           | Válida | Prioridade de |
+| ---- | ---------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------- | ------ | ------------- |
+| US01 | Usuário          | Me cadastrar no aplicativo                             | Conseguir utilizar a ferramenta de identificar a doença da planta através da foto | Sim    | Must          |
+| US02 | Usuário          | Logar no aplicativo                                    | Conseguir utilizar a ferramenta de identificar a doença da planta através da foto | Sim    | Must          |
+| US03 | Usuário          | Recuperar a senha, caso eu esqueça                     | Recuperar os dados do usuário                                                     | Sim    | Must          |
+| US04 | Usuário          | Sair da minha conta                                    | Poder sair da conta no dispositivo                                                | Sim    | Must          |
+| US06 | Usuário          | Tirar uma foto da planta                               | Identificar sua doença                                                            | Sim    | Must          |
+| US07 | Usuário          | Utilizar uma foto do meu celular                       | Facilitar e agilizar o processo de análise                                        | Sim    | Must          |
+| US08 | Usuário          | Ver um histórico das últimas 10 plantas                | Evitar fotos repetidas                                                            | Sim    | Should        |
+| US09 | Usuário          | Ter um feedback caso a foto tenha problemas            | Saiba que preciso enviar uma nova foto                                            | Sim    | Must          |
+| US10 | Usuário          | Ser informado se a foto contém objetos irrelevantes    | Melhorar a qualidade da imagem e evitar erro de diagnóstico                       | Sim    | Must          |
+| US11 | Usuário          | Ter uma instrução de como tirar foto                   | Garantir que a imagem seja processada corretamente pela IA                        | Sim    | Must          |
+| US12 | Usuário          | Um guia de enquadramento da foto                       | Saber como posicionar a planta na câmera                                          | Sim    | Must          |
+| US13 | Usuário          | Tirar a foto novamente, caso a primeira tenha problema | Capturar uma segunda imagem mais adequada                                         | Sim    | Must          |
+| US14 | Usuário Agrônomo | Informar se o diagnóstico foi correto                  | Melhorar a precisão da IA                                                         | Sim    | Must          |
+| US18 | Usuário          | Saber como a planta pode adquirir uma doença           | Prevenir isso de alguma forma                                                     | Sim    | Should        |
+| US19 | Usuário          | Ter uma IA capaz de analisar fotos de planta           | Identificar doenças automaticamente                                               | Sim    | Must          |
+| US20 | Usuário          | Ter acesso aos relatórios da IA                        | Compreender quão performática é a IA                                              | Sim    | Must          |
 
-### Diagrama por Blocos do MVP
+### Diagrama por Blocos do MVP (Refazer ou tirar)
 
 ### Perfis
 
