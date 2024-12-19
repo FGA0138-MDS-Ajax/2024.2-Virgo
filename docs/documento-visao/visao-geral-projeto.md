@@ -110,29 +110,29 @@ Abaixo estão registrados os riscos iniciais analisados após avaliação dos re
 - **Risco:** O atraso na entrega do projeto pode ocorrer devido a falta de recursos, imprevistos ou desafios técnicos.
 
 - **Mitigação:** Estabelecer um cronograma detalhado com marcos e metas realistas, realizando revisões semanais para garantir o progresso. Adotar práticas ágeis, como sprints e reuniões de revisão, para ajustar o escopo e priorizar funcionalidades essenciais caso ocorram atrasos.
-- **Plano de Contingência:** Criar um plano de recuperação de atraso com ações detalhadas, como aumento da equipe ou extensão de horário de trabalho em sprints finais. Priorizar funcionalidades críticas para garantir entregas parciais mesmo em caso de atraso.
+- **Plano de Contingência:** Criar um plano de recuperação de atraso com ações detalhadas e priorizar funcionalidades críticas para garantir entregas parciais mesmo em caso de atraso.
 - **Prioridade:** Alta (Impacto significativo em todo o projeto)
 
 **Falha no treinamento da IA, resultando em baixo reconhecimento de plantas**
 
 - **Risco:** O modelo de IA pode ter dificuldades em identificar as doenças com precisão, especialmente se não houver dados suficientes ou de qualidade.
 - **Mitigação:** Ampliar o conjunto de dados com imagens de diversas condições de luz, ângulos e qualidade. Realizar testes extensivos e ajustar o modelo com base no feedback dos testes. Considerar uma abordagem iterativa de treinamento, onde o modelo é continuamente aprimorado com novos dados de campo.
-- **Plano de Contingência:** Substituir ou adicionar novos dados de treinamento, se necessário. Caso o modelo de IA continue com baixa precisão, usar técnicas híbridas (ex.: aprendizado supervisionado com validação constante) e/ou integrar especialistas humanos temporários.
+- **Plano de Contingência:** Substituir ou adicionar novos dados de treinamento, se necessário. Caso o modelo de IA continue com baixa precisão, utilizar diferentes métodos de treinameno, diminuir a quantidade de doenças por planta para tentar ter um aproveitamento maior em um menor escopo e aumentar a equipe responsável pela IA.
 - **Prioridade:** Alta (Impacto direto na funcionalidade principal do aplicativo)
 
 **Incompatibilidade do aplicativo com celulares antigos**
 
 - **Risco:** A aplicação pode exigir especificações que celulares antigos não atendem, limitando seu alcance.
 - **Mitigação:** Desenvolver versões leves do aplicativo para dispositivos com hardware limitado, reduzindo a quantidade de processamento necessário. Realizar testes em uma ampla gama de dispositivos durante o desenvolvimento.
-- **Plano de Contingência:** Desenvolver uma versão do aplicativo simplificada para dispositivos antigos ou criar um app alternativo de menor capacidade. Priorizar as funcionalidades essenciais que funcionem na maioria dos dispositivos.
+- **Plano de Contingência:**:Priorizar as funcionalidades essenciais que funcionem na maioria dos dispositivos.
 - **Prioridade:** Média (Impacto moderado, afetando uma parte do público-alvo).
 
 **Possível escolha inadequada de frameworks, causando atrasos no desenvolvimento**
 
 - **Risco:** Escolhas inadequadas de frameworks e tecnologias podem resultar em retrabalho e dificuldades de integração.
 - **Mitigação:** Realizar uma análise criteriosa dos frameworks e tecnologias antes do desenvolvimento, priorizando aqueles que atendem às necessidades do projeto e que a equipe já tem familiaridade. Manter a equipe informada e treinada sobre os frameworks escolhidos.
-- **Plano de Contingência:** Realizar uma análise de impacto técnico e realizar testes de viabilidade logo após a escolha dos frameworks. Em caso de falha, preparar a migração para outra tecnologia.
-- **Prioridade:** Média (Impacto moderado no cronograma).
+- **Plano de Contingência:** Realizar uma análise de impacto técnico e realizar testes de viabilidade. Em caso de falha, preparar a migração para outra tecnologia.
+- **Prioridade:** Alta (Impacto direto na funcionalidade principal do aplicativo).
 
 **Desenvolvimento incompleto da IA**
 
@@ -159,7 +159,7 @@ Abaixo estão registrados os riscos iniciais analisados após avaliação dos re
 
 - **Risco:** A IA pode não atender às expectativas do cliente em termos de precisão ou usabilidade.
 - **Mitigação:** Apresentar ao cliente um protótipo funcional da IA em fases iniciais, permitindo feedback sobre o desempenho; Realizar testes de validação com casos reais e ajustar o modelo conforme as preferências e necessidades do cliente.
-- **Plano de Contingência:** Demonstrar a IA em etapas, permitindo ajustes conforme feedback do cliente. Criar um plano de melhorias contínuas após a entrega para atender as expectativas.
+- **Plano de Contingência:** Demonstrar a IA em etapas, permitindo ajustes conforme feedback do cliente.
 - **Prioridade:** Alta (Impacto direto na aceitação do produto pelo cliente).
 
 **Documentação incompleta ou com falta de informações cruciais**
