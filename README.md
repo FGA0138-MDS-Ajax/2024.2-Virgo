@@ -1,15 +1,15 @@
 <h1 align="center">
-    <img src="./images/cuidar-logo-white.svg" height="250"alt="Docusaurus">
+    <img src="./docs/assets/cuidar-logo-white.svg" height="250"alt="Docusaurus">
 </h1>
 <h1 align="center">
 
-  ![Static Badge](https://img.shields.io/badge/version-1.0-blue?style=flat-square) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/FGA0138-MDS-Ajax/2024.2-Virgo/ci.yml?style=flat-square&logo=github)
- ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/FGA0138-MDS-Ajax/2024.2-Virgo?style=flat-square) ![NPM Version](https://img.shields.io/npm/v/npm?style=flat-square&color=red) ![GitHub repo size](https://img.shields.io/github/repo-size/FGA0138-MDS-Ajax/2024.2-Virgo?style=flat-square&color=purple)
+![Static Badge](https://img.shields.io/badge/version-1.0-blue?style=flat-square) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/FGA0138-MDS-Ajax/2024.2-Virgo/ci.yml?style=flat-square&logo=github)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/FGA0138-MDS-Ajax/2024.2-Virgo?style=flat-square) ![NPM Version](https://img.shields.io/npm/v/npm?style=flat-square&color=red) ![GitHub repo size](https://img.shields.io/github/repo-size/FGA0138-MDS-Ajax/2024.2-Virgo?style=flat-square&color=purple)
 
 </h1>
 
-
 ## Sobre
+
 Plantar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagnóstico e manejo de doenças nas plantas, utilizando tecnologias de inteligência artificial para análise de imagens e reconhecimento de doenças através de um aplicativo mobile.
 
 - [Instalação](#instalacao)
@@ -31,7 +31,9 @@ Plantar Verde tem como objetivo auxiliar pequenos e médios agricultores no diag
 - [ ] Histórico de plantas
 
 ## Instalação
+
 ### 1. Clonar o repositório
+
 ```
 git clone https://github.com/FGA0138-MDS-Ajax/2024.2-Virgo.git
 ```
