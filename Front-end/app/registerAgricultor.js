@@ -24,7 +24,7 @@ export default function LoginScreen() {
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const url = "http://192.168.0.199:3000/api/users/";
+  const url = "http://192.168.0.160:3000/api/users/";
 
   useEffect(() => {
     validateForm(); // Aciona a validação quando algum argumento muda
@@ -69,7 +69,7 @@ export default function LoginScreen() {
         .then(function (response) {
           console.log(response);
           console.log("gg paizao");
-          router.push("/login"); // Caminho real da tela de recuperação
+          router.push("/home"); // Caminho real da tela de recuperação
         })
         .catch(function (error) {
           console.log(error);
@@ -87,7 +87,6 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
       {/* Botão de voltar */}
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
@@ -218,8 +217,8 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     top: 70,
-    left: 20, 
-    zIndex: 10, 
+    left: 20,
+    zIndex: 10,
   },
   register: {
     width: "80%",

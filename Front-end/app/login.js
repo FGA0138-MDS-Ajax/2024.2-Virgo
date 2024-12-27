@@ -6,10 +6,9 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import IconLogo from "../assets/svg/icon-logo.svg";
-
 import axios from "axios";
 
 export default function LoginScreen() {
@@ -19,13 +18,23 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [authError, setAuthError] = useState(""); // Novo estado para erro geral
 
   const validate = () => {
     let valid = true;
-    setEmailError(""); // Limpar qualquer erro anterior
-    setPasswordError(""); // Limpar qualquer erro anterior
+    setEmailError("");
+    setPasswordError("");
+    setAuthError(""); // Limpa o erro geral
 
     if (!email.includes("@")) {
+      setEmailError("Email inválido");
+      valid = false;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Email inválido");
+      valid = false;
+    }
+    if (!email.includes(".com")) {
       setEmailError("Email inválido");
       valid = false;
     }
@@ -51,75 +60,60 @@ export default function LoginScreen() {
       valid = false;
     }
 
-    return valid; // Retorna true se a validação passar
+    return valid;
   };
 
   const handleLogin = (email, password) => {
-    const isValid = validate(); // Chama a validação antes de enviar a requisição
-
-    if (!isValid) {
+    if (!validate()) {
       console.log("Erro de validação. Não enviado ao backend.");
-      return; // Não envia ao backend se a validação falhou
+      return;
     }
 
-    const url = "http://192.168.0.199:3000/api/login/";
+    const url = "http://192.168.0.160:3000/api/login/";
 
     axios
-      .post(url, {
-        email: email, // Dados do email
-        password: password, // Dados da senha
-      })
+      .post(url, { email, password })
       .then(function (response) {
-        console.log(
-          "Login bem-sucedido, redirecionando para a home...",
-          response
-        );
-        console.log("gg paizao");
+        console.log("Login bem-sucedido, redirecionando para a home...");
         router.push("/home");
       })
       .catch(function (error) {
-        console.log(
-          "Erro ao fazer login:",
-          error.response?.data || error.message
-        );
+        const errorMessage =
+          error.response?.data?.message ||
+          "E-mail ou senha incorretos. Tente novamente.";
+        setAuthError(errorMessage); // Exibe o erro geral
       });
   };
 
   const handleRegister = () => {
-    // Redireciona para a tela de cadastro
-    console.log("Redirecionando para /register...");
-    router.push("/register"); // Caminho real da tela de cadastro
+    router.push("/register");
   };
 
   const handleForgotPassword = () => {
-    console.log("Redirecionando para /forgot-password...");
-    router.push("/forgotPassword"); // Caminho real da tela de recuperação
+    router.push("/forgotPassword");
   };
 
   const handleAgricultorOrAgronomo = () => {
-    console.log("Redirecionando para /AgricultorOrAgronomo...");
     router.push("/AgricultorOrAgronomo");
   };
 
   return (
     <View style={styles.container}>
-
       <IconLogo height="200" style={styles.logo}></IconLogo>
-
       <Text style={styles.title}>Entrar</Text>
-      <View style={StyleSheet.inputContainer}>
+
+      <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="E-mail"
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={setEmail}
           value={email}
           placeholderTextColor="#1A4D2E"
           keyboardType="email-address"
         />
-        <Text style={styles.error}>{emailError}</Text>
+        {emailError ? <Text style={styles.error}>{emailError}</Text> : null}
       </View>
 
-      {/* Campo de senha com botão de visibilidade */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.passwordInput}
@@ -139,7 +133,9 @@ export default function LoginScreen() {
             color="gray"
           />
         </TouchableOpacity>
-        <Text style={styles.error}>{passwordError}</Text>
+        {passwordError ? (
+          <Text style={styles.error}>{passwordError}</Text>
+        ) : null}
       </View>
 
       <TouchableOpacity
@@ -151,15 +147,13 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => {
-          validate();
-          handleLogin(email, password);
-        }}
+        onPress={() => handleLogin(email, password)}
       >
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
 
-      {/* Texto de redirecionamento para cadastro */}
+      {authError ? <Text style={styles.error}>{authError}</Text> : null}
+
       <TouchableOpacity
         style={styles.registerContainer}
         onPress={handleRegister}
@@ -212,7 +206,7 @@ const styles = StyleSheet.create({
     width: 270,
     height: 45,
     position: "relative", // Necessário para posicionar o botão de forma absoluta
-    marginBottom: 15,
+    marginBottom: 18,
   },
   passwordInput: {
     width: "100%",
@@ -270,7 +264,7 @@ const styles = StyleSheet.create({
   error: {
     color: "red",
     fontSize: 12,
-    marginBottom: 5,
-    marginTop: 5,
+    marginTop: 2, // Espaçamento mínimo
+    textAlign: "left",
   },
 });
