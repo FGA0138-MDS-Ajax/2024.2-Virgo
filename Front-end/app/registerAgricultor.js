@@ -271,7 +271,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginBottom: 15,
     paddingLeft: 60,
-    paddingRight: 60,
+    paddingRight: 55,
+    paddingTop: 10,
   },
   checkbox: {
     marginRight: 8,
@@ -315,5 +316,9 @@ const styles = StyleSheet.create({
   linkText: {
     color: "#0D2717",
     fontWeight: "bold",
+  },
+  termsText: {
+    paddingTop: 5,
+    fontSize: 13,
   },
 });

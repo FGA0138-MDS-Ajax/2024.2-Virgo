@@ -9,7 +9,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 //FAZER VALIDAÇÃO INPUT CPF E CREA INDIVIDUAIS
 
@@ -55,8 +55,8 @@ export default function LoginScreen() {
       errors.isChecked = "termos não aceitos";
     }
 
-    if (crea.length < 10) {
-      errors.crea = "CREA inválido";
+    if (!/^\d{6}\/[A-Z]{2}$/.test(crea)) {
+      errors.crea = "CREA inválido.";
     }
 
     setErrors(errors);
@@ -95,7 +95,6 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
       {/* Botão de voltar */}
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
@@ -144,7 +143,7 @@ export default function LoginScreen() {
               style={styles.passinput}
               placeholder="CREA"
               placeholderTextColor="#aaa"
-              keyboardType="numeric"
+              keyboardType="default"
               value={crea}
               onChangeText={setCREA}
             />
@@ -242,8 +241,8 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     top: 70,
-    left: 20, 
-    zIndex: 10, 
+    left: 20,
+    zIndex: 10,
   },
   register: {
     width: "80%",
@@ -272,9 +271,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: "#000", // Garante que o texto digitado seja visível
     backgroundColor: "#fff", // Fundo branco para evitar conflito
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2, // Opacidade da sombra no iOS
-    shadowRadius: 5, // Raio da sombra no iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2, // Opacidade da sombra
+    shadowRadius: 2, // Raio da sombra
     alignItems: "center",
   },
   button: {
@@ -296,7 +295,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginBottom: 15,
     paddingLeft: 60,
-    paddingRight: 60,
+    paddingRight: 55,
+    paddingTop: 10,
   },
   checkbox: {
     marginRight: 8,
@@ -340,5 +340,9 @@ const styles = StyleSheet.create({
   linkText: {
     color: "#0D2717",
     fontWeight: "bold",
+  },
+  termsText: {
+    paddingTop: 5,
+    fontSize: 13,
   },
 });
