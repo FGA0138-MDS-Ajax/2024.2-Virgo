@@ -97,7 +97,12 @@ export default function LoginScreen() {
       <View style={styles.register}>
         <View style={styles.label}>
           <View style={styles.input}>
-            <Ionicons name="person" size={24} color="gray" paddingRight={5} />
+            <Ionicons
+              name="person-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="Nome"
@@ -114,7 +119,12 @@ export default function LoginScreen() {
 
         <View style={styles.label}>
           <View style={styles.input}>
-            <Ionicons name="mail" size={24} color="gray" paddingRight={5} />
+            <Ionicons
+              name="mail-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="E-mail"
@@ -131,6 +141,12 @@ export default function LoginScreen() {
 
         <View style={styles.label}>
           <View style={styles.input}>
+            <Ionicons
+              name="lock-closed-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="Senha"
@@ -146,7 +162,7 @@ export default function LoginScreen() {
               <Ionicons
                 name={passwordVisible ? "eye-off" : "eye"}
                 size={24}
-                color="gray"
+                color="#222222"
               />
             </TouchableOpacity>
           </View>
@@ -157,6 +173,12 @@ export default function LoginScreen() {
 
         <View style={styles.label}>
           <View style={styles.input}>
+            <Ionicons
+              name="lock-closed-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="Confirmar Senha"
@@ -172,7 +194,7 @@ export default function LoginScreen() {
               <Ionicons
                 name={passwordVisible2 ? "eye-off" : "eye"}
                 size={24}
-                color="gray"
+                color="#222222"
               />
             </TouchableOpacity>
           </View>
@@ -185,7 +207,7 @@ export default function LoginScreen() {
       <View style={styles.row}>
         <Checkbox
           style={styles.checkbox}
-          color={isChecked ? "#000" : undefined}
+          color={isChecked ? "#222222" : undefined}
           value={isChecked}
           onValueChange={setChecked}
         />
@@ -247,9 +269,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: "#000", // Garante que o texto digitado seja visível
     backgroundColor: "#fff", // Fundo branco para evitar conflito
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2, // Opacidade da sombra no iOS
-    shadowRadius: 5, // Raio da sombra no iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1, // Opacidade da sombra no iOS
+    shadowRadius: 2, // Raio da sombra no iOS
     alignItems: "center",
   },
   button: {

@@ -1,13 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import IconAgricultor from "../assets/svg/icon-agricultor.svg"; //instalar
 import IconAgronomo from "../assets/svg/icon-agronomo.svg";
+import IconAgricultorTeste from "../assets/svg/icon-agricultorTeste.svg";
+import IconAgronomoTeste from "../assets/svg/icon-agronomoTeste.svg";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -33,7 +30,6 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-
       {/* Botão de voltar */}
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
@@ -45,7 +41,9 @@ export default function LoginScreen() {
         style={styles.optionAgricultor}
         onPress={handleRegisterAgricultor}
       >
-        <IconAgricultor style={styles.iconAgricultor}></IconAgricultor>
+        <IconAgricultorTeste
+          style={styles.iconAgricultor}
+        ></IconAgricultorTeste>
         <View style={styles.textContainer}>
           <Text style={styles.optionTitle}>Eu sou agricultor</Text>
           <Text style={styles.optionDescription}>
@@ -57,7 +55,7 @@ export default function LoginScreen() {
         style={styles.optionAgronomo}
         onPress={handleRegiterAgronomo}
       >
-        <IconAgronomo></IconAgronomo>
+        <IconAgronomoTeste style={styles.iconAgricultor}></IconAgronomoTeste>
         <View style={styles.textContainer}>
           <Text style={styles.optionTitle}>Eu sou agrônomo</Text>
           <Text style={styles.optionDescription}>
@@ -81,8 +79,8 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     top: 70,
-    left: 20, 
-    zIndex: 10, 
+    left: 20,
+    zIndex: 10,
   },
   title: {
     fontSize: 35,
