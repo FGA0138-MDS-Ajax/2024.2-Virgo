@@ -77,7 +77,7 @@ export default function LoginScreen() {
         .then(function (response) {
           console.log(response);
           console.log("gg paizao");
-          router.push("/home");
+          router.push("/welcome");
         })
         .catch(function (error) {
           console.log(error);

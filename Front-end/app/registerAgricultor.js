@@ -69,7 +69,7 @@ export default function LoginScreen() {
         .then(function (response) {
           console.log(response);
           console.log("gg paizao");
-          router.push("/home"); // Caminho real da tela de recuperação
+          router.push("/welcome"); // Caminho real da tela de recuperação
         })
         .catch(function (error) {
           console.log(error);

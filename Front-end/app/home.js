@@ -1,25 +1,41 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import IconLogo from "../assets/svg/icon-logo.svg";
 
-export default function Home() {
+export default function WelcomeScreen() {
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem-Vindo ao Cuidar Verde!</Text>
+      <View style={styles.logoContainer}>
+        {/* Logo Centralizado */}
+        <IconLogo height="250" />
+      </View>
+      <View style={styles.slogan}>
+        <Text style={styles.home}>Home</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Faz o componente ocupar toda a tela
-    backgroundColor: "#E8F5E9", // Cor verde clara suave
-    justifyContent: "center", // Centraliza no eixo vertical
-    alignItems: "center", // Centraliza no eixo horizontal
-    padding: 20,
+    flex: 1,
+    backgroundColor: "#F5F5F5",
+    paddingTop: 250,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#2E7D32", // Um tom de verde escuro
+  logoContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  slogan: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  home: {
+    fontSize: 40,
   },
 });
