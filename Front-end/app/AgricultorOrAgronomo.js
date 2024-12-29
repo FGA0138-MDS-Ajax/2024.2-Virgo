@@ -1,8 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import IconAgricultor from "../assets/svg/icon-agricultor.svg"; //instalar
-import IconAgronomo from "../assets/svg/icon-agronomo.svg";
 import IconAgricultorTeste from "../assets/svg/icon-agricultorTeste.svg";
 import IconAgronomoTeste from "../assets/svg/icon-agronomoTeste.svg";
 
@@ -101,7 +99,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000", // sombra no iOS
     shadowOffset: { width: 0, height: 2 }, // sombra no iOS
     shadowOpacity: 0.2, // sombra no iOS
-    shadowRadius: 4, // sombra no iOS
+    shadowRadius: 2, // sombra no iOS
   },
   optionAgronomo: {
     flexDirection: "row",

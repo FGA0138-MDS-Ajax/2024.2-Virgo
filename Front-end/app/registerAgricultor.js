@@ -207,7 +207,7 @@ export default function LoginScreen() {
       <View style={styles.row}>
         <Checkbox
           style={styles.checkbox}
-          color={isChecked ? "#222222" : undefined}
+          color={isChecked ? "#222222" : "#222222"}
           value={isChecked}
           onValueChange={setChecked}
         />
@@ -298,6 +298,7 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     marginRight: 8,
+    borderRadius: 7,
   },
   line: {
     width: "50%", // Ajusta a largura da linha
