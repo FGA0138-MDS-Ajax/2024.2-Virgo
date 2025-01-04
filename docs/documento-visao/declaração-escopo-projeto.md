@@ -21,7 +21,12 @@
 | US19 | Usuário          | Ter uma IA capaz de analisar fotos de planta           | Identificar doenças automaticamente                                               | Sim    | Must          |
 | US20 | Usuário          | Ter acesso aos relatórios da IA                        | Compreender quão performática é a IA                                              | Sim    | Must          |
 
-### Diagrama por Blocos do MVP (Refazer ou tirar)
+### Diagrama por Blocos do MVP 
+
+O diagrama abaixo resume os aspectos do MVP elaborado pela equipe.
+
+![Scrum](../assets/mvpVirgo.drawio.png)
+
 
 ### Perfis
 
