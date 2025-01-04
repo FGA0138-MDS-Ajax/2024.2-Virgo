@@ -1,0 +1,14 @@
+p {
+  text-align: justify;
+}
+
+.legenda {
+  font-size: 1em;
+  text-align: justify;
+}
+
+.ref {
+  font-size: 0.9em;
+  text-align: center;
+  color: rgb(5, 219, 101);
+}

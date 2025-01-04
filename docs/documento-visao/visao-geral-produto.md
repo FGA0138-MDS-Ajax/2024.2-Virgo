@@ -6,10 +6,11 @@ A falta de precisão na identificação de pragas nas plantações dos pequenos 
 
 Muitos desses produtores enfrentam limitações financeiras e dificuldade de acesso a tecnologias avançadas, como sistemas de monitoramento digital ou serviços de assistência técnica especializada. Como resultado, dependem de observações visuais, muitas vezes imprecisas, para diagnosticar pragas, o que pode levar à aplicação de tratamentos inadequados e ineficazes, comprometendo tanto a saúde das plantas quanto o equilíbrio ambiental.
 
-**Figura 01**: Diagrama Ishikawa - Dificuldades de pequenos e médios agricultores no diagnóstico de pragas.
+Figura 01: Diagrama Ishikawa - Dificuldades de pequenos e médios agricultores no diagnóstico de pragas.
 
 ![DiagramaIshikawa](../assets/DiagramaIshikawa.png)
-Fonte: Elaboração própria (2024).
+
+<p class="ref">Fonte: Elaboração própria (2024)</p>
 
 Conforme ilustrado na Figura 01, os principais fatores que dificultam a identificação de pragas incluem a falta de recursos financeiros, conhecimento técnico, métodos adequados e infraestrutura tecnológica. Essa análise evidencia que o uso de ferramentas acessíveis, como aplicativos móveis, pode ser um caminho viável para enfrentar essas limitações.
 
