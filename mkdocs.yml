@@ -8,7 +8,15 @@ nav:
       - Processo de Desenvolvimento de Software: "documento-visao/processo-dev-software.md"
       - Declaração de Escopo do Projeto: "documento-visao/declaração-escopo-projeto.md"
   - Documento de Requisitos: "documento-requisitos/documento-requisitos.md"
-  - Documento de Arquitetura: "documento-arquitetura/documento-arquitetura.md"
+  - Documento de Arquitetura:
+      - Representação Arquitetural: "documento-arquitetura/Representação-Arquitetural.md"
+      - Metas e Retrições Arquiteturais: "documento-arquitetura/Metas-e-retrições-arquiteturais.md"
+      - Visão de Casos de uso (escopo do produto): "documento-arquitetura/Visão-de-Casos-de-uso.md"
+      - Visão Lógica: "documento-arquitetura/Visão-lógica.md"
+      - Visão de Implementação: "documento-arquitetura/Visão-de-Implementação.md"
+      - Regras de negócio: "documento-arquitetura/Regras-de-negócio.md"
+      - Visão de implantação: "documento-arquitetura/Visão-de-implantação.md"
+      - Bibliografia: "documento-arquitetura/Bibliografia.md"
   - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
   - Atas de reuniao:
       - Cliente:

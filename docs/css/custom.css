@@ -5,10 +5,17 @@ p {
 .legenda {
   font-size: 1em;
   text-align: justify;
+  color: gray;
 }
 
 .ref {
   font-size: 0.9em;
   text-align: center;
-  color: rgb(5, 219, 101);
+  color: rgb(33, 172, 68);
+}
+
+.imagem {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
