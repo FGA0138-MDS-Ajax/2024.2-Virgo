@@ -25,7 +25,8 @@ export default function WelcomeModal() {
           <CuidarVerdeWelcome style={styles.cuidarVerde}></CuidarVerdeWelcome>
         </View>
         <Text style={styles.messageText}>
-          Sua conta está pronta para uso. Você será redirecionado em instantes.
+          Sua conta foi criada com sucesso! Você será redirecionado em
+          instantes.
         </Text>
       </View>
     </View>

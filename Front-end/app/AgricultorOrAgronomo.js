@@ -1,8 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import IconAgricultorTeste from "../assets/svg/icon-agricultorTeste.svg";
-import IconAgronomoTeste from "../assets/svg/icon-agronomoTeste.svg";
+import IconAgricultor from "../assets/svg/icon-agricultor.svg";
+import IconAgronomo from "../assets/svg/icon-agronomo.svg";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -39,9 +39,7 @@ export default function LoginScreen() {
         style={styles.optionAgricultor}
         onPress={handleRegisterAgricultor}
       >
-        <IconAgricultorTeste
-          style={styles.iconAgricultor}
-        ></IconAgricultorTeste>
+        <IconAgricultor style={styles.iconAgricultor}></IconAgricultor>
         <View style={styles.textContainer}>
           <Text style={styles.optionTitle}>Eu sou agricultor</Text>
           <Text style={styles.optionDescription}>
@@ -53,7 +51,7 @@ export default function LoginScreen() {
         style={styles.optionAgronomo}
         onPress={handleRegiterAgronomo}
       >
-        <IconAgronomoTeste style={styles.iconAgricultor}></IconAgronomoTeste>
+        <IconAgronomo style={styles.iconAgricultor}></IconAgronomo>
         <View style={styles.textContainer}>
           <Text style={styles.optionTitle}>Eu sou agrônomo</Text>
           <Text style={styles.optionDescription}>
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     fontWeight: "bold",
-    color: "#000",
+    color: "#0D2717",
     marginBottom: 15,
   },
   optionAgricultor: {

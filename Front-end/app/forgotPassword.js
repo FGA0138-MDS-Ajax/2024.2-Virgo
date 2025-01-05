@@ -23,6 +23,10 @@ export default function forgotPassword() {
       setEmailError("Email inválido");
       valid = false;
     }
+    if (!email.includes(".com")) {
+      setEmailError("Email inválido");
+      valid = false;
+    }
     if (email.length === 0) {
       setEmailError("Email não preenchido");
       valid = false;
@@ -70,7 +74,6 @@ export default function forgotPassword() {
 
   return (
     <View style={styles.container}>
-
       {/* Botão de voltar */}
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
@@ -120,8 +123,8 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     top: 70,
-    left: 20, 
-    zIndex: 10, 
+    left: 20,
+    zIndex: 10,
   },
   card: {
     width: 316,
@@ -151,7 +154,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
     fontWeight: "bold",
-    paddingHorizontal: 10,
+    paddingHorizontal: 11,
   },
   input: {
     width: 284,
