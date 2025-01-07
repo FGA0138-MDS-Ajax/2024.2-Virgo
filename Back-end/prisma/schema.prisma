@@ -22,7 +22,7 @@ model User {
 
 model Agronomo {
   userId  String @unique
-  user    User   @relation("AgronomoRelation", fields: [userId], references: [id])
+  user    User   @relation("AgronomoRelation", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   crea    String @unique
 }
 
