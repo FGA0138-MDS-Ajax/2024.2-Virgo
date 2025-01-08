@@ -75,7 +75,7 @@ export default function LoginScreen() {
       .post(url, { email, password })
       .then(function (response) {
         console.log("Login bem-sucedido, redirecionando para a home...");
-        router.push("/home");
+        router.push("/(tabs)");
       })
       .catch(function (error) {
         const errorMessage =

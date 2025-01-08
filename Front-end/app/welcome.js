@@ -10,7 +10,7 @@ export default function WelcomeModal() {
   // Redireciona para a Home automaticamente após 5 segundos (opcional)
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/home");
+      router.replace("/(tabs)");
     }, 5000); // 5000ms = 5 segundos
 
     return () => clearTimeout(timer); // Limpa o timer quando o componente desmonta
