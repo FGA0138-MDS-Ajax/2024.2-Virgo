@@ -8,13 +8,12 @@ export default function App() {
   const [permission, requestPermission] = useCameraPermissions();
   const [cameraProps, setCameraProps] = useState({ facing: 'back' });
   const [image, setImage] = useState(null); // Armazena a imagem capturada ou selecionada
-  const [isEditing, setIsEditing] = useState(false); // Estado para controlar a edição
 
   const cameraRef = useRef(null);
 
   useEffect(() => {
     if (permission?.granted) {
-      // Validar permissões
+      // Validação de permissões
     }
   }, [permission]);
 
@@ -49,7 +48,6 @@ export default function App() {
   }
 
   const pickImage = async () => {
-
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsEditing: false,
@@ -81,11 +79,6 @@ export default function App() {
             </TouchableOpacity>
           </View>
         </>
-      ) : isEditing ? (
-        // Enquanto a imagem está sendo editada, exibir um carregamento ou tela neutra
-        <View style={styles.editingContainer}>
-          <Text style={styles.editingText}>Editando imagem...</Text>
-        </View>
       ) : (
         // Exibir os botões da câmera quando nenhuma imagem está sendo exibida
         <>
@@ -125,16 +118,6 @@ const styles = StyleSheet.create({
   capturedImage: {
     flex: 1,
     width: '100%',
-  },
-  editingContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000',
-  },
-  editingText: {
-    color: 'white',
-    fontSize: 18,
   },
   bottomControls: {
     flexDirection: 'row',
