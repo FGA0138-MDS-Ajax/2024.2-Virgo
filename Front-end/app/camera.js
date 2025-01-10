@@ -66,8 +66,8 @@ export default function App() {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        quality: 1,
+        allowsEditing: false, // Desativa o recorte
+        quality: 1, // Mantém a qualidade total
       });
 
       if (!result.canceled) {
