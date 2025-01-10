@@ -50,6 +50,7 @@ export default function RootLayout() {
           <Stack.Screen name="forgotPasswordCheckEmail" />
           <Stack.Screen name="forgotPasswordReset" />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="selectPlant" />
           <Stack.Screen name="+not-found" />
         </>
       </Stack>

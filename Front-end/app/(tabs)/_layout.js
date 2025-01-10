@@ -14,16 +14,9 @@ const _layout = () => {
         },
         headerTitleStyle: {
           color: "#000", // Cor do texto do Header
-          fontWeight: "bold", // Peso da fonte
         },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-        }}
-      />
       <Tabs.Screen
         name="historico"
         options={{
@@ -31,9 +24,15 @@ const _layout = () => {
         }}
       />
       <Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+        }}
+      />
+      <Tabs.Screen
         name="perfil"
         options={{
-          tittle: "Perfil",
+          title: "Perfil",
         }}
       />
     </Tabs>
