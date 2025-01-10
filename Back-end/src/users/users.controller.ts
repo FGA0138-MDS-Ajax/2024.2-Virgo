@@ -16,18 +16,21 @@ import { CreateUserDto } from './dto/Create-user.dto';
 import { UpdateUserDto } from './dto/Update-user.dto';
 import { MyLoggerService } from 'src/my-logger/my-logger.service';
 import { Role } from '@prisma/client';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   private readonly logger = new MyLoggerService(UsersController.name);
 
+  @IsPublic()
   @Post()
   create(@Ip() ip: string, @Body(ValidationPipe) createUserDto: CreateUserDto) {
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);
     return this.usersService.create(createUserDto);
   }
 
+  @IsPublic()
   @Get()
   findAll(@Ip() ip: string, @Query('role') role?: Role) {
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);
@@ -47,6 +50,7 @@ export class UsersController {
     return this.usersService.update(id, updateUserDto);
   }
 
+  @IsPublic()
   @Delete(':id')
   remove(@Ip() ip: string, @Param('id', ParseUUIDPipe) id: string) {
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);
