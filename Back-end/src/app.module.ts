@@ -8,10 +8,11 @@ import { APP_GUARD } from '@nestjs/core';
 import { MyLoggerModule } from './my-logger/my-logger.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-
+import { FileModule } from './files/files.module';
 @Module({
   imports: [
     DatabaseModule,
+    FileModule,
     UsersModule,
     ThrottlerModule.forRoot([
       {
