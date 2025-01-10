@@ -45,7 +45,7 @@ export default function forgotPassword() {
         </TouchableOpacity>
       </View>
 
-      {/* Campo de senha com botão de visibilidade */}
+      {/* Campo de confirmar senha com botão de visibilidade */}
       <View style={styles.inputContainer2}>
         <TextInput
           style={styles.passwordInput}
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center', 
     alignItems: 'center', 
-    backgroundColor: '#FEFEFE',
+    backgroundColor: '#F5F5F5',
   },
   card: {
     width: 316,

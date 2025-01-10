@@ -45,7 +45,11 @@ export class UsersController {
 
   @Patch(':id')
   // eslint-disable-next-line prettier/prettier
-  update(@Ip() ip: string, @Param('id', ParseUUIDPipe) id: string, @Body(ValidationPipe) updateUserDto: UpdateUserDto) {
+  update(
+    @Ip() ip: string,
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body(ValidationPipe) updateUserDto: UpdateUserDto,
+  ) {
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);
     return this.usersService.update(id, updateUserDto);
   }

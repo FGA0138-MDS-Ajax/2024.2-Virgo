@@ -1,15 +1,16 @@
 import { Ionicons } from "@expo/vector-icons";
+import axios from "axios";
+import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  SafeAreaView,
 } from "react-native";
-import Checkbox from "expo-checkbox";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -22,6 +23,8 @@ export default function LoginScreen() {
   const [password2, setPassword2] = useState("");
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const url = "http://192.168.0.160:3000/api/users/";
 
   useEffect(() => {
     validateForm(); // Aciona a validação quando algum argumento muda
@@ -53,22 +56,53 @@ export default function LoginScreen() {
     setIsFormValid(Object.keys(errors).length === 0);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (name, email, password) => {
     if (isFormValid) {
-      console.log("Forms Validados!");
+      console.log("Validando Forms!");
+      axios
+        .post(url, {
+          name: name,
+          email: email,
+          password: password,
+          role: "AGRICULTOR",
+        })
+        .then(function (response) {
+          console.log(response);
+          console.log("gg paizao");
+          router.push("/welcome"); // Caminho real da tela de recuperação
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      console.log("Usuário cadastrado!, redirecionando a home...");
     } else {
       console.log("Forms com Erro (?).");
     }
   };
 
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>Cadastro</Text>
       <View style={styles.line} />
       <View style={styles.register}>
         <View style={styles.label}>
           <View style={styles.input}>
-            <Ionicons name="person" size={24} color="gray" paddingRight={5} />
+            <Ionicons
+              name="person-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="Nome"
@@ -85,7 +119,12 @@ export default function LoginScreen() {
 
         <View style={styles.label}>
           <View style={styles.input}>
-            <Ionicons name="mail" size={24} color="gray" paddingRight={5} />
+            <Ionicons
+              name="mail-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="E-mail"
@@ -102,6 +141,12 @@ export default function LoginScreen() {
 
         <View style={styles.label}>
           <View style={styles.input}>
+            <Ionicons
+              name="lock-closed-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="Senha"
@@ -117,7 +162,7 @@ export default function LoginScreen() {
               <Ionicons
                 name={passwordVisible ? "eye-off" : "eye"}
                 size={24}
-                color="gray"
+                color="#222222"
               />
             </TouchableOpacity>
           </View>
@@ -128,6 +173,12 @@ export default function LoginScreen() {
 
         <View style={styles.label}>
           <View style={styles.input}>
+            <Ionicons
+              name="lock-closed-outline"
+              size={20}
+              color="#222222"
+              paddingRight={10}
+            />
             <TextInput
               style={styles.passinput}
               placeholder="Confirmar Senha"
@@ -143,7 +194,7 @@ export default function LoginScreen() {
               <Ionicons
                 name={passwordVisible2 ? "eye-off" : "eye"}
                 size={24}
-                color="gray"
+                color="#222222"
               />
             </TouchableOpacity>
           </View>
@@ -156,21 +207,21 @@ export default function LoginScreen() {
       <View style={styles.row}>
         <Checkbox
           style={styles.checkbox}
-          color={isChecked ? "#000" : undefined}
+          color={isChecked ? "#222222" : "#222222"}
           value={isChecked}
           onValueChange={setChecked}
         />
         <Text style={styles.termsText}>
-          Ao criar uma conta, você concorda com os{' '}
-          <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo nossa{' '}
-          <Text style={styles.linkText}>Política de Privacidade</Text>.
+          Ao criar uma conta, você concorda com os{" "}
+          <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo
+          nossa <Text style={styles.linkText}>Política de Privacidade</Text>.
         </Text>
       </View>
 
       <TouchableOpacity
         style={[styles.button, { opacity: isFormValid ? 1 : 0.5 }]}
         disabled={!isFormValid}
-        onPress={handleSubmit}
+        onPress={() => handleSubmit(name, email, password2)}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
@@ -184,6 +235,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f5f5f5",
+  },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20,
+    zIndex: 10,
   },
   register: {
     width: "80%",
@@ -199,7 +256,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginBottom: 10,
-    color: "#0D2717"
+    color: "#0D2717",
   },
   input: {
     flex: "1",
@@ -212,9 +269,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: "#000", // Garante que o texto digitado seja visível
     backgroundColor: "#fff", // Fundo branco para evitar conflito
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2, // Opacidade da sombra no iOS
-    shadowRadius: 5, // Raio da sombra no iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1, // Opacidade da sombra no iOS
+    shadowRadius: 2, // Raio da sombra no iOS
     alignItems: "center",
   },
   button: {
@@ -236,10 +293,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginBottom: 15,
     paddingLeft: 60,
-    paddingRight: 60,
+    paddingRight: 55,
+    paddingTop: 10,
   },
   checkbox: {
     marginRight: 8,
+    borderRadius: 7,
   },
   line: {
     width: "50%", // Ajusta a largura da linha
@@ -278,7 +337,11 @@ const styles = StyleSheet.create({
     gap: "2",
   },
   linkText: {
-    color: '#0D2717', 
-    fontWeight: 'bold', 
+    color: "#0D2717",
+    fontWeight: "bold",
+  },
+  termsText: {
+    paddingTop: 5,
+    fontSize: 13,
   },
 });
