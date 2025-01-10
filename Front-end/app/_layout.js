@@ -1,12 +1,6 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
@@ -33,27 +27,24 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack
-        screenOptions={{
-          title: "",
-          headerShown: false,
-          headerStyle: { backgroundColor: "#F5F5F5" },
-        }}
-      >
-        <>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="login" />
-          <Stack.Screen name="AgricultorOrAgronomo" />
-          <Stack.Screen name="registerAgricultor" />
-          <Stack.Screen name="forgotPassword" />
-          <Stack.Screen name="forgotPasswordCheckEmail" />
-          <Stack.Screen name="forgotPasswordReset" />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </>
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack
+      screenOptions={{
+        title: "",
+        headerShown: false,
+        headerStyle: { backgroundColor: "#F5F5F5" },
+      }}
+    >
+      <Stack.Screen name="index" />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="camera" />
+      <Stack.Screen name="AgricultorOrAgronomo" />
+      <Stack.Screen name="registerAgricultor" />
+      <Stack.Screen name="forgotPassword" />
+      <Stack.Screen name="forgotPasswordCheckEmail" />
+      <Stack.Screen name="forgotPasswordReset" />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="+not-found" />
+    </Stack>
+
   );
 }

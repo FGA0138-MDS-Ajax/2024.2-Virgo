@@ -1,15 +1,15 @@
 import { useRouter } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import IconLogo from "../assets/svg/icon-logo.svg";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CuidarVerde from "../assets/svg/CuidarVerde.svg";
+import IconLogo from "../assets/svg/icon-logo.svg";
 
 export default function WelcomeScreen() {
   const router = useRouter();
 
   const handleLogin = () => {
     console.log("Redirecionando para /login...");
-    router.push("/login"); // Redireciona para a tela de login
+    router.push("/camera"); // Redireciona para a tela de login
   };
 
   const handleRegister = () => {
