@@ -6,7 +6,7 @@ import { Dimensions, Alert, Image, StyleSheet, Text, TouchableOpacity, View } fr
 import Svg, { Path } from 'react-native-svg';
 import axios from 'axios'
 
-export default function App() {
+export default function CameraScreen() {
   const { width, height } = Dimensions.get('window');
   const [permission, requestPermission] = useCameraPermissions();
   const [cameraProps, setCameraProps] = useState({ facing: 'back' });

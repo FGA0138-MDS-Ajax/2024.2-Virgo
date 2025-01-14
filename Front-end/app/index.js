@@ -8,8 +8,8 @@ export default function WelcomeScreen() {
   const router = useRouter();
 
   const handleLogin = () => {
-    console.log("Redirecionando para /login...");
-    router.push("/camera"); // Redireciona para a tela de login
+    console.log("Redirecionando para /instrucoes...");
+    router.push("/instrucoes"); // Redireciona para a tela de login
   };
 
   const handleRegister = () => {

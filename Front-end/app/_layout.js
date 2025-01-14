@@ -37,6 +37,8 @@ export default function RootLayout() {
       <Stack.Screen name="index" />
       <Stack.Screen name="login" />
       <Stack.Screen name="camera" />
+      <Stack.Screen name="teste" />
+      <Stack.Screen name="instrucoes" />
       <Stack.Screen name="AgricultorOrAgronomo" />
       <Stack.Screen name="registerAgricultor" />
       <Stack.Screen name="forgotPassword" />
