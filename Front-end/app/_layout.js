@@ -39,6 +39,7 @@ export default function RootLayout() {
           title: "",
           headerShown: false,
           headerStyle: { backgroundColor: "#F5F5F5" },
+          // gestureEnabled: false - função que evita o gesto de swipe | deixei habilitado para navegar de forma mais simples.
         }}
       >
         <>
@@ -49,8 +50,10 @@ export default function RootLayout() {
           <Stack.Screen name="forgotPassword" />
           <Stack.Screen name="forgotPasswordCheckEmail" />
           <Stack.Screen name="forgotPasswordReset" />
+          <Stack.Screen name="passwordRedefinedSucess" />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="selectPlant" />
+          <Stack.Screen name="instructions" />
           <Stack.Screen name="+not-found" />
         </>
       </Stack>

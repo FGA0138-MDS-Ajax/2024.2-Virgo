@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text, View } from "react-native";
+import IcontPlant from "../assets/svg/icon-plant.svg";
 import React from "react";
 
 export function selectPlant() {
@@ -47,6 +48,9 @@ export function selectPlant() {
             style={styles.button}
             onPress={() => handleInstructions(plant)}
           >
+            <View style={styles.buttonIcon}>
+              <IcontPlant></IcontPlant>
+            </View>
             <Text style={styles.buttonText}>{plant}</Text>
           </TouchableOpacity>
         ))}
@@ -85,10 +89,18 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderCurve: "continuous",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 5,
+    shadowRadius: 4,
+  },
+  buttonIcon: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   buttonText: {
     color: "#FFFFFF",

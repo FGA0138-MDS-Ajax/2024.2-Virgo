@@ -19,10 +19,10 @@ export default function forgotPassword() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
 
-  const handleLogin = () => {
+  const handleSucess = () => {
     // Simula o login
-    console.log("Login bem-sucedido, redirecionando para (tabs)...");
-    router.push("/login"); // Caminho real da tela de recuperação
+    console.log("Senha redefinida com sucesso, redirecionando para perfil...");
+    router.push("/passwordRedefinedSucess"); // Caminho real da tela de recuperação
   };
 
   return (
@@ -75,7 +75,7 @@ export default function forgotPassword() {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <TouchableOpacity style={styles.button} onPress={handleSucess}>
           <Text style={styles.buttonText}>Redefinir</Text>
         </TouchableOpacity>
       </View>

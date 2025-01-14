@@ -27,7 +27,7 @@ const Perfil = () => {
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Perfil</Text>
-        <Text style={styles.info}>Agronomo</Text>
+        <Text style={styles.info}>Agrônomo</Text>
         <View style={styles.line} />
       </View>
 
@@ -39,7 +39,7 @@ const Perfil = () => {
 
       <View style={styles.infoContainer}>
         <Text style={styles.label}>CREA</Text>
-        <Text style={styles.info}>111222/df</Text>
+        <Text style={styles.info}>DF000111</Text>
         <View style={styles.line} />
       </View>
       <View style={styles.buttons}>
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   label: {
-    fontSize: 14,
+    fontSize: 16,
     color: "gray",
     fontWeight: "bold",
   },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   buttons: {
     paddingTop: 10,
-    width: "95%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
   },

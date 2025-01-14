@@ -55,7 +55,7 @@ export default function LoginScreen() {
       errors.isChecked = "termos não aceitos";
     }
 
-    if (!/^\d{6}\/[A-Z]{2}$/.test(crea)) {
+    if (!/^[A-Z]{2}\d{6}$/.test(crea)) {
       errors.crea = "CREA inválido.";
     }
 
