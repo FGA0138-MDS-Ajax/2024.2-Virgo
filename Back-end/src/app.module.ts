@@ -32,13 +32,13 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
   providers: [
     AppService,
     {
-      provide: APP_GUARD,
-        useClass: ThrottlerGuard,
-      },
-      {
         provide: APP_GUARD,
         useClass: JwtAuthGuard,
     },
+    {
+      provide: APP_GUARD,
+        useClass: ThrottlerGuard,
+      },
   ],
 })
 export class AppModule {}
