@@ -9,7 +9,7 @@ export default function WelcomeScreen() {
 
   const handleLogin = () => {
     console.log("Redirecionando para /login...");
-    router.push("/(tabs)"); // Redireciona para a tela de login
+    router.push("/login"); // Redireciona para a tela de login
   };
 
   const handleRegister = () => {

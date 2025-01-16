@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 100,
     height: 100,
-    marginBottom: 10,
+    marginBottom: 15,
     position: "absolute",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

@@ -26,20 +26,12 @@ export default function LoginScreen() {
     setPasswordError("");
     setAuthError(""); // Limpa o erro geral
 
-    if (!email.includes("@")) {
-      setEmailError("Email inválido");
-      valid = false;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setEmailError("Email inválido");
-      valid = false;
-    }
-    if (!email.includes(".com")) {
-      setEmailError("Email inválido");
-      valid = false;
-    }
-    if (email.length === 0) {
+    if (!email) {
       setEmailError("Email não preenchido");
+      valid = false;
+    }
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$/.test(email)) {
+      setEmailError("Email inválido");
       valid = false;
     }
     if (email.indexOf(" ") >= 0) {

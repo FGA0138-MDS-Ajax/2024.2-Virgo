@@ -39,12 +39,12 @@ export default function LoginScreen() {
       errors.name = "Nome não pode conter números ou caracteres especiais";
     }
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$/.test(email)) {
       errors.email = "Email inválido.";
     }
 
     if (password1.length < 8) {
-      errors.password1 = "A senha precisa ter no mínimo 6 dígitos.";
+      errors.password1 = "A senha precisa ter no mínimo 8 dígitos.";
     }
 
     if (!(password2 == password1)) {
