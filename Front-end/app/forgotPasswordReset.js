@@ -8,8 +8,95 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function forgotPassword() {
+  const [currentPasswordError, setCurrentPasswordError] = useState("");
+  const [currentPassword, setcurrentPassword] = useState("");
+  const [newPassword, setnewPassword] = useState("");
+  const [newPasswordError, setnewPasswordError] = useState("");
+  const [authError, setAuthError] = useState("");
+
+  const validate = () => {
+    let valid = true;
+    setCurrentPasswordError("");
+    setnewPasswordError("");
+
+    if (currentPassword.length < 8) {
+      setCurrentPasswordError("A senha precisa ter no mínimo 8 dígitos.");
+      valid = false;
+    }
+    if (currentPassword.length === 0) {
+      setCurrentPasswordError("Senha não preenchida");
+      valid = false;
+    }
+    if (currentPassword.indexOf(" ") >= 0) {
+      setCurrentPasswordError("Senha não pode ter espaços");
+      valid = false;
+    }
+    if (newPassword.length < 8) {
+      setnewPasswordError("A senha precisa ter no mínimo 8 dígitos.");
+      valid = false;
+    }
+    if (newPassword.length === 0) {
+      setnewPasswordError("Senha não preenchida");
+      valid = false;
+    }
+    if (newPassword.indexOf(" ") >= 0) {
+      setnewPasswordError("Senha não pode ter espaços");
+      valid = false;
+    }
+
+    return valid;
+  };
+
+  const handlePasswordRefined = async (currentPassword, newPassword) => {
+    if (!validate()) {
+      console.log("Erro de validação. Não enviado ao backend.");
+      return;
+    }
+
+    try {
+      // Recuperando o token do AsyncStorage
+      const token = await AsyncStorage.getItem("token"); // Token de autenticação
+      const id = await AsyncStorage.getItem("userID");
+
+      console.log("userID:", id);
+      console.log("Token:", token);
+
+      if (!token) {
+        console.log("Token received:", token);
+        console.log("Token de autenticação não encontrado.");
+        return;
+      }
+
+      const url = `http://192.168.0.160:3000/api/users/${id}`; // URL para redefinir a senha
+
+      const data = {
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      };
+
+      const headers = {
+        Authorization: `Bearer ${token}`, // Passando o token nos headers
+      };
+
+      const response = await axios.patch(url, data, { headers });
+
+      console.log(
+        "Senha redefinida com sucesso, redirecionando para a página de sucesso..."
+      );
+      router.push("/passwordRedefinedSucess");
+    } catch (error) {
+      console.error("Erro ao redefinir a senha:", error);
+      const errorMessage =
+        error.response?.data?.message || "Erro ao tentar redefinir a senha.";
+      setAuthError(errorMessage); // Exibe o erro geral
+    }
+  };
+
   const router = useRouter();
 
   const handleBack = () => {
@@ -18,12 +105,6 @@ export default function forgotPassword() {
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
-
-  const handleSucess = () => {
-    // Simula o login
-    console.log("Senha redefinida com sucesso, redirecionando para perfil...");
-    router.push("/passwordRedefinedSucess"); // Caminho real da tela de recuperação
-  };
 
   return (
     <View style={styles.container}>
@@ -39,7 +120,9 @@ export default function forgotPassword() {
         <View style={styles.inputContainer1}>
           <TextInput
             style={styles.passwordInput}
-            placeholder="Senha"
+            onChangeText={setcurrentPassword}
+            value={currentPassword}
+            placeholder="Senha atual"
             placeholderTextColor="#1A4D2E"
             secureTextEntry={!passwordVisible}
           />
@@ -53,13 +136,18 @@ export default function forgotPassword() {
               color="gray"
             />
           </TouchableOpacity>
+          {currentPasswordError ? (
+            <Text style={styles.error}>{currentPasswordError}</Text>
+          ) : null}
         </View>
 
         {/* Campo de confirmar senha com botão de visibilidade */}
         <View style={styles.inputContainer2}>
           <TextInput
             style={styles.passwordInput}
-            placeholder="Confirmar Senha"
+            onChangeText={setnewPassword}
+            value={newPassword}
+            placeholder="Nova Senha"
             placeholderTextColor="#1A4D2E"
             secureTextEntry={!passwordVisible2}
           />
@@ -73,9 +161,15 @@ export default function forgotPassword() {
               color="gray"
             />
           </TouchableOpacity>
+          {newPasswordError ? (
+            <Text style={styles.error}>{newPasswordError}</Text>
+          ) : null}
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={handleSucess}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => handlePasswordRefined(currentPassword, newPassword)}
+        >
           <Text style={styles.buttonText}>Redefinir</Text>
         </TouchableOpacity>
       </View>
@@ -162,5 +256,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  error: {
+    color: "red",
+    fontSize: 12,
+    marginTop: 2, // Espaçamento mínimo
+    textAlign: "left",
   },
 });
