@@ -106,7 +106,7 @@ export default function CameraScreen() {
         <>
           <Image source={{ uri: image }} style={styles.capturedImage} />
           <View style={styles.blackBackground}>
-            <TouchableOpacity onPress={() => setImage(null)} style={styles.button}>
+            <TouchableOpacity onPress={() => setImage(null)} style={[styles.button, styles.redButton]}>
               <Text style={styles.buttonText}>Descartar</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={handleUsePhoto} style={styles.button}>
@@ -134,7 +134,7 @@ export default function CameraScreen() {
                   torch: !current.torch,
                 }))
               }
-              style={[styles.iconButton, styles.blackButton]}
+              style={[styles.iconButton, styles.moreTransparentBlackButton]}
             >
               <MaterialCommunityIcons
                 name={cameraProps.torch ? "flash" : "flash-off"}
@@ -145,7 +145,7 @@ export default function CameraScreen() {
           </View>
           <View style={styles.bottomControls}>
             <View style={styles.iconWithLabel}>
-              <TouchableOpacity onPress={pickImage} style={[styles.iconButton, styles.blackButton]}>
+              <TouchableOpacity onPress={pickImage} style={[styles.iconButton, styles.moreTransparentBlackButton]}>
                 <MaterialCommunityIcons name="image" size={30} color="white" />
               </TouchableOpacity>
               <Text style={styles.iconLabel}>Galeria</Text>
@@ -159,7 +159,7 @@ export default function CameraScreen() {
                     facing: current.facing === 'back' ? 'front' : 'back',
                   }))
                 }
-                style={[styles.iconButton, styles.blackButton]}
+                style={[styles.iconButton, styles.moreTransparentBlackButton]}
               >
                 <MaterialCommunityIcons name="camera-flip" size={30} color="white" />
               </TouchableOpacity>
@@ -210,8 +210,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  blackButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.8)', // Preto opaco
+  moreTransparentBlackButton: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    opacity: 0.9, // Preto mais transparente
   },
   flashButtonContainer: {
     position: 'absolute',
@@ -220,7 +221,6 @@ const styles = StyleSheet.create({
   },
   blackBackground: {
     width: '100%',
-    opacity: 0.8,
     height: 150, // Altura do fundo preto
     backgroundColor: '#000', // Fundo preto
     position: 'absolute',
@@ -228,6 +228,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row',
+    opacity: 1,
   },
   button: {
     width: 150,
@@ -236,6 +237,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#057B44',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  redButton: {
+    backgroundColor: 'red', // Cor vermelha para botão Descartar
   },
   buttonText: {
     color: '#fff',
