@@ -1,20 +1,70 @@
 import { useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
 import Photo_perfil from "../../assets/svg/photoPerfil";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const Perfil = () => {
+  const [userData, setUserData] = useState(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        // Recupera o userID do AsyncStorage
+        const token = await AsyncStorage.getItem("token");
+        const id = await AsyncStorage.getItem("userID");
+
+        console.log("userID:", id);
+        console.log("Token:", token);
+
+        if (!token || !id) {
+          console.log("Token received:", token);
+          console.log("Token de autenticação não encontrado.");
+          console.log("ID received:", id);
+          console.log("ID não encontrado.");
+          return;
+        }
+
+        const url = `http://192.168.0.160:3000/api/users/${id}`;
+
+        const headers = {
+          Authorization: `Bearer ${token}`, // Passando o token nos headers
+        };
+
+        const userResponse = await axios.get(url, { headers });
+        const userData = userResponse.data;
+        console.log("Dados do usuário:", userResponse.data);
+
+        console.log("CREA:", userData.crea);
+
+        setUserData(userResponse.data);
+      } catch (error) {
+        console.error("Erro ao buscar os dados do usuário:", error);
+      }
+    };
+
+    getUserData();
+  }, []);
 
   const handleAlterarSenha = () => {
     console.log("Redirecionando para Redefinição de senha...");
     router.push("/forgotPasswordReset"); // Redireciona para a tela de login
   };
 
-  const handlelogout = () => {
-    console.log("Redirecionando para tela de ínicio...");
-    router.push("/login"); // Redireciona para a tela de login
+  const handlelogout = async () => {
+    try {
+      // Limpa todos os dados armazenados no AsyncStorage
+      await AsyncStorage.clear();
+      console.log("Dados do AsyncStorage apagados.");
+
+      // Redireciona para a tela de login
+      router.push("/login"); // Redireciona para a tela de login
+    } catch (error) {
+      console.error("Erro ao limpar o AsyncStorage:", error);
+    }
   };
 
   return (
@@ -23,25 +73,35 @@ const Perfil = () => {
         <TouchableOpacity style={[styles.icon]}>
           <Photo_perfil></Photo_perfil>
         </TouchableOpacity>
-        <Text style={styles.name}>Nome</Text>
+        <Text style={styles.name}>
+          {userData ? userData.name : "Carregando..."}
+        </Text>
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Perfil</Text>
-        <Text style={styles.info}>Agrônomo</Text>
+        <Text style={styles.info}>
+          {userData?.role === "AGRONOMO" ? "Agrônomo" : "Agricultor"}
+        </Text>
         <View style={styles.line} />
       </View>
 
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Email</Text>
-        <Text style={styles.info}>email@gmail.com</Text>
+        <Text style={styles.info}>
+          {userData ? userData.email : "Carregando..."}
+        </Text>
         <View style={styles.line} />
       </View>
 
-      <View style={styles.infoContainer}>
-        <Text style={styles.label}>CREA</Text>
-        <Text style={styles.info}>DF000111</Text>
-        <View style={styles.line} />
-      </View>
+      {userData?.role === "AGRONOMO" && (
+        <View style={styles.infoContainer}>
+          <Text style={styles.label}>CREA</Text>
+          <Text style={styles.info}>
+            {userData ? userData.crea : "Carregando..."}
+          </Text>
+          <View style={styles.line} />
+        </View>
+      )}
       <View style={styles.buttons}>
         <TouchableOpacity
           style={[styles.button, styles.buttonGreen]}
@@ -69,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     marginTop: 30,
-    gap: 20,
+    gap: 10,
   },
   icon: {
     width: 200,
@@ -85,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 3, // Espaço entre o texto e a linha
   },
   name: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
     marginBottom: 24,
   },

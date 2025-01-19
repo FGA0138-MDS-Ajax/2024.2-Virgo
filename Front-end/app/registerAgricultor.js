@@ -23,6 +23,7 @@ export default function LoginScreen() {
   const [password2, setPassword2] = useState("");
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
+  const [authError, setAuthError] = useState("");
 
   const url = "http://192.168.0.160:3000/api/users/";
 
@@ -72,7 +73,16 @@ export default function LoginScreen() {
           router.push("/welcome"); // Caminho real da tela de recuperação
         })
         .catch(function (error) {
-          console.log(error);
+          // Verifica se o erro é de e-mail já cadastrado
+          if (error.response && error.response.status === 500) {
+            console.error("Erro ao cadastrar:", error);
+            const errorMessage =
+              error.response?.data?.message ||
+              "Email já cadastrado! Tente novamente.";
+            setAuthError(errorMessage); // Exibe a mensagem de erro
+          } else {
+            console.error("Erro inesperado:", error);
+          }
         });
 
       console.log("Usuário cadastrado!, redirecionando a home...");
@@ -225,6 +235,7 @@ export default function LoginScreen() {
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
+      {authError ? <Text style={styles.errorEmail}>{authError}</Text> : null}
     </SafeAreaView>
   );
 }
@@ -343,5 +354,11 @@ const styles = StyleSheet.create({
   termsText: {
     paddingTop: 5,
     fontSize: 13,
+  },
+  errorEmail: {
+    color: "red",
+    fontSize: 14,
+    marginTop: 3, // Espaçamento mínimo
+    textAlign: "left",
   },
 });
