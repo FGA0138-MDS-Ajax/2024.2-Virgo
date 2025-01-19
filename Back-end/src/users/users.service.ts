@@ -46,14 +46,19 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    if (!id) {
+    const user = await this.databaseService.user.findUnique({
+      where: { id },
+      include: { Agronomo: true },
+    });
+
+    if (!user) {
       throw new NotFoundException('User not found');
     }
-    return this.databaseService.user.findUnique({
-      where: {
-        id: id,
-      },
-    });
+
+    return {
+      ...user,
+      crea: user.role === 'AGRONOMO' ? user.Agronomo?.crea : undefined,
+    };
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
@@ -128,6 +133,17 @@ export class UsersService {
       where: { id: userId },
       data: {
         password: senha,
+      },
+    });
+  }
+
+  async findCREA(id: string) {
+    if (!id) {
+      throw new NotFoundException('User not found');
+    }
+    return this.databaseService.agronomo.findUnique({
+      where: {
+        userId: id,
       },
     });
   }

@@ -32,9 +32,12 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  
   @Get()
-  findAll(@Ip() ip: string, @CurrentUser() currentUser: UserPayload, @Query('role') role?: Role) {
+  findAll(
+    @Ip() ip: string,
+    @CurrentUser() currentUser: UserPayload,
+    @Query('role') role?: Role,
+  ) {
     console.log(currentUser);
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);
     return this.usersService.findAll(role);
