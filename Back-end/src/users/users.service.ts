@@ -57,7 +57,10 @@ export class UsersService {
 
     return {
       ...user,
-      crea: user.role === 'AGRONOMO' ? user.Agronomo?.crea : undefined,
+      crea:
+        user.role === 'AGRONOMO' && user.Agronomo
+          ? user.Agronomo.crea
+          : undefined,
     };
   }
 
