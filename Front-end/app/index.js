@@ -9,7 +9,7 @@ export default function WelcomeScreen() {
 
   const handleLogin = () => {
     console.log("Redirecionando para /instrucoes...");
-    router.push("/camera"); // Redireciona para a tela de login
+    router.push("/login"); // Redireciona para a tela de login
   };
 
   const handleRegister = () => {

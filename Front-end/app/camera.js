@@ -104,7 +104,7 @@ export default function CameraScreen() {
   };
 
   async function handleUsePhoto() {
-    const url = "http://192.168.0.2:3000/api/files/upload";
+    const url = "http://192.168.0.160:3000/api/files/upload";
 
     if (!image) {
       Alert.alert("Erro", "Nenhuma imagem para enviar.");

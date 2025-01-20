@@ -1,22 +1,22 @@
 const slides = [
   {
     id: "1",
-    title: "Quick & Easy Payments",
+    title: "Instrução 1",
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
   },
   {
     id: "2",
-    title: "Quick & Easy Payments",
+    title: "Instrução 2",
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
   },
   {
     id: "3",
-    title: "Quick & Easy Payments",
+    title: "Instrução 3",
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
   },
   {
     id: "4",
-    title: "Quick & Easy Payments",
+    title: "Instrução 4",
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
   },
 ];
