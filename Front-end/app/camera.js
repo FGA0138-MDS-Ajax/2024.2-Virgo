@@ -1,5 +1,7 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import { useRouter } from "expo-router";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
 import { useEffect, useRef, useState } from "react";
@@ -15,6 +17,12 @@ import {
 import Svg, { Path } from "react-native-svg";
 
 export default function CameraScreen() {
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
+
   const { width, height } = Dimensions.get("window");
   const [permission, requestPermission] = useCameraPermissions();
   const [cameraProps, setCameraProps] = useState({
@@ -154,6 +162,9 @@ export default function CameraScreen() {
       ) : (
         // Exibir os botões da câmera quando nenhuma imagem está sendo exibida
         <>
+          <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+            <Ionicons name="arrow-back-circle-outline" size={50} color="#fff" />
+          </TouchableOpacity>
           <CameraView
             style={styles.camera}
             facing={cameraProps.facing}
@@ -314,5 +325,11 @@ const styles = StyleSheet.create({
     color: "white",
     marginTop: 5,
     fontSize: 14,
+  },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20,
+    zIndex: 10,
   },
 });

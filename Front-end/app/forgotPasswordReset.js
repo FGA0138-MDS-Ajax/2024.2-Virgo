@@ -48,6 +48,10 @@ export default function forgotPassword() {
       setnewPasswordError("Senha não pode ter espaços");
       valid = false;
     }
+    if (newPassword == currentPassword) {
+      setnewPasswordError("Nova senha não pode ser a mesma que a atual.");
+      valid = false;
+    }
 
     return valid;
   };
@@ -91,9 +95,12 @@ export default function forgotPassword() {
       router.push("/passwordRedefinedSucess");
     } catch (error) {
       console.error("Erro ao redefinir a senha:", error);
+
+      // Captura a mensagem específica do backend ou exibe uma genérica
       const errorMessage =
-        error.response?.data?.message || "Erro ao tentar redefinir a senha.";
-      setAuthError(errorMessage); // Exibe o erro geral
+        error.response?.data?.message || "Senha atual está incorreta.";
+
+      setAuthError(errorMessage); // Exibe o erro no UI
     }
   };
 
@@ -120,7 +127,10 @@ export default function forgotPassword() {
         <View style={styles.inputContainer1}>
           <TextInput
             style={styles.passwordInput}
-            onChangeText={setcurrentPassword}
+            onChangeText={(text) => {
+              setcurrentPassword(text);
+              setCurrentPasswordError(""); // Limpa o erro ao alterar o campo
+            }}
             value={currentPassword}
             placeholder="Senha atual"
             placeholderTextColor="#1A4D2E"
@@ -145,7 +155,10 @@ export default function forgotPassword() {
         <View style={styles.inputContainer2}>
           <TextInput
             style={styles.passwordInput}
-            onChangeText={setnewPassword}
+            onChangeText={(text) => {
+              setnewPassword(text);
+              setnewPasswordError(""); // Limpa o erro ao alterar o campo
+            }}
             value={newPassword}
             placeholder="Nova Senha"
             placeholderTextColor="#1A4D2E"
@@ -172,6 +185,7 @@ export default function forgotPassword() {
         >
           <Text style={styles.buttonText}>Redefinir</Text>
         </TouchableOpacity>
+        {authError ? <Text style={styles.error}>{authError}</Text> : null}
       </View>
     </View>
   );
@@ -250,7 +264,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 6,
-    marginBottom: 20,
+    marginBottom: 5,
   },
   buttonText: {
     color: "#fff",
@@ -259,7 +273,7 @@ const styles = StyleSheet.create({
   },
   error: {
     color: "red",
-    fontSize: 12,
+    fontSize: 13,
     marginTop: 2, // Espaçamento mínimo
     textAlign: "left",
   },

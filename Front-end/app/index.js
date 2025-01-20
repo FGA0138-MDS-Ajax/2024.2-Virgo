@@ -8,7 +8,7 @@ export default function WelcomeScreen() {
   const router = useRouter();
 
   const handleLogin = () => {
-    console.log("Redirecionando para /instrucoes...");
+    console.log("Redirecionando para /login...");
     router.push("/login"); // Redireciona para a tela de login
   };
 

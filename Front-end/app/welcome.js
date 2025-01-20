@@ -10,7 +10,7 @@ export default function WelcomeModal() {
   // Redireciona para a Home automaticamente após 5 segundos (opcional)
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/(tabs)");
+      router.replace("/login");
     }, 5000); // 5000ms = 5 segundos
 
     return () => clearTimeout(timer); // Limpa o timer quando o componente desmonta
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   messageText: {
-    fontSize: 16,
+    fontSize: 17,
     textAlign: "center",
     marginBottom: 20,
   },
