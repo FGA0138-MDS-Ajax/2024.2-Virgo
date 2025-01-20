@@ -22,7 +22,7 @@
     "axios": "^1.7.9",
     "expo": "^52.0.24",
     "expo-blur": "~14.0.1",
-    "expo-camera": "~16.0.10",
+    "expo-camera": "~16.0.12",
     "expo-checkbox": "~4.0.0",
     "expo-constants": "~17.0.3",
     "expo-font": "~13.0.1",

@@ -17,10 +17,7 @@
       }
     },
     "android": {
-      "permissions": [
-        "CAMERA",
-        "RECORD_AUDIO"
-      ],
+      "permissions": ["CAMERA", "RECORD_AUDIO"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
