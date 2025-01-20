@@ -63,7 +63,7 @@ export default function LoginScreen() {
       return;
     }
 
-    const url = "http://192.168.0.160:3000/api/login/";
+    const url = "http://192.168.0.2:3000/api/login/";
 
     try {
       // Envia os dados de login para o backend
