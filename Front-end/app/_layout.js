@@ -39,7 +39,7 @@ export default function RootLayout() {
           title: "",
           headerShown: false,
           headerStyle: { backgroundColor: "#F5F5F5" },
-          // gestureEnabled: false,
+          gestureEnabled: false,
         }}
       >
         <>
