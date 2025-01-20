@@ -27,26 +27,33 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack
-      screenOptions={{
-        title: "",
-        headerShown: false,
-        headerStyle: { backgroundColor: "#F5F5F5" },
-      }}
-    >
-      <Stack.Screen name="index" />
-      <Stack.Screen name="login" />
-      <Stack.Screen name="camera" />
-      <Stack.Screen name="teste" />
-      <Stack.Screen name="instrucoes" />
-      <Stack.Screen name="AgricultorOrAgronomo" />
-      <Stack.Screen name="registerAgricultor" />
-      <Stack.Screen name="forgotPassword" />
-      <Stack.Screen name="forgotPasswordCheckEmail" />
-      <Stack.Screen name="forgotPasswordReset" />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="+not-found" />
-    </Stack>
-
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <Stack
+        screenOptions={{
+          title: "",
+          headerShown: false,
+          headerStyle: { backgroundColor: "#F5F5F5" },
+          // gestureEnabled: false,
+        }}
+      >
+        <>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="login" />
+          <Stack.Screen name="AgricultorOrAgronomo" />
+          <Stack.Screen name="registerAgricultor" />
+          <Stack.Screen name="forgotPassword" />
+          <Stack.Screen name="forgotPasswordCheckEmail" />
+          <Stack.Screen name="forgotPasswordReset" />
+          <Stack.Screen name="passwordRedefinedSucess" />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="selectPlant" />
+          <Stack.Screen name="camera" />
+          <Stack.Screen name="teste" />
+          <Stack.Screen name="instructions" />
+          <Stack.Screen name="+not-found" />
+        </>
+      </Stack>
+      <StatusBar style="auto" />
+    </ThemeProvider>
   );
 }

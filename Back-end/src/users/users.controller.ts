@@ -17,6 +17,8 @@ import { UpdateUserDto } from './dto/Update-user.dto';
 import { MyLoggerService } from 'src/my-logger/my-logger.service';
 import { Role } from '@prisma/client';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { UserPayload } from 'src/auth/models/UserPayload';
 
 @Controller('users')
 export class UsersController {
@@ -31,7 +33,12 @@ export class UsersController {
   }
 
   @Get()
-  findAll(@Ip() ip: string, @Query('role') role?: Role) {
+  findAll(
+    @Ip() ip: string,
+    @CurrentUser() currentUser: UserPayload,
+    @Query('role') role?: Role,
+  ) {
+    console.log(currentUser);
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);
     return this.usersService.findAll(role);
   }
@@ -53,6 +60,7 @@ export class UsersController {
     return this.usersService.update(id, updateUserDto);
   }
 
+  @IsPublic()
   @Delete(':id')
   remove(@Ip() ip: string, @Param('id', ParseUUIDPipe) id: string) {
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);

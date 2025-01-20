@@ -1,40 +1,22 @@
-import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Exemplo from "../assets/svg/image12.svg";
+import { View, Text, StyleSheet } from "react-native";
+import Onboarding from "../components/Onboarding";
 
-export default function InstrucoesScreen() {
-  const router = useRouter();
-
-  return(
-    <View>
-        <Exemplo>asd</Exemplo>
+export default instrucoes = () => {
+  return (
+    <View style={styles.container}>
+      <Onboarding />
+      <StatusBar styles="auto" />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#F5F5F5",
-    paddingBottom: 20,
-  },
-  
-  button: {
-    width: 270,
-    height: 45,
-    borderRadius: 21,
-    borderWidth: 1,
-    borderColor: "#277345",
-    backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
-  },
-  
-  pngImage: {
-    marginBottom: 20,
   },
 });

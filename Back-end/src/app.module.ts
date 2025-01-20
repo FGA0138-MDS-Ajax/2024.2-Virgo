@@ -33,13 +33,13 @@ import { FileModule } from './files/files.module';
   providers: [
     AppService,
     {
-      provide: APP_GUARD,
-        useClass: ThrottlerGuard,
-      },
-      {
         provide: APP_GUARD,
         useClass: JwtAuthGuard,
     },
+    {
+      provide: APP_GUARD,
+        useClass: ThrottlerGuard,
+      },
   ],
 })
 export class AppModule {}
