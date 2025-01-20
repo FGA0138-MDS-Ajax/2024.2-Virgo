@@ -1,0 +1,28 @@
+<svg width="360" height="361" viewBox="0 0 360 361" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_566_720)">
+<line x1="48.1562" y1="3" x2="48.1562" y2="353.476" stroke="#057B44"/>
+<line x1="316.125" y1="3" x2="316.125" y2="353.476" stroke="#057B44"/>
+<line x1="101.75" y1="3" x2="101.75" y2="353.476" stroke="#057B44"/>
+<line x1="155.344" y1="3" x2="155.344" y2="353.476" stroke="#057B44"/>
+<line x1="208.938" y1="3" x2="208.938" y2="353.476" stroke="#057B44"/>
+<line x1="262.531" y1="3" x2="262.531" y2="353.476" stroke="#057B44"/>
+<line x1="355" y1="314.049" x2="5" y2="314.049" stroke="#057B44"/>
+<line x1="355" y1="43.4277" x2="6.09378" y2="43.4277" stroke="#057B44"/>
+<line x1="355" y1="260.812" x2="5" y2="260.812" stroke="#057B44"/>
+<line x1="355" y1="206.466" x2="5" y2="206.466" stroke="#057B44"/>
+<line x1="355" y1="152.12" x2="6.09378" y2="152.12" stroke="#057B44"/>
+<line x1="355" y1="97.7736" x2="6.09378" y2="97.7736" stroke="#057B44"/>
+</g>
+<defs>
+<filter id="filter0_d_566_720" x="0" y="0" width="360" height="360.476" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="2.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_566_720"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_566_720" result="shape"/>
+</filter>
+</defs>
+</svg>

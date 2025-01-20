@@ -9,7 +9,9 @@ import {
   View,
 } from "react-native";
 import IconLogo from "../assets/svg/icon-logo.svg";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -26,20 +28,12 @@ export default function LoginScreen() {
     setPasswordError("");
     setAuthError(""); // Limpa o erro geral
 
-    if (!email.includes("@")) {
-      setEmailError("Email inválido");
-      valid = false;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setEmailError("Email inválido");
-      valid = false;
-    }
-    if (!email.includes(".com")) {
-      setEmailError("Email inválido");
-      valid = false;
-    }
-    if (email.length === 0) {
+    if (!email) {
       setEmailError("Email não preenchido");
+      valid = false;
+    }
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3}$/.test(email)) {
+      setEmailError("Email inválido");
       valid = false;
     }
     if (email.indexOf(" ") >= 0) {
@@ -63,7 +57,7 @@ export default function LoginScreen() {
     return valid;
   };
 
-  const handleLogin = (email, password) => {
+  const handleLogin = async (email, password) => {
     if (!validate()) {
       console.log("Erro de validação. Não enviado ao backend.");
       return;
@@ -71,18 +65,45 @@ export default function LoginScreen() {
 
     const url = "http://192.168.0.160:3000/api/login/";
 
-    axios
-      .post(url, { email, password })
-      .then(function (response) {
-        console.log("Login bem-sucedido, redirecionando para a home...");
-        router.push("/home");
-      })
-      .catch(function (error) {
-        const errorMessage =
-          error.response?.data?.message ||
-          "E-mail ou senha incorretos. Tente novamente.";
-        setAuthError(errorMessage); // Exibe o erro geral
-      });
+    try {
+      // Envia os dados de login para o backend
+      const response = await axios.post(url, { email, password });
+
+      // Verifique a resposta recebida
+      console.log("Resposta do backend:", response);
+
+      // Pega o token da resposta
+      const token = response.data.access_token;
+      console.log("Token received:", token);
+
+      // Verifique se o token existe
+      if (!token) {
+        console.error("Token não encontrado na resposta.");
+        return;
+      }
+
+      const decoded = jwtDecode(token);
+      console.log("Token decodificado", decoded);
+      const userId = decoded.id;
+      console.log("Tentando printar userId", userId);
+
+      // Salva o token no AsyncStorage
+      await AsyncStorage.setItem("token", token);
+      await AsyncStorage.setItem("userID", userId);
+
+      console.log("Login bem-sucedido, redirecionando para a home...");
+      console.log("gg paizao");
+      router.push("/(tabs)");
+    } catch (error) {
+      // Imprime o erro para ajudar na depuração
+      console.error("Erro ao fazer login:", error);
+
+      // Exibe a mensagem de erro
+      const errorMessage =
+        error.response?.data?.message ||
+        "E-mail ou senha incorretos. Tente novamente.";
+      setAuthError(errorMessage); // Exibe o erro geral
+    }
   };
 
   const handleRegister = () => {
