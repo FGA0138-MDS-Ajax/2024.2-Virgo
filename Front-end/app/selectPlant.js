@@ -15,7 +15,7 @@ export function selectPlant() {
   const handleInstructions = () => {
     console.log("Redirecionando para /instructions...");
     try {
-      router.push("/instructions");
+      router.push("/instrucoes");
       console.log("Redirecionamento bem-sucedido!");
     } catch (error) {
       console.error("Erro ao redirecionar:", error);
