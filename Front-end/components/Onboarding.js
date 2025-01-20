@@ -27,7 +27,7 @@ export default Onboarding = () => {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
       console.log("Último item.");
-      router.push("/fotoExemplo");
+      router.push("/camera");
     }
   };
   const [currentIndex, setCurrentIndex] = useState(0);

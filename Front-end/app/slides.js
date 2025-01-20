@@ -16,7 +16,7 @@ const slides = [
   },
   {
     id: "4",
-    title: "Instrução 4",
+    title: "Exemplo de uma foto prática",
     description: "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum",
   },
 ];

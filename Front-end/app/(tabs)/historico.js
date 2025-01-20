@@ -6,7 +6,7 @@ const Historico = () => {
   return (
     <View style={styles.container}>
       <View style={styles.home}>
-        <Text style={styles.tam}>screen</Text>
+        <Text>histórico</Text>
       </View>
     </View>
   );
@@ -22,9 +22,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 150,
-  },
-  tam: {
-    fontSize: 40,
   },
 });
 
