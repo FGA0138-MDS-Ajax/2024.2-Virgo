@@ -20,7 +20,7 @@ export default function CameraScreen() {
   const router = useRouter();
 
   const handleBack = () => {
-    router.back();
+    router.push("/(tabs)");
   };
 
   const { width, height } = Dimensions.get("window");
