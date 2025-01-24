@@ -1,6 +1,7 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from "expo-router";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
@@ -20,7 +21,7 @@ export default function CameraScreen() {
   const router = useRouter();
 
   const handleBack = () => {
-    router.push("/(tabs)");
+    router.back();
   };
 
   const { width, height } = Dimensions.get("window");
@@ -111,35 +112,37 @@ export default function CameraScreen() {
     }
   };
 
-  async function handleUsePhoto() {
-    const url = "http://192.168.0.160:3000/api/files/upload";
-
-    if (!image) {
-      Alert.alert("Erro", "Nenhuma imagem para enviar.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("image", {
-      uri: image,
-      name: "photo.jpg", // Nome do arquivo
-      type: "image/jpeg", // Tipo MIME do arquivo
-    });
-
-    try {
-      const response = await axios.post(url, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      Alert.alert("Sucesso", "Imagem enviada com sucesso!");
-      console.log("Resposta do servidor:", response.data);
-    } catch (error) {
-      console.error("Erro ao enviar a imagem:", error);
-      Alert.alert("Erro", "Falha ao enviar a imagem.");
-    }
-    setImage(null); // Reseta a visualização para voltar à câmera
+async function handleUsePhoto() {
+  const url = "http://192.168.0.160:3000/api/files/upload";
+  
+  if (!image) {
+    Alert.alert('Erro', 'Nenhuma imagem para enviar.');
+    return;
   }
+
+  const formData = new FormData();
+  const uniqueFileName = `${uuidv4()}.jpg`; 
+  formData.append('image', {
+    uri: image,
+    name: uniqueFileName, 
+    type: 'image/jpeg' 
+  });
+
+  try {
+    const response = await axios.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    Alert.alert('Sucesso', 'Imagem enviada com sucesso!');
+    console.log('Resposta do servidor:', response.data); //espero dar certo
+  } catch (error) {
+    console.error('Erro ao enviar a imagem:', error);
+    Alert.alert('Erro', 'Falha ao enviar a imagem.');
+  }
+
+  setImage(null);
+}
 
   return (
     <View style={styles.container}>
