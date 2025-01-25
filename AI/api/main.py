@@ -27,17 +27,22 @@ async def predict(
         end_time = time.time()
         latency = end_time - start_time
 
-        mlflow.log_metric("latency", latency) 
-
+        # Registra métricas e logs no MLflow
+        #mlflow.log_metric("confidence", confidence)
+        mlflow.log_metric("latency", latency) # Tempo de previsão
+        #probabilidade = int(float(confidence)*100)
 
         contents = await file.read()
         with open(f"./imagens/{file.filename}", "wb") as f:
             f.write(contents)
 
+
+        #o arquivo tá sendo recebido corretamente? medo pois no terminal diz OK p mim
         return {
+            #retirar dps só para testes
+            #'Doença': predicted_class,
+            #'Probabilidade': f"{probabilidade}%"
             "filename": file.filename,
-            "content_type": file.content_type,
-            "latency": latency
         }
 
 
