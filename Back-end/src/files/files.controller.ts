@@ -2,6 +2,7 @@ import { Controller, Post, UploadedFile, UseInterceptors, BadRequestException } 
 import { FileInterceptor } from "@nestjs/platform-express";
 import { IsPublic } from "src/auth/decorators/is-public.decorator";
 import { diskStorage } from 'multer';
+import Multer from 'multer';
 import { extname } from 'path';
 import axios from 'axios';
 import * as FormData from 'form-data';
@@ -26,7 +27,7 @@ export class FilesController {
       cb(null, true);
     },
   }))
-  async uploadFile(@UploadedFile() file) {
+  async uploadFile(@UploadedFile() file:Multer.file) {
     if (!file) {
       throw new BadRequestException('Arquivo não uploadado!');
     }
@@ -35,17 +36,10 @@ export class FilesController {
     
     //ACHAR COMO ARRUMAR ESSE FORMDATA PARA IA (algo a ver com json.stringify????)
     const formData = new FormData();
-    formData.append('file', {
-      value: JSON.stringify(file.buffer),
-      options: {
-        filename: JSON.stringify(file.originalname),
-        contentType: JSON.stringify(file.mimetype),
-        type: 'image/jpeg', 
-      },
-    });
+    formData.append('file',JSON.stringify(file.mimetype),JSON.stringify(file.originalname));
     console.log("passoucarail");
      // envia imagem pra ia
-    // espera resposta 
+    // espera resposta  
     try {
       console.log("tentando post");
       const response = await axios.post('http://localhost:3002/upload', formData, {

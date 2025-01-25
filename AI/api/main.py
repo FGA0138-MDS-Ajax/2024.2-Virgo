@@ -19,7 +19,7 @@ app.add_middleware(
 
 @app.post("/upload")
 async def predict(
-    file: UploadFile = File(...)
+    file: UploadFile
 ):
     with mlflow.start_run():
         start_time = time.time()
@@ -27,16 +27,17 @@ async def predict(
         end_time = time.time()
         latency = end_time - start_time
 
-        # Registra métricas e logs no MLflow
-        #mlflow.log_metric("confidence", confidence)
-        mlflow.log_metric("latency", latency) # Tempo de previsão
+        mlflow.log_metric("latency", latency) 
 
-        #probabilidade = int(float(confidence)*100)
+
+        contents = await file.read()
+        with open(f"./imagens/{file.filename}", "wb") as f:
+            f.write(contents)
 
         return {
-            file #retirar dps só para testes
-            #'Doença': predicted_class,
-            #'Probabilidade': f"{probabilidade}%"
+            "filename": file.filename,
+            "content_type": file.content_type,
+            "latency": latency
         }
 
 
