@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import mlflow
 import time
+from PIL import Image
 
 app = FastAPI()
 
@@ -11,10 +12,10 @@ origins = [
 ]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins     = origins,
+    allow_credentials = True,
+    allow_methods     = ["*"],
+    allow_headers     = ["*"]
 )
 
 @app.post("/upload")
@@ -22,10 +23,19 @@ async def predict(
     file: UploadFile
 ):
     with mlflow.start_run():
+
+        # TODO -> run some function to verify if the sender IS the backend AND
+        #    if the file sent IS a jpeg of some sort. any sort.
+        # 
         start_time = time.time()
 
-        end_time = time.time()
-        latency = end_time - start_time
+        # basic testing routine. If it works, 
+        # it should print the file structure 
+        # and stuff to console
+        jpeg       = Image.open(file)
+        zed = [ jpeg.format, jpeg.size, jpeg.mode ]
+        end_time   = time.time()
+        latency    = end_time - start_time
 
         # Registra métricas e logs no MLflow
         #mlflow.log_metric("confidence", confidence)
@@ -43,6 +53,7 @@ async def predict(
             #'Doença': predicted_class,
             #'Probabilidade': f"{probabilidade}%"
             "filename": file.filename,
+            "file_info": zed #bizarre Alpha placeholder, of course
         }
 
 
