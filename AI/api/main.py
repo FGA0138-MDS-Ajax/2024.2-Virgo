@@ -33,7 +33,7 @@ async def predict(
         # it should print the file structure 
         # and stuff to console
         jpeg       = Image.open(file)
-        zed = [ jpeg.format, jpeg.size, jpeg.mode ]
+        jpeg       = jpeg.resize([256, 256]) #easy as.
         end_time   = time.time()
         latency    = end_time - start_time
 
@@ -52,8 +52,7 @@ async def predict(
             #retirar dps só para testes
             #'Doença': predicted_class,
             #'Probabilidade': f"{probabilidade}%"
-            "filename": file.filename,
-            "file_info": zed #bizarre Alpha placeholder, of course
+            "filename": file.filename
         }
 
 
