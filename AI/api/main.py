@@ -21,7 +21,7 @@ app.add_middleware(
 @app.post("/upload")
 async def predict(
     file: UploadFile = File(...),
-    # plant_type: str = Form(...)  # Recebe o campo "plant_type" do FormData
+    plant_type: str = Form(...)  # Recebe o campo "plant_type" do FormData
 ):
     # with mlflow.start_run():
 
@@ -50,7 +50,7 @@ async def predict(
         print("\n")
         print("ARQUIVO:::: \n")
         print(file)
-        # print(f"Tipo de planta: {plant_type}")
+        print(f"Tipo de planta: {plant_type}")
         #o arquivo tá sendo recebido corretamente? medo pois no terminal diz OK p mim
         return {
             #retirar dps só para testes

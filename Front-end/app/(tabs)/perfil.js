@@ -28,7 +28,7 @@ const Perfil = () => {
           return;
         }
 
-        const url = `http://192.168.0.160:3000/api/users/${id}`;
+        const url = `http://192.168.0.37:3000/api/users/${id}`;
 
         const headers = {
           Authorization: `Bearer ${token}`, // Passando o token nos headers

@@ -8,7 +8,7 @@ import React from "react";
 
 export default function instructions() {
   const router = useRouter();
-
+  
   const handleBack = () => {
     router.back();
   };

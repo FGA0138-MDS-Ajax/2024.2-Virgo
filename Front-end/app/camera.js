@@ -19,8 +19,8 @@ import Svg, { Path } from "react-native-svg";
 
 export default function CameraScreen() {
   const router = useRouter();
-  // const plant_type = router.plant_type;
-  // console.log(plant_type);
+  const plant_type = router.plant_type;
+  console.log(plant_type);
   const handleBack = () => {
     router.back();
   };
@@ -128,7 +128,7 @@ async function handleUsePhoto() {
     name: uniqueFileName, 
     type: 'image/jpeg',
   });
-  // formData.append('plant_type', plant_type); //precisa ser passado / append fora pq ele não faz parte do OBJETO file!!!!!!!
+  formData.append('plant_type', plant_type); //precisa ser passado / append fora pq ele não faz parte do OBJETO file!!!!!!!
   try {
     const response = await axios.post(url, formData, {
       headers: {

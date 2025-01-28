@@ -8,14 +8,14 @@ import * as FormData from 'form-data';
 export class FilesController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+  async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body: any) {
     const filePath = path.join(__dirname, '../../uploads', file.filename); //constrói o URL onde o arquivo vai ser salvo nas nossas pastas
 
     const formData = new FormData();
     formData.append('file', fs.createReadStream(filePath), file.filename); //com o URL pego lá em cima, a gente envia o file e o nome dele (doc do fastapi pede)
-    // formData.append('plant_type', body.plant_type); // adiciona o plant_type ao formData, vindo do body
+    formData.append('plant_type', body.plant_type); // adiciona o plant_type ao formData, vindo do body
     console.log(file); //printa o file no terminal do back
-    // console.log(body.plant_type);
+    console.log(body.plant_type);
     try {
       const response = await axios.post('http://localhost:3002/upload', formData, {
         headers: {
