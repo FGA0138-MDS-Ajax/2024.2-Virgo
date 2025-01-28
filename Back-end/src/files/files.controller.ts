@@ -1,58 +1,31 @@
-import { Controller, Post, UploadedFile, UseInterceptors, BadRequestException } from "@nestjs/common";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { IsPublic } from "src/auth/decorators/is-public.decorator";
-import { diskStorage } from 'multer';
-import Multer from 'multer';
-import { extname } from 'path';
+import { Controller, Post, UploadedFile, UseInterceptors, Body } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import axios from 'axios';
+import * as fs from 'fs'; //permite interagir com filesystem
+import * as path from 'path';
 import * as FormData from 'form-data';
-
 @Controller('files')
 export class FilesController {
-  @IsPublic()
   @Post('upload')
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads',
-      filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        const ext = extname(file.originalname);
-        cb(null, `${file.fieldname}-${uniqueSuffix}${ext}`);
-      },
-    }),
-    fileFilter: (req, file, cb) => {
-      if (!file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
-        return cb(new BadRequestException('Apenas arquivos de imagens são permitidos!'), false);
-      }
-      cb(null, true);
-    },
-  }))
-  async uploadFile(@UploadedFile() file:Multer.file) {
-    if (!file) {
-      throw new BadRequestException('Arquivo não uploadado!');
-    }
-    console.log('file uploaded:', file); // Log para inspecionar o objeto file
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    const filePath = path.join(__dirname, '../../uploads', file.filename); //constrói o URL onde o arquivo vai ser salvo nas nossas pastas
 
-    
-    //ACHAR COMO ARRUMAR ESSE FORMDATA PARA IA (algo a ver com json.stringify????)
     const formData = new FormData();
-    formData.append('file',JSON.stringify(file.mimetype),JSON.stringify(file.originalname));
-    console.log("passoucarail");
-     // envia imagem pra ia
-    // espera resposta  
+    formData.append('file', fs.createReadStream(filePath), file.filename); //com o URL pego lá em cima, a gente envia o file e o nome dele (doc do fastapi pede)
+    // formData.append('plant_type', body.plant_type); // adiciona o plant_type ao formData, vindo do body
+    console.log(file); //printa o file no terminal do back
+    // console.log(body.plant_type);
     try {
-      console.log("tentando post");
       const response = await axios.post('http://localhost:3002/upload', formData, {
         headers: {
           ...formData.getHeaders(),
         },
-      }); // fetch do front, colocar as labels 'morango, banana etc' como headers no url ---> EXEMPLO 'Label': label.tipo [recebidas do front via endpoint tb].
-      console.log("chegou aqui");
-      //envia resposta pro front-end
+      });
       return response.data;
     } catch (error) {
-      console.error('Erro ao enviar a imagem pra IA:', error);
-      throw new BadRequestException('Falha ao processar a imagem lol.');
+      console.error('Erro ao enviar a imagem para o main.py:', error);
+      throw error;
     }
   }
 }
