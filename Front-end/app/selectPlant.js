@@ -2,10 +2,22 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text, View } from "react-native";
-import IcontPlant from "../assets/svg/icon-plant.svg";
+import { Image } from "react-native";
 import React from "react";
 
-export function selectPlant() {
+// Importar as imagens das plantas
+import GoiabaIcon from "../assets/images/pe-de-goiaba.jpg";
+import MandiocaIcon from "../assets/images/pe-de-mandioca.jpg";
+import BananaIcon from "../assets/images/banana.jpg";
+import AlhoIcon from "../assets/images/alho.jpg";
+import MorangoIcon from "../assets/images/morango.jpg";
+import AlfaceIcon from "../assets/images/alface.jpg";
+import TomateIcon from "../assets/images/tomate.jpg";
+import MilhoIcon from "../assets/images/milho.jpg";
+import LaranjaIcon from "../assets/images/laranja.jpg";
+import SojaIcon from "../assets/images/soja.jpg";
+
+export function SelectPlant() {
   const router = useRouter();
 
   const handleBack = () => {
@@ -25,21 +37,22 @@ export function selectPlant() {
     }
   };
 
-  //Array de plantas para não precisar colocar caixa a caixa
+  // Array de plantas para não precisar colocar caixa a caixa
   const plants = [
-    "Goiaba",
-    "Mandioca",
-    "Banana",
-    "Alho",
-    "Morango",
-    "Alface",
-    "Tomate",
-    "Milho",
-    "Laranja",
-    "Soja",
+    { name: "Goiaba", icon: GoiabaIcon },
+    { name: "Mandioca", icon: MandiocaIcon },
+    { name: "Banana", icon: BananaIcon },
+    { name: "Alho", icon: AlhoIcon },
+    { name: "Morango", icon: MorangoIcon },
+    { name: "Alface", icon: AlfaceIcon },
+    { name: "Tomate", icon: TomateIcon },
+    { name: "Milho", icon: MilhoIcon },
+    { name: "Laranja", icon: LaranjaIcon },
+    { name: "Soja", icon: SojaIcon },
   ];
 
   return (
+    
     <View style={styles.container}>
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
@@ -49,15 +62,19 @@ export function selectPlant() {
           <TouchableOpacity
             key={index}
             style={styles.button}
-            onPress={() => handleInstructions(plant)}
+            onPress={() => handleInstructions(plant.name)}
           >
-            <View style={styles.buttonIcon}>
-              <IcontPlant></IcontPlant>
-            </View>
-            <Text style={styles.buttonText}>{plant}</Text>
+          <Image
+            style={styles.image}
+            source={plant.icon}
+            resizeMode="cover"
+          />
+            <Text style={styles.buttonText}>{plant.name}</Text>
           </TouchableOpacity>
         ))}
       </View>
+
+      
     </View>
   );
 }
@@ -74,27 +91,29 @@ const styles = StyleSheet.create({
     top: 70,
     left: 20,
     zIndex: 10,
+    marginBottom: 20,
   },
   containerPlants: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-around",
     width: "100%",
-    maxWidth: 400, // Controla o tamanho máximo da grade na VERTICAL
+    marginTop: 100,
+    maxWidth: 380, // Controla o tamanho máximo da grade na VERTICAL
     gap: 15,
-    top: 35,
   },
   button: {
     width: "45%",
-    height: 130,
+    height: 120,
     justifyContent: "flex-end",
-    backgroundColor: "#057B44", // Fundo principal
+    backgroundColor: "#057c44",
     borderRadius: 15,
     borderCurve: "continuous",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
+    overflow: "hidden",
   },
   buttonIcon: {
     justifyContent: "center",
@@ -105,12 +124,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
+  image: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: '#0553',
+  },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 15,
+    alignItems: "center",
+    marginTop: 2,
+    marginBottom: 5,
   },
 });
-export default selectPlant;
+
+export default SelectPlant;
