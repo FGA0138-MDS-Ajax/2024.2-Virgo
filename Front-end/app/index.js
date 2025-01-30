@@ -7,9 +7,19 @@ import IconLogo from "../assets/svg/icon-logo.svg";
 export default function WelcomeScreen() {
   const router = useRouter();
 
+  const handleTermsOfService = () => {
+    console.log("Redirecionando para /termos...");
+    router.push("/termos");
+  };
+
+  const handlePrivacyPolicy = () => {
+    console.log("Redirecionando para /politica");
+    router.push("/politica");
+  };
+
   const handleLogin = () => {
     console.log("Redirecionando para /login...");
-    router.push("/login"); // Redireciona para a tela de login
+    router.push("/(tabs)"); // Redireciona para a tela de login
   };
 
   const handleRegister = () => {
@@ -44,8 +54,14 @@ export default function WelcomeScreen() {
       {/* Mensagem sobre Termos de Serviço */}
       <Text style={styles.termsText}>
         Ao criar uma conta, você concorda com os{" "}
-        <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo nossa{" "}
-        <Text style={styles.linkText}>Política de Privacidade</Text>.
+        <TouchableOpacity onPress={handleTermsOfService}>
+          <Text style={styles.linkText}>Termos de Serviço</Text>
+        </TouchableOpacity>
+        , incluindo nossa{" "}
+        <TouchableOpacity onPress={handlePrivacyPolicy}>
+          <Text style={styles.linkText}>Política de Privacidade</Text>
+        </TouchableOpacity>
+        .
       </Text>
     </View>
   );
@@ -99,18 +115,27 @@ const styles = StyleSheet.create({
   },
   termsText: {
     width: 270,
-    fontSize: 11,
+    fontSize: 15,
     color: "#1A4D2E",
     textAlign: "left",
     marginTop: 10,
     marginLeft: 10,
-    lineHeight: 14,
+    lineHeight: 22, // Aumentado para dar mais espaço
+    textAlignVertical: 'center', // Alinhamento vertical
   },
   linkText: {
     color: "#0D2717",
     fontWeight: "bold",
+    fontSize: 15,
+    textDecorationLine: "underline",
+    includeFontPadding: false, // Remove o padding extra da fonte
+    textAlignVertical: 'center', // Alinhamento vertical
+    lineHeight: 22, // Mesmo lineHeight do texto pai
   },
   pngImage: {
     marginBottom: 20,
+  },
+  op: {
+    alignItems: "center",
   },
 });

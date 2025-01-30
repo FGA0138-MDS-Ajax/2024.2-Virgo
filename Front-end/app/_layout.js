@@ -56,6 +56,8 @@ export default function RootLayout() {
           <Stack.Screen name="camera" />
           <Stack.Screen name="teste" />
           <Stack.Screen name="instructions" />
+          <Stack.Screen name="termos" />
+          <Stack.Screen name="politica" />
           <Stack.Screen name="+not-found" />
         </>
       </Stack>

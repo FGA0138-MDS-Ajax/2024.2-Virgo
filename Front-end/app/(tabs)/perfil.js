@@ -137,10 +137,10 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
   },
   line: {
-    width: "100%", // Ajusta a largura da linha
-    height: 2, // Espessura da linha
-    backgroundColor: "#B8B8B8", // Cor da linha
-    marginTop: 3, // Espaço entre o texto e a linha
+    width: "100%", 
+    height: 2, 
+    backgroundColor: "#B8B8B8", 
+    marginTop: 3, 
   },
   name: {
     fontSize: 20,
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 8,
     height: 50,
+    justifyContent: "center", 
   },
   buttonGreen: {
     backgroundColor: "#057B44",
@@ -186,9 +187,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 3,
+    textAlign: "center", 
   },
 });
 

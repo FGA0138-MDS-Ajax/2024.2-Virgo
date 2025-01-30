@@ -42,16 +42,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F5F5F5",
-    paddingTop: 200,
+    justifyContent: "center", 
+    alignItems: "center", 
+    paddingBottom: 100,
   },
   paternContainer: {
-    marginLeft: 25,
-    marginBottom: 53,
-  },
-  patern: {
     position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 100,
     justifyContent: "center",
     alignItems: "center",
+  },
+  patern: {
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
   button: {
     width: 250,
     height: 250,
-    backgroundColor: "#057B44", // Fundo principal
+    backgroundColor: "#057B44",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 35,
@@ -78,8 +82,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 100,
     height: 100,
-    marginBottom: 15,
-    position: "absolute",
+    marginTop: 50,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
@@ -87,7 +90,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   disp: {
-    justifyContent: "flex-end",
+    justifyContent: "center", // Centraliza verticalmente
+    alignItems: "center", // Centraliza horizontalmente
     flex: 1,
     marginBottom: 10,
   },
