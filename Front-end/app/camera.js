@@ -1,7 +1,6 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "expo-router";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useLocalSearchParams } from "expo-router";
@@ -123,47 +122,39 @@ export default function CameraScreen() {
     }
   };
 
-  const handleUsePhoto = async () => {
-    console.log("Botão pressionado");
-
-    const url = "http://192.168.0.160:3000/api/files/upload";
-
+  async function handleUsePhoto() {
+    const url = "http://192.168.0.37:3000/api/files/upload";
+    
     if (!image) {
-      Alert.alert("Erro", "Nenhuma imagem para enviar.");
+      Alert.alert('Erro', 'Nenhuma imagem para enviar.');
       return;
     }
-
+    console.log("Image URI:", image);
     const formData = new FormData();
-    const uniqueFileName = `${uuidv4()}.jpg`;
-
-    formData.append("image", {
+    console.log("Depois de criar FormData");
+    const filename = 'uploaded_image.jpg'; 
+    console.log("Unique File Name:", filename);
+    formData.append('file', {
       uri: image,
-      name: uniqueFileName,
-      type: "image/jpeg",
+      name: filename, 
+      type: 'image/jpeg',
     });
-
-    formData.append("plant_type", plant_type);
-
+    formData.append("plant_type", plant_type); //precisa ser passado / append fora pq ele não faz parte do OBJETO file!!!!!!!
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        body: formData,
+      const response = await axios.post(url, formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       });
-
-      const responseData = await response.json();
-      console.log("Resposta do servidor:", responseData);
-
-      Alert.alert("Sucesso", "Imagem enviada com sucesso!");
+      Alert.alert('Sucesso', 'Imagem enviada com sucesso!');
+      console.log('Resposta do servidor:', response.data); //espero dar certo
     } catch (error) {
-      console.error("Erro ao enviar a imagem:", error);
-      Alert.alert("Erro", "Falha ao enviar a imagem.");
+      console.error('Erro ao enviar a imagem:', error);
+      Alert.alert('Erro', 'Falha ao enviar a imagem.');
     }
-
     setImage(null);
-  };
+  }
+  
 
   return (
     <View style={styles.container}>
