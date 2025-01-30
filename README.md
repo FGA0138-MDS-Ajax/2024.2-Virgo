@@ -1,31 +1,14 @@
 ## Como Rodar a IA?
-
 ```bash
-# Entre na pasta
-$ cd .\AI\
+# Se estiver no linux:
+# Dar permissão p/ execução:
+$ chmod +x startIA.sh
 
-# Criar o ambiente virtual
-$ python -m venv .venv
-# ou
-$ python3 -m venv .venv
+$ ./startIA.sh
 
-# Ativar o ambiente virtual
-
-# Windows
-$ .venv\Scripts\activate
-# macOS e Linux
-$ source .venv/bin/activate
-
-# Instalar dependencias
-$ pip install -r requirements.txt
-
-# Rodar a IA
-$ python main.py
-# ou
-$ python3 main.py
+#Se estiver no windows:
+$ ./startIA.bat
 ```
-> **Notas**
-> Se você está usando Linux Bash para o  Windows, [veja este guia](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) ou use o `node` do prompt de comando.
 
 ## Como Rodar o Back-end?
 > **Atenção:**
