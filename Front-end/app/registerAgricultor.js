@@ -25,7 +25,7 @@ export default function LoginScreen() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [authError, setAuthError] = useState("");
 
-  const url = "http://192.168.0.37:3000/api/users/";
+  const url = "http://192.168.0.160:3000/api/users/";
 
   useEffect(() => {
     validateForm(); // Aciona a validação quando algum argumento muda

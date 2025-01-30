@@ -1,14 +1,25 @@
-import { Controller, Post, UploadedFile, UseInterceptors, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+  Body,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import axios from 'axios';
 import * as fs from 'fs'; //permite interagir com filesystem
 import * as path from 'path';
 import * as FormData from 'form-data';
+import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 @Controller('files')
 export class FilesController {
+  @IsPublic()
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body: any) {
+  async uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: any,
+  ) {
     const filePath = path.join(__dirname, '../../uploads', file.filename); //constrói o URL onde o arquivo vai ser salvo nas nossas pastas
 
     const formData = new FormData();
@@ -17,11 +28,15 @@ export class FilesController {
     console.log(file); //printa o file no terminal do back
     console.log(body.plant_type);
     try {
-      const response = await axios.post('http://localhost:3002/upload', formData, {
-        headers: {
-          ...formData.getHeaders(),
+      const response = await axios.post(
+        'http://localhost:3002/upload',
+        formData,
+        {
+          headers: {
+            ...formData.getHeaders(),
+          },
         },
-      });
+      );
       return response.data;
     } catch (error) {
       console.error('Erro ao enviar a imagem para o main.py:', error);

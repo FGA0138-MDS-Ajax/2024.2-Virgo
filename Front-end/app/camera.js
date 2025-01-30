@@ -1,9 +1,10 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "expo-router";
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { useLocalSearchParams } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -19,8 +20,17 @@ import Svg, { Path } from "react-native-svg";
 
 export default function CameraScreen() {
   const router = useRouter();
-  const plant_type = router.plant_type;
-  console.log(plant_type);
+
+  const { plant_type } = useLocalSearchParams();
+
+  if (!plant_type) {
+    console.error("Erro: plant_type não foi passado!");
+  }
+
+  useEffect(() => {
+    console.log("Planta selecionada:", plant_type);
+  }, []);
+
   const handleBack = () => {
     router.back();
   };
@@ -113,37 +123,47 @@ export default function CameraScreen() {
     }
   };
 
-async function handleUsePhoto() {
-  const url = "http://localhost:3000/api/files/upload";
-  
-  if (!image) {
-    Alert.alert('Erro', 'Nenhuma imagem para enviar.');
-    return;
-  }
+  const handleUsePhoto = async () => {
+    console.log("Botão pressionado");
 
-  const formData = new FormData();
-  const uniqueFileName = `${uuidv4()}.jpg`; 
-  formData.append('image', {
-    uri: image,
-    name: uniqueFileName, 
-    type: 'image/jpeg',
-  });
-  formData.append('plant_type', plant_type); //precisa ser passado / append fora pq ele não faz parte do OBJETO file!!!!!!!
-  try {
-    const response = await axios.post(url, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+    const url = "http://192.168.0.160:3000/api/files/upload";
+
+    if (!image) {
+      Alert.alert("Erro", "Nenhuma imagem para enviar.");
+      return;
+    }
+
+    const formData = new FormData();
+    const uniqueFileName = `${uuidv4()}.jpg`;
+
+    formData.append("image", {
+      uri: image,
+      name: uniqueFileName,
+      type: "image/jpeg",
     });
-    Alert.alert('Sucesso', 'Imagem enviada com sucesso!');
-    console.log('Resposta do servidor:', response.data); //espero dar certo
-  } catch (error) {
-    console.error('Erro ao enviar a imagem:', error);
-    Alert.alert('Erro', 'Falha ao enviar a imagem.');
-  }
 
-  setImage(null);
-}
+    formData.append("plant_type", plant_type);
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const responseData = await response.json();
+      console.log("Resposta do servidor:", responseData);
+
+      Alert.alert("Sucesso", "Imagem enviada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao enviar a imagem:", error);
+      Alert.alert("Erro", "Falha ao enviar a imagem.");
+    }
+
+    setImage(null);
+  };
 
   return (
     <View style={styles.container}>
@@ -158,7 +178,10 @@ async function handleUsePhoto() {
             >
               <Text style={styles.buttonText}>Descartar</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleUsePhoto} style={styles.button}>
+            <TouchableOpacity
+              onPress={() => handleUsePhoto(plant_type)}
+              style={styles.button}
+            >
               <Text style={styles.buttonText}>Usar foto</Text>
             </TouchableOpacity>
           </View>

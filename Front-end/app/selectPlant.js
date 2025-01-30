@@ -15,8 +15,10 @@ export function selectPlant() {
   const handleInstructions = (plant) => {
     console.log("Redirecionando para /instructions...");
     try {
-      router.push('/camera');
-      router.setParams({ plant_type: plant })
+      router.push({
+        pathname: "/camera",
+        params: { plant_type: plant },
+      });
       console.log("Redirecionamento bem-sucedido!");
     } catch (error) {
       console.error("Erro ao redirecionar:", error);
