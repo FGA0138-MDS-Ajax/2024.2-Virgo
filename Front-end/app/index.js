@@ -19,7 +19,7 @@ export default function WelcomeScreen() {
 
   const handleLogin = () => {
     console.log("Redirecionando para /login...");
-    router.push("/(tabs)"); // Redireciona para a tela de login
+    router.push("/login"); // Redireciona para a tela de login
   };
 
   const handleRegister = () => {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 10,
     lineHeight: 22, // Aumentado para dar mais espaço
-    textAlignVertical: 'center', // Alinhamento vertical
+    textAlignVertical: "center", // Alinhamento vertical
   },
   linkText: {
     color: "#0D2717",
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textDecorationLine: "underline",
     includeFontPadding: false, // Remove o padding extra da fonte
-    textAlignVertical: 'center', // Alinhamento vertical
+    textAlignVertical: "center", // Alinhamento vertical
     lineHeight: 22, // Mesmo lineHeight do texto pai
   },
   pngImage: {

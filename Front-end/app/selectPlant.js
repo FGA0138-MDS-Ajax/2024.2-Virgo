@@ -28,7 +28,7 @@ export function SelectPlant() {
     console.log("Redirecionando para /instructions...");
     try {
       router.push({
-        pathname: "/camera",
+        pathname: "/instrucoes",
         params: { plant_type: plant },
       });
       console.log("Redirecionamento bem-sucedido!");
@@ -52,7 +52,6 @@ export function SelectPlant() {
   ];
 
   return (
-    
     <View style={styles.container}>
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
@@ -64,17 +63,15 @@ export function SelectPlant() {
             style={styles.button}
             onPress={() => handleInstructions(plant.name)}
           >
-          <Image
-            style={styles.image}
-            source={plant.icon}
-            resizeMode="cover"
-          />
+            <Image
+              style={styles.image}
+              source={plant.icon}
+              resizeMode="cover"
+            />
             <Text style={styles.buttonText}>{plant.name}</Text>
           </TouchableOpacity>
         ))}
       </View>
-
-      
     </View>
   );
 }
@@ -126,8 +123,8 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    width: '100%',
-    backgroundColor: '#0553',
+    width: "100%",
+    backgroundColor: "#0553",
   },
   buttonText: {
     color: "#FFFFFF",
