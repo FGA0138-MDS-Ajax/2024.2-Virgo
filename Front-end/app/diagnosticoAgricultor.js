@@ -1,8 +1,8 @@
-import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import { Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Text, View, Image } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function instructions() {
   const router = useRouter();
@@ -10,17 +10,48 @@ export default function instructions() {
   const handleMenu = () => {
     router.push("/(tabs)");
   };
-  const handleAvaliar = () => {
-    router.push("/teste");
-  };
+
+  const [imageUri, setImageUri] = useState(null);
+
+  useEffect(() => {
+    const getImage = async () => {
+      try {
+        const uri = await AsyncStorage.getItem("PlantImage");
+        console.log("Imagem recuperada do AsyncStorage:", uri); // Verifica se a imagem foi armazenada
+        if (uri) {
+          setImageUri(uri);
+        }
+      } catch (error) {
+        console.error("Erro ao recuperar a imagem:", error);
+      }
+    };
+
+    getImage();
+  }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.ContainerImage}>
-        <Ionicons name="cube-outline" size={100} color="#164B2A" />
+        {imageUri ? (
+          <Image
+            source={{ uri: imageUri }}
+            style={{
+              width: 500,
+              height: 300,
+              resizeMode: "center",
+            }}
+          />
+        ) : (
+          <Text style={styles.noImageText}>Nenhuma imagem disponível</Text>
+        )}
       </View>
       <View style={styles.ContainerPraga}>
         <Text style={styles.nomePraga}>NOME DA DOENÇA</Text>
+        <Text style={styles.description}>
+          O diagnóstico acima foi feito por nossa inteligência artificial, mas
+          não substitui a avaliação de um profissional. Consulte um especialista
+          para mais precisão.
+        </Text>
       </View>
       <View style={styles.buttonContainer}>
         <View>
@@ -42,15 +73,28 @@ const styles = StyleSheet.create({
   ContainerPraga: {
     justifyContent: "center",
     alignItems: "center",
+    position: "absolute",
+    marginTop: 490,
   },
   ContainerImage: {
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
-    marginTop: 40,
+    marginTop: 50,
+    width: "100%",
+    backgroundColor: "#057B44",
   },
   nomePraga: {
     fontSize: 30,
+    fontWeight: 500,
+  },
+  description: {
+    fontWeight: "400",
+    marginTop: 10,
+    fontSize: 16,
+    color: "#656565",
+    textAlign: "center",
+    paddingHorizontal: 15,
   },
   buttonContainer: {
     justifyContent: "flex-end",
@@ -72,5 +116,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  noImageText: {
+    fontSize: 15,
   },
 });

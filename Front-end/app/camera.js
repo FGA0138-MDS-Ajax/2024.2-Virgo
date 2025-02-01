@@ -2,6 +2,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { useLocalSearchParams } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
@@ -16,6 +17,43 @@ import {
   View,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
+
+//Funçao que verifica se é AGRICULTOR ou AGRONOMO
+
+async function checkUserRole(router) {
+  try {
+    const token = await AsyncStorage.getItem("token");
+    const id = await AsyncStorage.getItem("userID");
+
+    console.log("userID:", id);
+    console.log("Token:", token);
+
+    if (!token || !id) {
+      console.log("Token received:", token);
+      console.log("Token de autenticação não encontrado.");
+      console.log("ID received:", id);
+      console.log("ID não encontrado.");
+      return;
+    }
+
+    const url = `http://192.168.0.160:3000/api/users/${id}`;
+    const headers = { Authorization: `Bearer ${token}` };
+
+    const response = await axios.get(url, { headers });
+    const userRole = response.data.role;
+    console.log("Role: ", userRole);
+
+    if (userRole === "AGRONOMO") {
+      router.push("/diagnosticoAgronomo");
+    } else if (userRole === "AGRICULTOR") {
+      router.push("/diagnosticoAgricultor");
+    } else {
+      console.error("Role desconhecida:", userRole);
+    }
+  } catch (error) {
+    console.error("Erro ao verificar a role:", error);
+  }
+}
 
 export default function CameraScreen() {
   const router = useRouter();
@@ -123,38 +161,44 @@ export default function CameraScreen() {
   };
 
   async function handleUsePhoto() {
-    const url = "http://192.168.0.37:3000/api/files/upload";
-    
+    const url = "http://192.168.0.160:3000/api/files/upload";
+
     if (!image) {
-      Alert.alert('Erro', 'Nenhuma imagem para enviar.');
+      Alert.alert("Erro", "Nenhuma imagem para enviar.");
       return;
     }
     console.log("Image URI:", image);
+
     const formData = new FormData();
     console.log("Depois de criar FormData");
-    const filename = 'uploaded_image.jpg'; 
+
+    const filename = "uploaded_image.jpg";
     console.log("Unique File Name:", filename);
-    formData.append('file', {
+
+    formData.append("file", {
       uri: image,
-      name: filename, 
-      type: 'image/jpeg',
+      name: filename,
+      type: "image/jpeg",
     });
     formData.append("plant_type", plant_type); //precisa ser passado / append fora pq ele não faz parte do OBJETO file!!!!!!!
     try {
       const response = await axios.post(url, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
-      Alert.alert('Sucesso', 'Imagem enviada com sucesso!');
-      console.log('Resposta do servidor:', response.data); //espero dar certo
+      Alert.alert("Sucesso", "Imagem enviada com sucesso!");
+      console.log("Resposta do servidor:", response.data); //espero dar certo
+
+      console.log("Salvando a foto: ", image);
+      await AsyncStorage.setItem("PlantImage", image);
+      await checkUserRole(router);
     } catch (error) {
-      console.error('Erro ao enviar a imagem:', error);
-      Alert.alert('Erro', 'Falha ao enviar a imagem.');
+      console.error("Erro ao enviar a imagem:", error);
+      Alert.alert("Erro", "Falha ao enviar a imagem.");
     }
     setImage(null);
   }
-  
 
   return (
     <View style={styles.container}>

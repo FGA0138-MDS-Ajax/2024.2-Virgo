@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import React, { useState, useRef } from "react";
 import {
   View,
@@ -22,12 +22,17 @@ export default Onboarding = () => {
   };
 
   const router = useRouter();
+  const { plant_type } = useLocalSearchParams();
+
   const scrollTo = () => {
     if (currentIndex < slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
       console.log("Último item.");
-      router.push("/camera");
+      router.push({
+        pathname: "/camera",
+        params: { plant_type },
+      });
     }
   };
   const [currentIndex, setCurrentIndex] = useState(0);
