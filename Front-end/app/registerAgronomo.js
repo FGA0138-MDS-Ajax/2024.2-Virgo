@@ -257,7 +257,7 @@ export default function LoginScreen() {
           Ao criar uma conta, você concorda com os{" "}
           <Text
             style={styles.linkText}
-            onPress={() => navigation.navigate("politica")}
+            onPress={() => navigation.navigate("termos")}
           >
             Termos de Serviço
           </Text>
