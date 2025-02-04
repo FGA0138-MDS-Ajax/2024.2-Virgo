@@ -6,7 +6,7 @@ import time
 import tensorflow as tf 
 from PIL import Image
 import numpy as np
-
+import io
 app = FastAPI()
 
 origins = [
@@ -37,9 +37,10 @@ async def predict(
         # basic testing routine. If it works, 
         # it should print the file structure 
         # and stuff to console
-
+        contents = await file.read()
         #opens and resizes file.
-        jpeg       = Image.open(file)
+        jpeg       = Image.open(io.BytesIO(contents))
+        print("ABRIU KKKKKK")
         jpeg       = jpeg.resize((256, 256), Image.Resampling.LANCZOS) #easy as.
         
         #make it an array, fake a batch and normalize values.
@@ -61,20 +62,18 @@ async def predict(
         # mlflow.log_metric("latency", latency) # Tempo de previsão
         #probabilidade = int(float(confidence)*100)
 
-        contents = await file.read()
-        with open(f"./imagens/{file.filename}", "wb") as f:
-            f.write(contents)
+        # contents = await file.read()
+        # with open(f"./imagens/{file.filename}", "wb") as f:
+        #     f.write(contents)
         
-        print("\n")
-        print("ARQUIVO:::: \n")
-        print(file)
-        print(f"Tipo de planta: {plant_type}")
+        # print("\n")
+        # print("ARQUIVO:::: \n")
+        # print(file)
+        # print(f"Tipo de planta: {plant_type}")
         #o arquivo tá sendo recebido corretamente? medo pois no terminal diz OK p mim
+        prediction_list = prediction.tolist()
         return {
-            #retirar dps só para testes
-            #'Doença': predicted_class,
-            #'Probabilidade': f"{probabilidade}%"
-            file.filename
+            "filename": file.filename, "prediction": prediction_list, "latency": latency
         }
 
 
