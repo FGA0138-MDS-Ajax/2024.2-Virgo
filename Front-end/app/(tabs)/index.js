@@ -27,7 +27,6 @@ const Home = () => {
       <View style={styles.home}>
         <TouchableOpacity style={styles.button} onPress={handleSelectPlant}>
           <IconSelectPlant style={styles.icon}></IconSelectPlant>
-
           <View style={styles.disp}>
             <Text style={styles.buttonText}>Selecione uma</Text>
             <Text style={styles.buttonTextP}>planta</Text>
@@ -42,8 +41,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F5F5F5",
-    justifyContent: "center", 
-    alignItems: "center", 
+    justifyContent: "center",
+    alignItems: "center",
     paddingBottom: 100,
   },
   paternContainer: {
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 100,
     height: 100,
-    marginTop: 50,
+    marginTop: 70,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,

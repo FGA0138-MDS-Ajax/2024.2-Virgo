@@ -1,9 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function instructions() {
   const router = useRouter();
@@ -20,13 +21,47 @@ export default function instructions() {
     router.push("/teste");
   };
 
+  const [imageUri, setImageUri] = useState(null);
+
+  useEffect(() => {
+    const getImage = async () => {
+      try {
+        const uri = await AsyncStorage.getItem("PlantImage");
+        console.log("Imagem recuperada do AsyncStorage:", uri); // Verifica se a imagem foi armazenada
+        if (uri) {
+          setImageUri(uri);
+        }
+      } catch (error) {
+        console.error("Erro ao recuperar a imagem:", error);
+      }
+    };
+
+    getImage();
+  }, []);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#0D2717" />
       </TouchableOpacity>
-      <View style={styles.containerImage}>
-        <Ionicons name="cube-outline" size={100} color="#164B2A" />
+      <View style={styles.textImportante}>
+        <Text style={styles.textAux}>
+          Sua avaliação é importante para o desenvolvimento da nossa I.A
+        </Text>
+      </View>
+      <View style={styles.ContainerImage}>
+        {imageUri ? (
+          <Image
+            source={{ uri: imageUri }}
+            style={{
+              width: 500,
+              height: 300,
+              resizeMode: "center",
+            }}
+          />
+        ) : (
+          <Text style={styles.noImageText}>Nenhuma imagem disponível</Text>
+        )}
       </View>
       <View style={styles.containerPraga}>
         <Text style={styles.nomePraga}>NOME DA DOENÇA</Text>
@@ -34,11 +69,11 @@ export default function instructions() {
       <View style={styles.buttonContainer}>
         <View style={styles.ContainerAvaliação}>
           <TouchableOpacity style={styles.labelAvalia}>
-            <FontAwesome6 name="smile" size={90} color="#194A2C" />
+            <FontAwesome6 name="smile" size={80} color="#194A2C" />
             <Text style={styles.RuimBom}> Bom </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.labelAvalia}>
-            <FontAwesome6 name="face-frown" size={90} color="#AE0000" />
+            <FontAwesome6 name="face-frown" size={80} color="#AE0000" />
             <Text style={styles.RuimBom}> Ruim </Text>
           </TouchableOpacity>
         </View>
@@ -60,19 +95,36 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: "absolute",
-    top: 70,
+    top: 60,
     left: 20,
     zIndex: 10,
+  },
+  textImportante: {
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    marginTop: 100,
+  },
+  textAux: {
+    fontSize: 16,
+    fontWeight: "500",
+    fontSize: 17,
+    color: "#656565",
+    textAlign: "center",
+    paddingHorizontal: 100,
   },
   containerPraga: {
     justifyContent: "center",
     alignItems: "center",
+    position: "absolute",
+    marginTop: 530,
   },
-  containerImage: {
+  ContainerImage: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
-    marginTop: 40,
+    marginTop: 170,
+    width: "100%",
+    backgroundColor: "#057B44",
   },
   nomePraga: {
     fontSize: 30,
@@ -81,7 +133,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 80,
     justifyContent: "flex-end",
-    marginBottom: 100,
+    marginBottom: 25,
   },
   buttonContainer: {
     justifyContent: "flex-end",
@@ -93,6 +145,11 @@ const styles = StyleSheet.create({
   },
   labelAvalia: {
     alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
   },
   RuimBom: {
     fontSize: 23,

@@ -342,7 +342,8 @@ const styles = StyleSheet.create({
   blackBackground: {
     width: "100%",
     height: 150, // Altura do fundo preto
-    backgroundColor: "#1F1F1F", // Fundo preto
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    opacity: 0.9, // Preto mais transparente
     position: "absolute",
     bottom: 0,
     justifyContent: "space-around",
