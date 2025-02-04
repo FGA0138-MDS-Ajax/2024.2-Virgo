@@ -3,7 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import mlflow
 import time
+import tensorflow as tf 
 from PIL import Image
+import numpy as np
 
 app = FastAPI()
 
@@ -18,6 +20,8 @@ app.add_middleware(
     allow_headers     = ["*"]
 )
 
+MODEL = tf.keras.models.load_model('lsx.keras')
+
 @app.post("/upload")
 async def predict(
     file: UploadFile = File(...),
@@ -28,15 +32,29 @@ async def predict(
         # TODO -> run some function to verify if the sender IS the backend AND
         #    if the file sent IS a jpeg of some sort. any sort.
         # 
-        # start_time = time.time()
+        start_time = time.time()
 
         # basic testing routine. If it works, 
         # it should print the file structure 
         # and stuff to console
-        # jpeg       = Image.open(file)
-        # jpeg       = jpeg.resize([256, 256]) #easy as.
-        # end_time   = time.time()
-        # latency    = end_time - start_time
+
+        #opens and resizes file.
+        jpeg       = Image.open(file)
+        jpeg       = jpeg.resize((256, 256), Image.Resampling.LANCZOS) #easy as.
+        
+        #make it an array, fake a batch and normalize values.
+        arr        = tf.keras.preprocessing.image.img_to_array(jpeg)
+        arr        = np.expand_dims(arr, axis=0)
+        arr        = arr / 255.0
+
+        #now arr should hold what we need and we may just, ya know, 
+
+        
+        prediction = MODEL.predict(arr, verbose = 2)
+
+
+        end_time   = time.time()
+        latency    = end_time - start_time
 
         # Registra métricas e logs no MLflow
         #mlflow.log_metric("confidence", confidence)
