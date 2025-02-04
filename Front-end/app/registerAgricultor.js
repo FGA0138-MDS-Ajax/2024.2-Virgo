@@ -11,9 +11,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen() {
   const router = useRouter();
+  const navigation = useNavigation();
   const [isChecked, setChecked] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
@@ -223,8 +225,20 @@ export default function LoginScreen() {
         />
         <Text style={styles.termsText}>
           Ao criar uma conta, você concorda com os{" "}
-          <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo
-          nossa <Text style={styles.linkText}>Política de Privacidade</Text>.
+          <Text
+            style={styles.linkText}
+            onPress={() => navigation.navigate("politica")}
+          >
+            Termos de Serviço
+          </Text>
+          , incluindo nossa{" "}
+          <Text
+            style={styles.linkText}
+            onPress={() => navigation.navigate("politica")}
+          >
+            Política de Privacidade
+          </Text>
+          .
         </Text>
       </View>
 

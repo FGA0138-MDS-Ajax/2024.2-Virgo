@@ -11,9 +11,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 //FAZER VALIDAÇÃO INPUT CPF E CREA INDIVIDUAIS
 
 export default function LoginScreen() {
+  const navigation = useNavigation();
   const router = useRouter();
   const [isChecked, setChecked] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -253,8 +255,20 @@ export default function LoginScreen() {
         />
         <Text style={styles.termsText}>
           Ao criar uma conta, você concorda com os{" "}
-          <Text style={styles.linkText}>Termos de Serviço</Text>, incluindo
-          nossa <Text style={styles.linkText}>Política de Privacidade</Text>.
+          <Text
+            style={styles.linkText}
+            onPress={() => navigation.navigate("politica")}
+          >
+            Termos de Serviço
+          </Text>
+          , incluindo nossa{" "}
+          <Text
+            style={styles.linkText}
+            onPress={() => navigation.navigate("politica")}
+          >
+            Política de Privacidade
+          </Text>
+          .
         </Text>
       </View>
 

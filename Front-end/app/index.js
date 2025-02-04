@@ -3,9 +3,11 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import CuidarVerde from "../assets/svg/CuidarVerde.svg";
 import IconLogo from "../assets/svg/icon-logo.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function WelcomeScreen() {
   const router = useRouter();
+  const navigation = useNavigation();
 
   const handleTermsOfService = () => {
     console.log("Redirecionando para /termos...");
@@ -51,16 +53,21 @@ export default function WelcomeScreen() {
         <Text style={styles.buttonText}>Criar conta</Text>
       </TouchableOpacity>
 
-      {/* Mensagem sobre Termos de Serviço */}
       <Text style={styles.termsText}>
         Ao criar uma conta, você concorda com os{" "}
-        <TouchableOpacity onPress={handleTermsOfService}>
-          <Text style={styles.linkText}>Termos de Serviço</Text>
-        </TouchableOpacity>
+        <Text
+          style={styles.linkText}
+          onPress={() => navigation.navigate("politica")}
+        >
+          Termos de Serviço
+        </Text>
         , incluindo nossa{" "}
-        <TouchableOpacity onPress={handlePrivacyPolicy}>
-          <Text style={styles.linkText}>Política de Privacidade</Text>
-        </TouchableOpacity>
+        <Text
+          style={styles.linkText}
+          onPress={() => navigation.navigate("politica")}
+        >
+          Política de Privacidade
+        </Text>
         .
       </Text>
     </View>
@@ -115,22 +122,16 @@ const styles = StyleSheet.create({
   },
   termsText: {
     width: 270,
-    fontSize: 15,
+    fontSize: 11,
     color: "#1A4D2E",
     textAlign: "left",
     marginTop: 10,
     marginLeft: 10,
-    lineHeight: 22, // Aumentado para dar mais espaço
-    textAlignVertical: "center", // Alinhamento vertical
+    lineHeight: 14,
   },
   linkText: {
     color: "#0D2717",
     fontWeight: "bold",
-    fontSize: 15,
-    textDecorationLine: "underline",
-    includeFontPadding: false, // Remove o padding extra da fonte
-    textAlignVertical: "center", // Alinhamento vertical
-    lineHeight: 22, // Mesmo lineHeight do texto pai
   },
   pngImage: {
     marginBottom: 20,
