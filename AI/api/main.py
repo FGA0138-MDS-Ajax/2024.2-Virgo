@@ -8,6 +8,17 @@ from PIL import Image
 import numpy as np
 import io
 
+
+# the translator should be used as such ->
+# get file -> open as image -> send to model;
+# model -> should return prediction as a probability distribution -> get the max = index (z = prediction.index(max(prediction)))
+# pair_plant_label = le_translator[z], where z is the maximum index in the prediction.
+
+# this is precisely the routine of using the loaded model, as long as it attends THIS translator labels.
+
+# changing the labels means changing the model architecture, meaning retraining a model for the new labels.
+# therefore, avoid doing translator changing operations :)
+
 le_translator = {0: 'alface_mildeo', 1: 'alface_murcha_queima', 2: 'alface_oidio', 3: 'alface_podridao_basal',
                 4: 'alface_queima_das_bordas', 5: 'alface_saudavel', 6: 'alface_septoria', 7: 'alho_botrytis',
                 8: 'alho_ferrugem', 9: 'alho_mancha_purpura', 10: 'alho_mancha_stemphylium', 11: 'alho_mildio',
@@ -100,8 +111,12 @@ async def predict(
         # print(f"Tipo de planta: {plant_type}")
         #o arquivo tá sendo recebido corretamente? medo pois no terminal diz OK p mim
         prediction_list = prediction.tolist()
+        golden_index = prediction_list.index(max(prediction_list))
+        plant_disease = le_translator[golden_index]
         return {
-            "filename": file.filename, "prediction": prediction_list, "latency": latency
+            "filename": file.filename,
+            "prediction": plant_disease,
+            "latency": latency
         }
 
 
