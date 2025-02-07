@@ -6,6 +6,7 @@ import {
   UseGuards,
   Request,
   Body,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guarda';
@@ -27,4 +28,12 @@ export class AuthController {
   async forgotPassword(@Body('email') email: string) {
     return this.authService.forgotPassword(email);
   }
+
+  @Post('vote/:imageFilename')
+  async vote(
+  @Param('imageFilename') imageFilename: string,
+  @Body('vote') vote: boolean) {
+    return this.authService.voteOnImage(imageFilename, vote);
+  }
+
 }

@@ -66,4 +66,6 @@ export class UsersController {
     this.logger.log(`Request for all users\t${ip}`, UsersController.name);
     return this.usersService.remove(id);
   }
+
 }
+

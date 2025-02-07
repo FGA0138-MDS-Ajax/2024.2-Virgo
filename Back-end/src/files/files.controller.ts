@@ -4,6 +4,7 @@ import {
   UploadedFile,
   UseInterceptors,
   Body,
+  Param,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import axios from 'axios';
@@ -11,6 +12,7 @@ import * as fs from 'fs'; //permite interagir com filesystem
 import * as path from 'path';
 import * as FormData from 'form-data';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { FilesService } from './files.service';
 @Controller('files')
 export class FilesController {
   @IsPublic()
@@ -42,5 +44,24 @@ export class FilesController {
       console.error('Erro ao enviar a imagem para o main.py:', error);
       throw error;
     }
+  }
+
+  constructor(private readonly filesService: FilesService) {}
+
+  @Post('upload_vote')
+  @UseInterceptors(FileInterceptor('file'))
+  async upload_vote(@UploadedFile() file: Express.Multer.File, @Body() body: any) {
+    const filePath = path.join(__dirname, '../../uploads', file.filename);
+    
+    console.log('Imagem recebida:', file.filename);
+    console.log('Dados recebidos:', body);
+
+    return { message: 'Imagem salva com sucesso!', filename: file.filename };
+  }
+
+  @Post('reject/:filename')
+  async rejectFile(@Param('filename') filename: string) {
+    this.filesService.moveToRejected(filename);
+    return { message: `Imagem ${filename} movida para rejeitados.` };
   }
 }
