@@ -19,7 +19,6 @@ import { Role } from '@prisma/client';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { UserPayload } from 'src/auth/models/UserPayload';
-
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

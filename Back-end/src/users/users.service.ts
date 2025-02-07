@@ -5,6 +5,7 @@ import { NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/Create-user.dto';
 import { UpdateUserDto } from './dto/Update-user.dto';
+import axios from 'axios';
 
 @Injectable()
 export class UsersService {
@@ -12,7 +13,13 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const { crea, role, password, ...rest } = createUserDto;
-
+    // DESCOMENTAR LINHAS APENAS QUANDO NECESSARIO: LIMITE DE REQUISIÇÕES DA API DE VERIFICAR CREA É 100 POR MÊS
+    // if (role === 'AGRONOMO' && crea) {
+    //  const response = await this.checkCREA(crea);
+    //  if (!response) {
+    //    throw new Error('Invalid CREA');
+    //   }
+    // }
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const data: Prisma.UserCreateInput = {
@@ -139,6 +146,14 @@ export class UsersService {
       },
     });
   }
+  
+
+  async checkCREA(crea: string) {
+    const url = `https://www.consultacrea.com.br/api/index.php?tipo=crea&uf=&q=${crea}&chave=1398838574&destino=json`;
+    const response = await axios.get(url);
+    const data = response.data;
+    console.log(response.data);
+    if (data.status == 'true' && data.total > 0) return true;
 
   async findCREA(id: string) {
     if (!id) {
