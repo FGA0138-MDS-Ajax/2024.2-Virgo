@@ -32,6 +32,27 @@ export default function dianosticoAgronomo() {
     getImage();
   }, []);
 
+  const [diagnostico, setDiagnostico] = useState("");
+
+  useEffect(() => {
+    const getImageAndDiagnosis = async () => {
+      try {
+        const uri = await AsyncStorage.getItem("PlantImage");
+        const prediction = await AsyncStorage.getItem("PlantPrediction");
+
+        console.log("Imagem recuperada:", uri);
+        console.log("Diagnóstico recuperado:", prediction);
+
+        if (uri) setImageUri(uri);
+        if (prediction) setDiagnostico(prediction);
+      } catch (error) {
+        console.error("Erro ao recuperar os dados:", error);
+      }
+    };
+
+    getImageAndDiagnosis();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.ContainerImage}>
@@ -49,7 +70,9 @@ export default function dianosticoAgronomo() {
         )}
       </View>
       <View style={styles.ContainerPraga}>
-        <Text style={styles.nomePraga}>NOME DA DOENÇA</Text>
+        <Text style={styles.nomePraga}>
+          {diagnostico || "Carregando diagnóstico..."}
+        </Text>
         <Text style={styles.description}>
           O diagnóstico acima foi feito por nossa inteligência artificial, mas
           não substitui a avaliação de um profissional. Consulte um especialista
