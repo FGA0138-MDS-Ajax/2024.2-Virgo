@@ -192,6 +192,12 @@ export default function CameraScreen() {
 
       console.log("Salvando a foto: ", image);
       await AsyncStorage.setItem("PlantImage", image);
+
+      if (response.data.prediction) {
+        await AsyncStorage.setItem("PlantPrediction", response.data.prediction);
+        console.log("Diagnóstico salvo:", response.data.prediction);
+      }
+
       await checkUserRole(router);
     } catch (error) {
       console.error("Erro ao enviar a imagem:", error);
