@@ -5,7 +5,6 @@ import { NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/Create-user.dto';
 import { UpdateUserDto } from './dto/Update-user.dto';
-import axios from 'axios';
 
 @Injectable()
 export class UsersService {
@@ -146,7 +145,7 @@ export class UsersService {
       },
     });
   }
-
+  /*
   async checkCREA(crea: string) {
     const url = `https://www.consultacrea.com.br/api/index.php?tipo=crea&uf=&q=${crea}&chave=1398838574&destino=json`;
     const response = await axios.get(url);
@@ -154,15 +153,18 @@ export class UsersService {
     console.log(response.data);
     if (data.status == 'true' && data.total > 0) return true;
   }
-
+*/
   async findCREA(id: string) {
-    if (!id) {
-      throw new NotFoundException('User not found');
-    }
-    return this.databaseService.agronomo.findUnique({
+    const agronomo = await this.databaseService.agronomo.findUnique({
       where: {
         userId: id,
       },
     });
+
+    if (!agronomo) {
+      throw new NotFoundException('User not found');
+    }
+
+    return agronomo;
   }
 }
