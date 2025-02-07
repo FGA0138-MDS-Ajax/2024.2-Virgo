@@ -146,7 +146,6 @@ export class UsersService {
       },
     });
   }
-  
 
   async checkCREA(crea: string) {
     const url = `https://www.consultacrea.com.br/api/index.php?tipo=crea&uf=&q=${crea}&chave=1398838574&destino=json`;
@@ -154,6 +153,7 @@ export class UsersService {
     const data = response.data;
     console.log(response.data);
     if (data.status == 'true' && data.total > 0) return true;
+  }
 
   async findCREA(id: string) {
     if (!id) {
