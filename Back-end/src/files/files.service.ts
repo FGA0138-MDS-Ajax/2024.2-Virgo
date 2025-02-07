@@ -4,8 +4,8 @@ import * as path from 'path';
 
 @Injectable()
 export class FilesService {
-  private readonly uploadPath = path.join(__dirname, '../../uploads');
-  private readonly rejectedPath = path.join(__dirname, '../../rejected_images');
+  private readonly uploadPath = path.join(__dirname, '../../uploads/votes');
+  private readonly rejectedPath = path.join(__dirname, '../../uploads/rejected');
 
   constructor() {
     // Criar pastas, se não existirem
@@ -21,11 +21,11 @@ export class FilesService {
     const filePath = path.join(this.uploadPath, filename);
     const rejectedFilePath = path.join(this.rejectedPath, filename);
 
-    if (fs.existsSync(filePath)) {
-      fs.renameSync(filePath, rejectedFilePath);
-      console.log(`Arquivo movido para rejeitados: ${rejectedFilePath}`);
-    } else {
-      console.error(`Arquivo não encontrado: ${filePath}`);
+    if (!fs.existsSync(filePath)) {
+      throw new Error(`Arquivo não encontrado: ${filePath}`);
     }
+
+    fs.renameSync(filePath, rejectedFilePath);
+    console.log(`Arquivo movido para rejeitados: ${rejectedFilePath}`);
   }
 }

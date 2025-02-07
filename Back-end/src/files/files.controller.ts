@@ -13,6 +13,7 @@ import * as path from 'path';
 import * as FormData from 'form-data';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { FilesService } from './files.service';
+import { diskStorage } from 'multer';
 @Controller('files')
 export class FilesController {
   @IsPublic()
@@ -49,14 +50,20 @@ export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
   @Post('upload_vote')
-  @UseInterceptors(FileInterceptor('file'))
-  async upload_vote(@UploadedFile() file: Express.Multer.File, @Body() body: any) {
-    const filePath = path.join(__dirname, '../../uploads', file.filename);
-    
-    console.log('Imagem recebida:', file.filename);
-    console.log('Dados recebidos:', body);
-
-    return { message: 'Imagem salva com sucesso!', filename: file.filename };
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: './uploads/votes', // Pasta onde as imagens aceitas serão salvas
+      filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname)); // Mantém a extensão do arquivo
+      }
+    })
+  }))
+  async uploadVote(@UploadedFile() file: Express.Multer.File) {
+    if (!file) {
+      return { message: 'Nenhum arquivo enviado.' };
+    }
+    return { message: `Imagem salva com sucesso!`, filename: file.filename };
   }
 
   @Post('reject/:filename')
