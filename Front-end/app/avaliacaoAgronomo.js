@@ -45,7 +45,7 @@ export default function instructions() {
           : `http://192.168.0.160:3000/api/files/reject/${filename}`;
 
       // Define o método HTTP com base na seleção do usuário
-      const method = selected === "bom" ? "POST" : "DELETE";
+      const method = selected === "bom" ? "POST" : "POST";
 
       // Envia a requisição
       const response = await fetch(apiUrl, {
@@ -85,6 +85,26 @@ export default function instructions() {
     getImage();
   }, []);
 
+  const [diagnostico, setDiagnostico] = useState("");
+  useEffect(() => {
+    const getImageAndDiagnosis = async () => {
+      try {
+        const uri = await AsyncStorage.getItem("PlantImage");
+        const prediction = await AsyncStorage.getItem("PlantPrediction");
+
+        console.log("Imagem recuperada:", uri);
+        console.log("Diagnóstico recuperado:", prediction);
+
+        if (uri) setImageUri(uri);
+        if (prediction) setDiagnostico(prediction);
+      } catch (error) {
+        console.error("Erro ao recuperar os dados:", error);
+      }
+    };
+
+    getImageAndDiagnosis();
+  }, []);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
@@ -110,7 +130,9 @@ export default function instructions() {
         )}
       </View>
       <View style={styles.containerPraga}>
-        <Text style={styles.nomePraga}>NOME DA DOENÇA</Text>
+        <Text style={styles.nomePraga}>
+          {diagnostico || "Carregando diagnóstico..."}
+        </Text>
       </View>
       <View style={styles.ContainerTextAvalia}>
         <Text style={styles.textAvalia}>
