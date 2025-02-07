@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/Create-user.dto';
 import { UpdateUserDto } from './dto/Update-user.dto';
 
+
 @Injectable()
 export class UsersService {
   constructor(private readonly databaseService: DatabaseService) {}
@@ -167,4 +168,5 @@ export class UsersService {
 
     return agronomo;
   }
+
 }

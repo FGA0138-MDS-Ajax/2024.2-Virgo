@@ -7,6 +7,8 @@ import { JwtService } from '@nestjs/jwt';
 import { UserToken } from './models/UserToken';
 import * as crypto from 'crypto';
 import * as nodemailer from 'nodemailer';
+import * as fs from 'fs-extra';
+import * as path from 'path';
 
 @Injectable()
 export class AuthService {
@@ -90,5 +92,29 @@ export class AuthService {
     } else {
       return { message: 'Não encontramos um usuário com esse e-mail.' };
     }
+  }
+
+  async moveRejectedImage(imageFilename: string) {
+    const oldPath = path.join(__dirname, '..', '..', 'uploads', imageFilename);
+    const newPath = path.join(__dirname, '..', '..', 'uploads', 'rejeitadas', imageFilename);
+  
+    try {
+      await fs.ensureDir(path.dirname(newPath));
+  
+      await fs.move(oldPath, newPath, { overwrite: true });
+  
+      return { message: 'Imagem movida para a pasta rejeitadas' };
+    } catch (error) {
+      console.error('Erro ao mover a imagem:', error);
+      throw new Error('Falha ao mover a imagem');
+    }
+  }
+  
+  async voteOnImage(imageFilename: string, vote: boolean) {
+    if (!vote) {
+      return this.moveRejectedImage(imageFilename);
+    }
+  
+    return { message: 'Voto registrado como SIM, imagem mantida' };
   }
 }

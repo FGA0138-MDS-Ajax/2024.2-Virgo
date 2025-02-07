@@ -190,6 +190,14 @@ export default function CameraScreen() {
       Alert.alert("Sucesso", "Imagem enviada com sucesso!");
       console.log("Resposta do servidor:", response.data); //espero dar certo
 
+      if (response.data && response.data.filename) {
+        const uploadedFilename = response.data.filename;
+        console.log("Salvando filename:", uploadedFilename);
+        await AsyncStorage.setItem("PlantImageFilename", uploadedFilename);
+      } else {
+        console.error("Erro: O backend não retornou um filename válido.");
+      }
+
       console.log("Salvando a foto: ", image);
       await AsyncStorage.setItem("PlantImage", image);
 
