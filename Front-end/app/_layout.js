@@ -1,6 +1,10 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -8,16 +12,14 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-
 export default function RootLayout() {
-  
+  const router = useRouter();
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   useEffect(() => {
@@ -31,26 +33,33 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack
-      screenOptions={{
-        headerShown: true,
-        title: '',
-        headerStyle: { backgroundColor: '#057B44' },
-        headerBackTitle: 'Voltar',
-        headerTintColor: '#FFFFFF',
-        headerTitleAlign: 'center',
-      }}
+        screenOptions={{
+          title: "",
+          headerShown: false,
+          headerStyle: { backgroundColor: "#F5F5F5" },
+          gestureEnabled: false,
+        }}
       >
-        <Stack.Screen name="index"/>
-        <Stack.Screen name="login"/>
-        <Stack.Screen name="AgricultorOrAgronomo"/>
-        <Stack.Screen name="registerAgricultor"/>
-        <Stack.Screen name="forgotPassword"/>
-        <Stack.Screen name="forgotPasswordCheckEmail"/>
-        <Stack.Screen name="forgotPasswordReset"/>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false}} />
-        <Stack.Screen name="+not-found" />
+        <>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="login" />
+          <Stack.Screen name="AgricultorOrAgronomo" />
+          <Stack.Screen name="registerAgricultor" />
+          <Stack.Screen name="forgotPassword" />
+          <Stack.Screen name="forgotPasswordCheckEmail" />
+          <Stack.Screen name="forgotPasswordReset" />
+          <Stack.Screen name="passwordRedefinedSucess" />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="selectPlant" />
+          <Stack.Screen name="camera" />
+          <Stack.Screen name="teste" />
+          <Stack.Screen name="instructions" />
+          <Stack.Screen name="termos" />
+          <Stack.Screen name="politica" />
+          <Stack.Screen name="+not-found" />
+        </>
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

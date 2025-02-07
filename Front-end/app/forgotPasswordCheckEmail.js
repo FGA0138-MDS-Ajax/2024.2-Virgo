@@ -1,25 +1,37 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
   Image,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 
 export default function forgotPassword() {
   const router = useRouter();
 
+  const handleBack = () => {
+    router.back();
+  };
+
   const handleLogin = () => {
     // Simula o login
-    console.log("Login bem-sucedido, redirecionando para (tabs)...");
+    console.log(
+      "Recebeu a senha no email, redirecionando para tela de login..."
+    );
     router.push("/login"); // Caminho real da tela de recuperação
   };
 
   return (
     <View style={styles.container}>
+
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+      </TouchableOpacity>
+
       {/* Card */}
       <View style={styles.card}>
         <Image
@@ -49,7 +61,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FEFEFE",
+    backgroundColor: "#F5F5F5",
+  },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20, 
+    zIndex: 10, 
   },
   card: {
     width: 316,

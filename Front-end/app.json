@@ -9,9 +9,15 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Permitir que este aplicativo acesse sua câmera.",
+        "NSMicrophoneUsageDescription": "Permitir que este aplicativo acesse seu microfone.",
+        "NSPhotoLibraryUsageDescription": "Permitir que este aplicativo acesse suas fotos."
+      }
     },
     "android": {
+      "permissions": ["CAMERA", "RECORD_AUDIO"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -31,6 +37,20 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Permitir que este aplicativo acesse sua câmera.",
+          "microphonePermission": "Permitir que este aplicativo acesse seu microfone.",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Permitir que este aplicativo acesse suas fotos."
         }
       ]
     ],

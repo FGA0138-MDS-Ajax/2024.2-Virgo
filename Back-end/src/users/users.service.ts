@@ -53,14 +53,22 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    if (!id) {
+    const user = await this.databaseService.user.findUnique({
+      where: { id },
+      include: { Agronomo: true },
+    });
+
+    if (!user) {
       throw new NotFoundException('User not found');
     }
-    return this.databaseService.user.findUnique({
-      where: {
-        id: id,
-      },
-    });
+
+    return {
+      ...user,
+      crea:
+        user.role === 'AGRONOMO' && user.Agronomo
+          ? user.Agronomo.crea
+          : undefined,
+    };
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
@@ -138,11 +146,23 @@ export class UsersService {
       },
     });
   }
+  
+
   async checkCREA(crea: string) {
     const url = `https://www.consultacrea.com.br/api/index.php?tipo=crea&uf=&q=${crea}&chave=1398838574&destino=json`;
     const response = await axios.get(url);
     const data = response.data;
     console.log(response.data);
     if (data.status == 'true' && data.total > 0) return true;
+
+  async findCREA(id: string) {
+    if (!id) {
+      throw new NotFoundException('User not found');
+    }
+    return this.databaseService.agronomo.findUnique({
+      where: {
+        userId: id,
+      },
+    });
   }
 }

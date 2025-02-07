@@ -1,17 +1,15 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import IconAgricultor from "../assets/svg/icon-agricultor.svg"; //instalar
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import IconAgricultor from "../assets/svg/icon-agricultor.svg";
 import IconAgronomo from "../assets/svg/icon-agronomo.svg";
 
 export default function LoginScreen() {
   const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
 
   const handleRegisterAgricultor = () => {
     // Simula o login
@@ -30,6 +28,11 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={handleBack} style={styles.backButton}>
+        <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>O que você é?</Text>
       <View style={styles.line} />
       <TouchableOpacity
@@ -48,7 +51,7 @@ export default function LoginScreen() {
         style={styles.optionAgronomo}
         onPress={handleRegiterAgronomo}
       >
-        <IconAgronomo></IconAgronomo>
+        <IconAgronomo style={styles.iconAgricultor}></IconAgronomo>
         <View style={styles.textContainer}>
           <Text style={styles.optionTitle}>Eu sou agrônomo</Text>
           <Text style={styles.optionDescription}>
@@ -69,10 +72,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 16,
   },
+  backButton: {
+    position: "absolute",
+    top: 70,
+    left: 20,
+    zIndex: 10,
+  },
   title: {
     fontSize: 35,
     fontWeight: "bold",
-    color: "#000",
+    color: "#0D2717",
     marginBottom: 15,
   },
   optionAgricultor: {
@@ -88,7 +97,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000", // sombra no iOS
     shadowOffset: { width: 0, height: 2 }, // sombra no iOS
     shadowOpacity: 0.2, // sombra no iOS
-    shadowRadius: 4, // sombra no iOS
+    shadowRadius: 2, // sombra no iOS
   },
   optionAgronomo: {
     flexDirection: "row",
