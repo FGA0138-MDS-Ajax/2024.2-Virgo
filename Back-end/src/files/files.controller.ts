@@ -40,7 +40,8 @@ export class FilesController {
           },
         },
       );
-      return response.data;
+      const uploadedFilename = file.filename; // Obtém o filename do arquivo carregado
+      return { ...response.data, filename: uploadedFilename }; // Retorna a resposta do outro servidor junto com o filename
     } catch (error) {
       console.error('Erro ao enviar a imagem para o main.py:', error);
       throw error;
@@ -48,24 +49,27 @@ export class FilesController {
   }
 
   constructor(private readonly filesService: FilesService) {}
-
+  @IsPublic()
   @Post('upload_vote')
-  @UseInterceptors(FileInterceptor('file', {
-    storage: diskStorage({
-      destination: './uploads/votes', // Pasta onde as imagens aceitas serão salvas
-      filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname)); // Mantém a extensão do arquivo
-      }
-    })
-  }))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './uploads/votes', // Pasta onde as imagens aceitas serão salvas
+        filename: (req, file, cb) => {
+          const uniqueSuffix =
+            Date.now() + '-' + Math.round(Math.random() * 1e9);
+          cb(null, uniqueSuffix + path.extname(file.originalname)); // Mantém a extensão do arquivo
+        },
+      }),
+    }),
+  )
   async uploadVote(@UploadedFile() file: Express.Multer.File) {
     if (!file) {
       return { message: 'Nenhum arquivo enviado.' };
     }
     return { message: `Imagem salva com sucesso!`, filename: file.filename };
   }
-
+  @IsPublic()
   @Post('reject/:filename')
   async rejectFile(@Param('filename') filename: string) {
     this.filesService.moveToRejected(filename);
