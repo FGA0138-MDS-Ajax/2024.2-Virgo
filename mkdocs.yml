@@ -7,7 +7,6 @@ nav:
       - Visão Geral do Projeto: "documento-visao/visao-geral-projeto.md"
       - Processo de Desenvolvimento de Software: "documento-visao/processo-dev-software.md"
       - Declaração de Escopo do Projeto: "documento-visao/declaração-escopo-projeto.md"
-  - Documento de Requisitos: "documento-requisitos/documento-requisitos.md"
   - Documento de Arquitetura:
       - Representação Arquitetural: "documento-arquitetura/Representação-Arquitetural.md"
       - Metas e Retrições Arquiteturais: "documento-arquitetura/Metas-e-retrições-arquiteturais.md"
@@ -18,6 +17,7 @@ nav:
       - Visão de implantação: "documento-arquitetura/Visão-de-implantação.md"
       - Bibliografia: "documento-arquitetura/Bibliografia.md"
   - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
+  - Documento dos Datasets: "documento-datasets/datasets.md"
   - Atas de reuniao:
       - Cliente:
           - Ata 1: "atas-reuniao/cliente/ata-reuniao-1.md"
@@ -35,6 +35,7 @@ nav:
           - Ata 4: "atas-reuniao/equipe/ata-reuniao-4-equipe.md"
           - Ata 5: "atas-reuniao/equipe/ata-reuniao-5-equipe.md"
 
+      - Heat Map: "atas-reuniao/heatmap/heatMap.md"
 theme:
   name: material
   features:
