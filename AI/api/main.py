@@ -19,31 +19,31 @@ import io
 # changing the labels means changing the model architecture, meaning retraining a model for the new labels.
 # therefore, avoid doing translator changing operations :)
 
-le_translator = {0: 'alface_mildeo', 1: 'alface_murcha_queima', 2: 'alface_oidio', 3: 'alface_podridao_basal',
-                4: 'alface_queima_das_bordas', 5: 'alface_saudavel', 6: 'alface_septoria', 7: 'alho_botrytis',
-                8: 'alho_ferrugem', 9: 'alho_mancha_purpura', 10: 'alho_mancha_stemphylium', 11: 'alho_mildio',
-                12: 'alho_xanthomonas', 13: 'banana_cordana', 14: 'banana_mal_do_panama', 15: 'banana_moko',
-                16: 'banana_mosaico_das_bracteas', 17: 'banana_pestalotiopsis', 18: 'banana_praga_dos_insetos',
-                19: 'banana_saudavel', 20: 'banana_sigatoka_amarela', 21: 'banana_sigatoka_fungo',
-                22: 'banana_sigatoka_preta', 23: 'goiaba_antracnose', 24: 'goiaba_cancro_pestalotiopsis',
-                25: 'goiaba_crosta', 26: 'goiaba_ferrugem', 27: 'goiaba_ferrugem_vermelha', 28: 'goiaba_mumificacao',
-                29: 'goiaba_phytophthora', 30: 'goiaba_saudavel', 31: 'goiaba_stylar_end_rot',
-                32: 'laranja_buraco_de_tiro', 33: 'laranja_cancro_citrico', 34: 'laranja_clorose',
-                35: 'laranja_cochonilhas', 36: 'laranja_hlb', 37: 'laranja_morte_reg', 38: 'laranja_mosca_branca',
-                39: 'laranja_oidio', 40: 'laranja_saudavel', 41: 'mandioca queima folhas- imagem colorida e com fundo',
-                42: 'mandioca_acaro', 43: 'mandioca_antracnose', 44: 'mandioca_bacteriose', 45: 'mandioca_mancha_branca',
-                46: 'mandioca_mancha_parda', 47: 'mandioca_mosaico_comum', 48: 'mandioca_mosaico_nervuras',
-                49: 'mandioca_mosca_galhas', 50: 'mandioca_oidio', 51: 'mandioca_podridao', 52: 'mandioca_saudavel',
-                53: 'milho_mancha_cinza_foliar', 54: 'milho_mancha_comum_ferrugem', 55: 'milho_mancha_foliar_norte',
-                56: 'milho_mancha_marrom', 57: 'milho_mildeo', 58: 'milho_saudavel', 59: 'morango_folha_queimada',
-                60: 'morango_mancha_angular_da_folha', 61: 'morango_mancha_foliar', 62: 'morango_mofo_cinza',
-                63: 'morango_oidio', 64: 'morango_podridao_antracnose', 65: 'morango_praga_das_flores',
-                66: 'morango_saudavel', 67: 'soja_crestamento', 68: 'soja_ferrugem', 69: 'soja_mancha_bacteriana',
-                70: 'soja_mancha_parda', 71: 'soja_mildio', 72: 'soja_mosaico_amarelo', 73: 'soja_murcha_do_sul',
-                74: 'soja_saudavel', 75: 'soja_septoria', 76: 'soja_sindrome_morte_subita', 77: 'soja_virus_mosaico',
-                78: 'tomate_acaro_aranha', 79: 'tomate_enrolamento_amarelo', 80: 'tomate_mancha_alvo', 81: 'tomate_mancha_bacteriana',
-                82: 'tomate_mancha_foliar_septoria', 83: 'tomate_mofo_folha', 84: 'tomate_mosaico', 85: 'tomate_requeima_precoce',
-                86: 'tomate_requeima_tardia', 87: 'tomate_saudavel'}
+le_translator = {0: 'Alface Mildeo', 1: 'Alface Murcha Queima', 2: 'Alface_oidio', 3: 'Alface Podridao Basal',
+                4: 'Alface_queima_das_bordas', 5: 'Alface_saudavel', 6: 'Alface_septoria', 7: 'alho_botrytis',
+                8: 'alho_ferrugem', 9: 'Alho Mancha Purpura', 10: 'Alho mancha_stemphylium', 11: 'Alho Mildio',
+                12: 'Alho xanthomonas', 13: 'Banana cordana', 14: 'Banana Mal do Panama', 15: 'Banana Moko',
+                16: 'Banana Mosaico das bracteas', 17: 'Banana Pestalotiopsis', 18: 'Banana Praga dos Insetos',
+                19: 'Banana Saudavel', 20: 'Banana Sigatoka Amarela', 21: 'Banana Sigatoka Fungo',
+                22: 'Banana_sigatoka_preta', 23: 'Goiaba Antracnose', 24: 'Goiaba cancro_pestalotiopsis',
+                25: 'Goiaba Crosta', 26: 'Goiaba_ferrugem', 27: 'Goiaba Ferrugem Vermelha', 28: 'Goiaba Mumificacao',
+                29: 'Goiaba Phytophthora', 30: 'Goiaba saudavel', 31: 'Goiaba `stylar end rot`',
+                32: 'Laranja Buraco de Tiro', 33: 'Laranja Cancro Citrico', 34: 'Laranja_clorose',
+                35: 'Laranja Cochonilhas', 36: 'Laranja Hlb', 37: 'Laranja Morte Reg', 38: 'Laranja Mosca Branca',
+                39: 'Laranja Oidio', 40: 'Laranja Saudavel', 41: 'Mandioca Queima Folhas',
+                42: 'Mandioca_acaro', 43: 'Mandioca Antracnose', 44: 'Mandioca Bacteriose', 45: 'Mandioca Mancha Branca',
+                46: 'Mandioca Mancha Parda', 47: 'Mandioca Mosaico Comum', 48: 'Mandioca Mosaico Nervuras',
+                49: 'Mandioca Mosca Galhas', 50: 'Mandioca Oidio', 51: 'Mandioca Podridao', 52: 'Mandioca Saudavel',
+                53: 'Milho Mancha_cinza_foliar', 54: 'Milho Mancha Comum Ferrugem', 55: 'Milho Mancha Foliar Norte',
+                56: 'milho Mancha Marrom', 57: 'Milho Mildeo', 58: 'Milho Saudavel', 59: 'Morango Folha Queimada',
+                60: 'Morango Mancha Angular da Folha', 61: 'Morango Mancha Foliar', 62: 'Morango Mofo Cinza',
+                63: 'Morango Oidio', 64: 'Morango Podridao Antracnose', 65: 'Morango Praga das Flores',
+                66: 'Morango Saudavel', 67: 'Soja Crestamento', 68: 'Soja_ferrugem', 69: 'Soja Mancha Bacteriana',
+                70: 'Soja Mancha Parda', 71: 'Soja Mildio', 72: 'Soja Mosaico Amarelo', 73: 'Soja Murcha do Sul',
+                74: 'Soja Saudavel', 75: 'Soja Septoria', 76: 'Soja Sindrome Morte Subita', 77: 'Soja Virus Mosaico',
+                78: 'Tomate Acaro Aranha', 79: 'Tomate Enrolamento Amarelo', 80: 'Tomate Mancha Alvo', 81: 'Tomate Mancha Bacteriana',
+                82: 'Tomate Mancha Foliar Septoria', 83: 'Tomate Mofo Folha', 84: 'Tomate Mosaico', 85: 'Tomate Requeima Precoce',
+                86: 'Tomate Requeima Tardia', 87: 'Tomate Saudavel'}
 
 app = FastAPI()
 
@@ -110,12 +110,15 @@ async def predict(
         # print(file)
         # print(f"Tipo de planta: {plant_type}")
         #o arquivo tá sendo recebido corretamente? medo pois no terminal diz OK p mim
-        prediction_list = prediction.tolist()
-        golden_index = prediction_list.index(max(prediction_list))
+        prediction_array = prediction[0]  # Pega o primeiro elemento pois é um batch de 1
+        golden_index = np.argmax(prediction_array)  # Usa np.argmax para maior precisão
+        confidence = float(prediction_array[golden_index])  # Pega o valor de confiança
         plant_disease = le_translator[golden_index]
         return {
             "filename": file.filename,
             "prediction": plant_disease,
+            "confidence": confidence,  # Adiciona o valor de confiança na resposta
+            "predicted_index": int(golden_index),  # Adiciona o índice para debug
             "latency": latency
         }
 
