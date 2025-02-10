@@ -12,7 +12,8 @@ import axios from 'axios';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as FormData from 'form-data';
-import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { subHours, format } from 'date-fns';
+import { ptBR } from 'date-fns/locale'
 import { FilesService } from './files.service';
 import { diskStorage } from 'multer';
 import { DatabaseService } from 'src/database/database.service';
@@ -83,12 +84,13 @@ export class FilesController {
         }
       }
 
+      const dataHoraBrasil = subHours(new Date(), 3);
       
       await this.databaseService.historico.create({
         data: {
           userId: currentUser.id,
           diagnostico: prediction,
-          dataHora: new Date(),
+          dataHora: dataHoraBrasil,
           foto: uploadedFilename,
         },
       });
@@ -102,9 +104,15 @@ export class FilesController {
 
   @Get('history')
   async getUserHistory(@CurrentUser() currentUser: UserPayload) {
-    return this.databaseService.historico.findMany({
+    const historico = await this.databaseService.historico.findMany({
       where: { userId: currentUser.id },
       orderBy: { dataHora: 'desc' }, 
     });    
+
+    return historico.map(item => ({
+      ...item,
+      dataHora: format(item.dataHora, "dd/MM/yyyy HH:mm", { locale: ptBR }),
+    }));
+    
   }
 }
