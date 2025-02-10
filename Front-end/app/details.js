@@ -21,8 +21,15 @@ const Detalhes = () => {
       <TouchableOpacity onPress={handleBack} style={styles.backButton}>
         <Ionicons name="arrow-back-circle-outline" size={50} color="#164B2A" />
       </TouchableOpacity>
-      <Image source={{ uri: imageUri }} style={styles.image} />
+      <View style={styles.contImage}>
+        <Image source={{ uri: imageUri }} style={styles.image} />
+      </View>
       <Text style={styles.diagnosisText}>{diagnosis}</Text>
+      <Text style={styles.description}>
+        O diagnóstico acima foi feito por nossa inteligência artificial, mas não
+        substitui a avaliação de um profissional. Consulte um especialista para
+        mais precisão.
+      </Text>
     </View>
   );
 };
@@ -41,16 +48,33 @@ const styles = StyleSheet.create({
     left: 20,
     zIndex: 10,
   },
+  contImage: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: "120%",
+    height: 350,
+    backgroundColor: "#057B44",
+  },
   image: {
     width: 300,
     height: 300,
     borderRadius: 10,
     marginBottom: 20,
+    marginTop: 20,
   },
   diagnosisText: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: "bold",
     textAlign: "center",
+    marginTop: 30,
+  },
+  description: {
+    fontWeight: "500",
+    marginTop: 10,
+    fontSize: 17,
+    color: "#656565",
+    textAlign: "center",
+    paddingHorizontal: 10,
   },
 });
 

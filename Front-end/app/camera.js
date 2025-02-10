@@ -181,6 +181,9 @@ export default function CameraScreen() {
   async function handleUsePhoto() {
     const url = "http://192.168.0.160:3000/api/files/upload";
 
+    const token = await AsyncStorage.getItem("token");
+    const headers = { Authorization: `Bearer ${token}` };
+
     if (!image) {
       Alert.alert("Erro", "Nenhuma imagem para enviar.");
       return;
@@ -203,6 +206,7 @@ export default function CameraScreen() {
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
         },
       });
       Alert.alert("Sucesso", "Imagem enviada com sucesso!");
