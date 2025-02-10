@@ -160,6 +160,24 @@ export default function CameraScreen() {
     }
   };
 
+  const saveToHistory = async (imageUri, diagnosis) => {
+    try {
+      const existingHistory = await AsyncStorage.getItem("PlantHistory");
+      const historyArray = existingHistory ? JSON.parse(existingHistory) : [];
+
+      const newEntry = { imageUri, diagnosis };
+      const updatedHistory = [...historyArray, newEntry];
+
+      await AsyncStorage.setItem(
+        "PlantHistory",
+        JSON.stringify(updatedHistory)
+      );
+      console.log("Histórico atualizado com nova entrada.");
+    } catch (error) {
+      console.error("Erro ao salvar no histórico:", error);
+    }
+  };
+
   async function handleUsePhoto() {
     const url = "http://192.168.0.160:3000/api/files/upload";
 
@@ -204,6 +222,8 @@ export default function CameraScreen() {
       if (response.data.prediction) {
         await AsyncStorage.setItem("PlantPrediction", response.data.prediction);
         console.log("Diagnóstico salvo:", response.data.prediction);
+
+        await saveToHistory(image, response.data.prediction);
       }
 
       await checkUserRole(router);
