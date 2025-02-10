@@ -117,9 +117,9 @@ async def predict(
         return {
             "filename": file.filename,
             "prediction": plant_disease,
-            "confidence": confidence,  # Adiciona o valor de confiança na resposta
-            "predicted_index": int(golden_index),  # Adiciona o índice para debug
-            "latency": latency
+            #"confidence": confidence,  # Adiciona o valor de confiança na resposta
+            #"predicted_index": int(golden_index),  # Adiciona o índice para debug
+            #"latency": latency
         }
 
 
