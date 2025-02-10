@@ -12,7 +12,7 @@ import axios from 'axios';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as FormData from 'form-data';
-import { subHours, format } from 'date-fns';
+import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale'
 import { FilesService } from './files.service';
 import { diskStorage } from 'multer';
@@ -84,13 +84,11 @@ export class FilesController {
         }
       }
 
-      const dataHoraBrasil = subHours(new Date(), 3);
       
       await this.databaseService.historico.create({
         data: {
           userId: currentUser.id,
           diagnostico: prediction,
-          dataHora: dataHoraBrasil,
           foto: uploadedFilename,
         },
       });
