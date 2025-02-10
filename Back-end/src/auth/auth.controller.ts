@@ -24,6 +24,7 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
+  @IsPublic()
   @Post('forgot-password')
   async forgotPassword(@Body('email') email: string) {
     return this.authService.forgotPassword(email);
@@ -31,9 +32,9 @@ export class AuthController {
 
   @Post('vote/:imageFilename')
   async vote(
-  @Param('imageFilename') imageFilename: string,
-  @Body('vote') vote: boolean) {
+    @Param('imageFilename') imageFilename: string,
+    @Body('vote') vote: boolean,
+  ) {
     return this.authService.voteOnImage(imageFilename, vote);
   }
-
 }
