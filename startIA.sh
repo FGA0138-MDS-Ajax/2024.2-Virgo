@@ -29,10 +29,10 @@ echo "Ativando ambiente virtual..."
 source .venv/bin/activate || { echo "Erro ao ativar o ambiente virtual."; exit 1; }
 
 echo "Instalando dependencias..."
-pip install -r requirements.txt || { echo "Erro ao instalar dependencias."; exit 1; }
+pip3 install -r requirements.txt || { echo "Erro ao instalar dependencias."; exit 1; }
 
 echo "Instalando python-multipart..."
-pip install python-multipart || { echo "Erro ao instalar python-multipart."; exit 1; }
+pip3 install python-multipart || { echo "Erro ao instalar python-multipart."; exit 1; }
 
 echo "Entrando no diretorio ./API..."
 if [ ! -d "api" ]; then
