@@ -59,7 +59,7 @@ app.add_middleware(
     allow_headers     = ["*"]
 )
 
-MODEL = tf.keras.models.load_model('lsx.keras')
+MODEL = tf.keras.models.load_model('lsx_v2.keras')
 
 @app.post("/upload")
 async def predict(
