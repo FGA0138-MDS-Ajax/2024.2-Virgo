@@ -5,31 +5,44 @@ import {
   UseInterceptors,
   Body,
   Param,
+  Get,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import axios from 'axios';
-import * as fs from 'fs'; //permite interagir com filesystem
+import * as fs from 'fs';
 import * as path from 'path';
 import * as FormData from 'form-data';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 import { FilesService } from './files.service';
 import { diskStorage } from 'multer';
+import { DatabaseService } from 'src/database/database.service';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { UserPayload } from 'src/auth/models/UserPayload';
+
 @Controller('files')
 export class FilesController {
-  @IsPublic()
+  constructor(
+    private readonly filesService: FilesService,
+    private readonly databaseService: DatabaseService,
+  ) {}
+
+
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
     @Body() body: any,
+    @CurrentUser() currentUser: UserPayload,
   ) {
-    const filePath = path.join(__dirname, '../../uploads', file.filename); //constrói o URL onde o arquivo vai ser salvo nas nossas pastas
+    const filePath = path.join(__dirname, '../../uploads', file.filename);
 
     const formData = new FormData();
-    formData.append('file', fs.createReadStream(filePath), file.filename); //com o URL pego lá em cima, a gente envia o file e o nome dele (doc do fastapi pede)
-    formData.append('plant_type', body.plant_type); // adiciona o plant_type ao formData, vindo do body
-    console.log(file); //printa o file no terminal do back
+    formData.append('file', fs.createReadStream(filePath), file.filename);
+    formData.append('plant_type', body.plant_type);
+
+    console.log(file);
     console.log(body.plant_type);
+
     try {
       const response = await axios.post(
         'http://localhost:3002/upload',
@@ -40,39 +53,58 @@ export class FilesController {
           },
         },
       );
-      const uploadedFilename = file.filename; // Obtém o filename do arquivo carregado
-      return { ...response.data, filename: uploadedFilename }; // Retorna a resposta do outro servidor junto com o filename
+
+      const { prediction } = response.data;
+      const uploadedFilename = file.filename;
+
+      // 🔹 Verifica quantos registros o usuário tem
+      const historicoCount = await this.databaseService.historico.count({
+        where: { userId: currentUser.id },
+      });
+
+      // 🔹 Se já houver 10 registros, apaga o mais antigo
+      if (historicoCount >= 10) {
+        const oldestRecord = await this.databaseService.historico.findFirst({
+          where: { userId: currentUser.id },
+          orderBy: { dataHora: 'asc' }, // Pegando o mais antigo
+        });
+
+        if (oldestRecord) {
+          const filePathToDelete = path.join(__dirname, '../../uploads', oldestRecord.foto);
+        
+          if (fs.existsSync(filePathToDelete)) {
+            fs.unlinkSync(filePathToDelete); // Remove a imagem do sistema de arquivos
+          }
+        
+          // 🔹 Agora remove o registro do banco
+          await this.databaseService.historico.delete({
+            where: { id: oldestRecord.id },
+          });
+        }
+      }
+
+      
+      await this.databaseService.historico.create({
+        data: {
+          userId: currentUser.id,
+          diagnostico: prediction,
+          dataHora: new Date(),
+          foto: uploadedFilename,
+        },
+      });
+
+      return { ...response.data, filename: uploadedFilename };
     } catch (error) {
       console.error('Erro ao enviar a imagem para o main.py:', error);
       throw error;
     }
   }
 
-  constructor(private readonly filesService: FilesService) {}
-  @IsPublic()
-  @Post('upload_vote')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './uploads/votes', // Pasta onde as imagens aceitas serão salvas
-        filename: (req, file, cb) => {
-          const uniqueSuffix =
-            Date.now() + '-' + Math.round(Math.random() * 1e9);
-          cb(null, uniqueSuffix + path.extname(file.originalname)); // Mantém a extensão do arquivo
-        },
-      }),
-    }),
-  )
-  async uploadVote(@UploadedFile() file: Express.Multer.File) {
-    if (!file) {
-      return { message: 'Nenhum arquivo enviado.' };
-    }
-    return { message: `Imagem salva com sucesso!`, filename: file.filename };
-  }
-  @IsPublic()
-  @Post('reject/:filename')
-  async rejectFile(@Param('filename') filename: string) {
-    this.filesService.moveToRejected(filename);
-    return { message: `Imagem ${filename} movida para rejeitados.` };
+  @Get('history')
+  async getUserHistory(@CurrentUser() currentUser: UserPayload) {
+    return this.databaseService.historico.findMany({
+      where: { userId: currentUser.id },
+      orderBy: { dataHora: 'desc' }, 
+    });    
   }
 }
