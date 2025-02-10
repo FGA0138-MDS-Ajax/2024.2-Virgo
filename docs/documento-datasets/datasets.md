@@ -4,7 +4,7 @@
 
 Este documento descreve os datasets utilizados no desenvolvimento da inteligência artificial para identificação de doenças em plantas. Os dados foram coletados de diversas fontes confiáveis e organizados em um novo dataset armazenado em um arquivo no Drive. Todas as imagens foram processadas para o tamanho de 256x256 pixels para treinamento da IA.
 
-##Datasets Utilizados
+## Datasets Utilizados
 
 ### **PlantVillage (Milho)**
 
