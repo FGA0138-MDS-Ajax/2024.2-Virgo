@@ -11,8 +11,6 @@ This readme file contains the following descriptions:
 
 - Introduction
 - Technologies Used
-- Usage
-
 
 # Introduction II: On the folder structure
 The AI folder is meant to store source files, documentation files and 
