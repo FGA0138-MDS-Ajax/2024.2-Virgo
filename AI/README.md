@@ -9,17 +9,28 @@ architecture, design, usage, etc.
 
 This readme file contains the following descriptions:
 
+- Introduction
 - Technologies Used
-- Training instructions
-- Deployment
-- Used Datasets
-- TODO
+- Usage
 
 
 # Introduction II: On the folder structure
 The AI folder is meant to store source files, documentation files and 
 compiled models on the CVAI (CuidarVerdeIA, AKA osirisAI), their models and 
-their communication interfaces. 
+their communication interfaces. This component uses the following structure:
+
+- ./
+  - docs
+  - API
+  - training_scripts
+  - training_data
+  - old_models
+
+docs folder: hosts files on specific usage of subcomponents, training scripts and others
+API: hosts the API, used for connecting to the rest of the app. Quite useful. Also holds the best model.
+training_scripts: hosts the crude training_scripts
+training_data: hosts the training data gathered for each model
+models: every other model created 
 
 # Technologies Used
 This section expands on technologies used and the reason they're 
@@ -51,9 +62,5 @@ compatibility, this also imposes little or no risk to future maintainability.
 Very great.
 
 Also, this framework has almost no initial learning curve, meaning rapid development,
-though it does impose a steep learning curve later for more advanced features.
-
-# Deployment TODO
-
-
-
+though it does impose a steep learning curve later for more advanced features such as 
+cache creation, image pre-processing steps with layers, custom training loops and callbacks.
