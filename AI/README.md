@@ -23,12 +23,14 @@ their communication interfaces. This component uses the following structure:
   - training_scripts
   - training_data
   - old_models
+  - requirements.tx
 
 docs folder: hosts files on specific usage of subcomponents, training scripts and others
 API: hosts the API, used for connecting to the rest of the app. Quite useful. Also holds the best model.
 training_scripts: hosts the crude training_scripts
 training_data: hosts the training data gathered for each model
 models: every other model created 
+requirements.txt : used by the API, leave it alone.
 
 # Technologies Used
 This section expands on technologies used and the reason they're 
