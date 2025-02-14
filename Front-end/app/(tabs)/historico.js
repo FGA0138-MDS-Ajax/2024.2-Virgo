@@ -1,42 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StyleSheet } from "react-native";
-import HistoryCard from "../../components/cardHistory";
+import { View, FlatList, ActivityIndicator, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import HistoryCard from "../../components/cardHistory";
+import { fetchHistory } from "../../services/historyService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Historico = () => {
   const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
+
+  const SERVER_URL = "http://192.168.0.160:3000/uploads/"; // Ajuste se necessário
 
   useEffect(() => {
     const loadHistory = async () => {
-      try {
-        const storedHistory = await AsyncStorage.getItem("PlantHistory");
-        if (storedHistory) {
-          setHistory(JSON.parse(storedHistory));
-        }
-      } catch (error) {
-        console.error("Erro ao carregar histórico:", error);
-      }
+      const token = await AsyncStorage.getItem("token");
+      const userId = await AsyncStorage.getItem("userID");
+
+      if (!userId || !token) return;
+
+      const data = await fetchHistory(userId, token);
+      setHistory(data);
+      setLoading(false);
     };
 
     loadHistory();
   }, []);
 
+  if (loading) {
+    return <ActivityIndicator size="large" color="#057B44" />;
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
         data={history}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <HistoryCard
-            imageUri={item.imageUri}
-            diagnosis={item.diagnosis}
+            imageUri={`${SERVER_URL}${item.foto}`} // 🔹 Concatenando a URL correta da imagem
+            diagnosis={item.diagnostico}
             onPress={() =>
               navigation.navigate("details", {
-                imageUri: item.imageUri,
-                diagnosis: item.diagnosis,
+                imageUri: `${SERVER_URL}${item.foto}`,
+                diagnosis: item.diagnostico,
               })
             }
           />
@@ -51,12 +58,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F5F5F5",
     padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 20,
   },
 });
 

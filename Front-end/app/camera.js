@@ -17,6 +17,7 @@ import {
   View,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import { saveHistory } from "../services/historyService";
 
 //Funçao que verifica se é AGRICULTOR ou AGRONOMO
 
@@ -160,29 +161,17 @@ export default function CameraScreen() {
     }
   };
 
-  const saveToHistory = async (imageUri, diagnosis) => {
-    try {
-      const existingHistory = await AsyncStorage.getItem("PlantHistory");
-      const historyArray = existingHistory ? JSON.parse(existingHistory) : [];
-
-      const newEntry = { imageUri, diagnosis };
-      const updatedHistory = [...historyArray, newEntry];
-
-      await AsyncStorage.setItem(
-        "PlantHistory",
-        JSON.stringify(updatedHistory)
-      );
-      console.log("Histórico atualizado com nova entrada.");
-    } catch (error) {
-      console.error("Erro ao salvar no histórico:", error);
-    }
-  };
-
   async function handleUsePhoto() {
     const url = "http://192.168.0.160:3000/api/files/upload";
 
     const token = await AsyncStorage.getItem("token");
+    const userId = await AsyncStorage.getItem("userID");
     const headers = { Authorization: `Bearer ${token}` };
+
+    if (!userId) {
+      console.error("Erro: userId não encontrado.");
+      return;
+    }
 
     if (!image) {
       Alert.alert("Erro", "Nenhuma imagem para enviar.");
@@ -215,19 +204,19 @@ export default function CameraScreen() {
       if (response.data && response.data.filename) {
         const uploadedFilename = response.data.filename;
         console.log("Salvando filename:", uploadedFilename);
+
+        // 🔹 Guardamos a imagem localmente para exibição imediata
         await AsyncStorage.setItem("PlantImageFilename", uploadedFilename);
+        await AsyncStorage.setItem("PlantImage", image);
       } else {
-        console.error("Erro: O backend não retornou um filename válido.");
+        console.error("Erro: o backend não retornou um filename válido");
       }
 
-      console.log("Salvando a foto: ", image);
-      await AsyncStorage.setItem("PlantImage", image);
-
       if (response.data.prediction) {
-        await AsyncStorage.setItem("PlantPrediction", response.data.prediction);
         console.log("Diagnóstico salvo:", response.data.prediction);
 
-        await saveToHistory(image, response.data.prediction);
+        // 🔹 Guardamos o diagnóstico localmente para exibição imediata
+        await AsyncStorage.setItem("PlantPrediction", response.data.prediction);
       }
 
       await checkUserRole(router);
