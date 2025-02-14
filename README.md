@@ -20,9 +20,9 @@ Cuidar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagn
 git clone https://github.com/FGA0138-MDS-Ajax/2024.2-Virgo.git
 ```
 
-## Como rodar a aplicação localmente?
+## Rodar a aplicação Localmente
   
-- ### Como Rodar a IA?
+### Como Rodar a IA?
 ```bash
 # Se estiver no linux:
 # Dar permissão p/ execução:
