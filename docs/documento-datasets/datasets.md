@@ -6,7 +6,8 @@ Este documento descreve os datasets utilizados no desenvolvimento da inteligênc
 
 ## Datasets Utilizados
 
-## **EMBRAPA (Mandioca)
+## **EMBRAPA (Mandioca)**
+
 O dataset da Embrapa foi utilizado para mandioca, contendo as seguintes classes de doenças:
 
 Ácaro
@@ -31,7 +32,8 @@ Queima Folhas
 
 Mandioca Saudável
 
-## **Banana LSD Dataset e Plant Village (Banana)
+## **Banana LSD Dataset e Plant Village (Banana)**
+
 Os datasets Banana LSD e Plant Village foram utilizados para banana, contendo as seguintes classes:
 
 Doença do Mal do Panamá
@@ -50,7 +52,7 @@ Sigatoka Fungo
 
 Banana Saudável
 
-## **PlantVillage e Strawberry Disease Detectio Dataset (Morango)
+## **PlantVillage e Strawberry Disease Detectio Dataset (Morango)**
 
 Os datasets PlantVillage e Strawberry Disease Detection foram utilizados para morango, contendo as seguintes classes:
 
@@ -94,7 +96,6 @@ Goiaba Saudável
 
 ## **PlantVillage (Tomate)**
 
-
 O dataset PlantVillage do Kaggle foi utilizado para tomate, contendo as seguintes classes de doenças:
 
 Vírus do Enrolamento Amarelo das Folhas
@@ -130,7 +131,6 @@ Ferrugem
 Milho Saudável
 
 ### **Dryad (Soja)**
-
 
 Os dados de soja foram extraídos de um dataset do site Dryad, contendo as seguintes classes de doenças:
 
@@ -186,12 +186,12 @@ Para garantir um padrão uniforme e otimizar o treinamento da IA, todas as image
 
 ## Armazenamento
 
-O dataset final foi consolidado e armazenado em um arquivo no Drive, garantindo organização e facilidade de acesso durante o treinamento da IA. Segue o Link do Drive com todos datasets reformulados e filtrados sendo escolhidos em nível de formato, qualidade de imagem e conteúdo da foto. 🔗 [Dataset da IA](https://drive.google.com/drive/folders/1xheFInUv5SsiZZHpMW11Cw4LXRu9RMDp?usp=sharing)  
+O dataset final foi consolidado e armazenado em um arquivo no Drive, garantindo organização e facilidade de acesso durante o treinamento da IA. Segue o Link do Drive com todos datasets reformulados e filtrados sendo escolhidos em nível de formato, qualidade de imagem e conteúdo da foto. 🔗 [Dataset da IA](https://drive.google.com/drive/folders/1xheFInUv5SsiZZHpMW11Cw4LXRu9RMDp?usp=sharing)
 
 ## Referências
 
 **EMBRAPA
-**PLANTVILLAGE. Kaggle** - Plant Disease Dataset. Disponível em: [https://www.kaggle.com/datasets/emmarex/plantdisease](https://www.kaggle.com/datasets/emmarex/plantdisease) Acesso em: 9 fev. 2025.
+**PLANTVILLAGE. Kaggle\*\* - Plant Disease Dataset. Disponível em: [https://www.kaggle.com/datasets/emmarex/plantdisease](https://www.kaggle.com/datasets/emmarex/plantdisease) Acesso em: 9 fev. 2025.
 
 **DRYAD. Dataset de Doenças em Soja.** Disponível em: [https://datadryad.org/stash/dataset/doi:10.5061/dryad.41ns1rnj3](https://datadryad.org/stash/dataset/doi:10.5061/dryad.41ns1rnj3) Acesso em: 9 fev. 2025.
 
@@ -211,4 +211,3 @@ EMBRAPA. Base de Dados de Doenças Agrícolas. Disponível em: https://www.embra
 **EMBRAPA. Base de Dados de Doenças da Mandioca.** Disponível em: https://www.redape.dados.embrapa.br/dataset.xhtml?persistentId=doi:10.48432/XA1OVL Acesso em: 9 fev. 2025.
 
 **ROBOFLOW. Roboflow Universe** - Plant Diseases. Disponível em: [https://universe.roboflow.com/](https://universe.roboflow.com/) Acesso em: 9 fev. 2025.
-

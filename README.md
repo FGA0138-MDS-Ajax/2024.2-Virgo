@@ -28,7 +28,14 @@ Cuidar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagn
 
 - [x] Cadastro de usuário agricultor
 - [x] Cadastro de usuário agrônomo
-- [ ] Histórico de plantas
+- [x] Login de usuário
+- [x] Histórico de plantas diagnosticas
+- [x] Perfil de usuário
+- [x] Escolhr qual planta tirar a foto
+- [x] Instruções de como tirar a foto
+- [x] Enquadramento de foto na câmera
+- [x] Tela de diagnóstico da IA para Agricultor e Agrônomo
+- [x] Agrônomo ter a possibilidade de avaliar o diagnóstico da IA
 
 ## Instalação
 

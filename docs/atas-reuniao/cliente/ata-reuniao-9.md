@@ -1,4 +1,4 @@
-# Ata de Reunião - 17/12/2024
+# Ata de Reunião - 14/01/2025
 
 ## Participantes
 
@@ -13,23 +13,24 @@
 
 ## Início e término
 
-A reunião foi iniciada às 19:05 e finalizada às 19:40
+A reunião foi iniciada às 19:05 e finalizada às 19:25
 
 ## Objetivos da reunião
 
-- Apresentar para o cliente o que foi feito e está funcional.
-- Funcionalidades apresentadas: Login, cadastro de agrônomo e de agricultor, e esquecer senha.
+- Apresentar um novo cronograma de entregas ao cliente;
+- Apresentar uma solução a um funcionalidade a menos da IA;
+- Mostrar atualizações que ficaram de débito.
 
 ## Assuntos tratados
 
-- Atrasos no cronograma e mitigações
-- Atualização do cronograma por conta do recesso
-- Reorganização da equipe
+- Atualização do cronograma;
+- Tentar manter funcionalidade da IA, mas caso não seja possível, a nova solução foi aceita;
+- Mostrar funcionalidades totalmente funcionais.
 
 ## Decisões tomadas
 
-- Ajustar o que ficou de débito na entrega
-- Mandar um novo cronograma para a atualizar o cliente
+- Nova solução de intrução para o usuário foi aceita;
+- Manter o plano da IA, mas plano B é uma alternativa a ser entregue no produto final.
 
 ## Gravação da reunião
 
