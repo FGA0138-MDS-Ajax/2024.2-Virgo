@@ -12,17 +12,55 @@
 
 Cuidar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagnóstico e manejo de doenças nas plantas, utilizando tecnologias de inteligência artificial para análise de imagens e reconhecimento de doenças através de um aplicativo mobile.
 
-- [Instalação](#instalacao)
-- [Como usar](#como-usar)
-  - [Pre Requisitos](#pre-requisitos)
-  - [Local files](#local-files)
-  - [Remote files](#remote-files)
-  - [Multiple files](#multiple-files)
-  - [Combo](#combo)
-- [Tests](#testes)
-- [Tecnologias](#tecnologias)
+## Instalação
 
-## Status do Projeto
+### 1. Clonar o repositório
+
+```
+git clone https://github.com/FGA0138-MDS-Ajax/2024.2-Virgo.git
+```
+
+## Como rodar a aplicação localmente?
+  
+- ### Como Rodar a IA?
+```bash
+# Se estiver no linux:
+# Dar permissão p/ execução:
+$ chmod +x startIA.sh
+
+$ ./startIA.sh
+
+#Se estiver no windows:
+$ ./startIA.bat
+```
+
+### Como Rodar o Back-end?
+> **Atenção:**
+> Para rodar o projeto completo, é necessário rodar cada parte em terminais separados, então a IA fica em um terminal, o Back-end em outro e o aplicativo em si (Front) em outro, totalizando 3 terminais.
+```bash
+# Entre na pasta
+$ cd .\Back-end\
+
+# Instale dependências
+$ npm install
+# Após configurações de .env, migrate dev e docker compose up:
+
+# Subir container no docker.
+
+# Iniciar servidor:
+$ npm run start:dev
+```
+
+### Como Rodar o Aplicativo (Front-end)?
+```bash
+# Entre na pasta
+$ cd .\Front-end\
+
+# Iniciar:
+$ npx expo start
+```
+> **Atenção:**
+> Para conectar o servidor no app (usar os endpoints), é necessário mudar os end-points das páginas .js na pasta Front-end/app, trocando as URLS para seu endereço ip local (endereço que aparece embaixo do QR-CODE), Exemplo: const url = "http://(endereço):3000/api/files/upload";
 
 ## Features
 
@@ -36,14 +74,6 @@ Cuidar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagn
 - [x] Enquadramento de foto na câmera
 - [x] Tela de diagnóstico da IA para Agricultor e Agrônomo
 - [x] Agrônomo ter a possibilidade de avaliar o diagnóstico da IA
-
-## Instalação
-
-### 1. Clonar o repositório
-
-```
-git clone https://github.com/FGA0138-MDS-Ajax/2024.2-Virgo.git
-```
 
 ### 🛠 Tecnologias
 
