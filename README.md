@@ -14,7 +14,7 @@ Cuidar Verde tem como objetivo auxiliar pequenos e médios agricultores no diagn
 
 ## Instalação
 
-### 1. Clonar o repositório
+### Clonar o repositório
 
 ```
 git clone https://github.com/FGA0138-MDS-Ajax/2024.2-Virgo.git
