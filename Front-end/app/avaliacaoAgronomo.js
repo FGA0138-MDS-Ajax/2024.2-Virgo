@@ -13,10 +13,6 @@ export default function instructions() {
     router.back();
   };
 
-  const handleMenu = () => {
-    router.push("/avaliacaoSucess");
-  };
-
   const [selected, setSelected] = useState(null); // Estado para armazenar a seleção
 
   console.log("Opção selecionada: ", selected);
@@ -27,12 +23,10 @@ export default function instructions() {
   };
   checkFilename();
 
-  /* const handleSend = async () => {
+  const handleSend = async () => {
     if (!selected) return; // Se não estiver selecionado "bom" ou "ruim", nada acontece
 
     try {
-      const token = await AsyncStorage.getItem("token");
-
       // Recupera o filename do AsyncStorage
       const filename = await AsyncStorage.getItem("PlantImageFilename");
       if (!filename) {
@@ -43,18 +37,17 @@ export default function instructions() {
       // Define a URL com base na seleção do usuário
       const apiUrl =
         selected === "bom"
-          ? "http://192.168.0.160:3000/api/files/upload"
+          ? "http://192.168.0.160:3000/api/files/upload_vote"
           : `http://192.168.0.160:3000/api/files/reject/${filename}`;
 
       // Define o método HTTP com base na seleção do usuário
       const method = selected === "bom" ? "POST" : "POST";
-      const headers = { Authorization: `Bearer ${token}` };
+
       // Envia a requisição
       const response = await fetch(apiUrl, {
         method,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: selected === "bom" ? JSON.stringify({ filename }) : null,
       });
@@ -68,7 +61,7 @@ export default function instructions() {
     } catch (error) {
       console.error("Erro na requisição:", error);
     }
-  }; */
+  };
 
   const [imageUri, setImageUri] = useState(null);
 
@@ -120,16 +113,9 @@ export default function instructions() {
       </View>
       <View style={styles.ContainerImage}>
         {imageUri ? (
-          <Image
-            source={{ uri: imageUri }}
-            style={{
-              width: 500,
-              height: 300,
-              resizeMode: "center",
-            }}
-          />
+          <Image source={{ uri: imageUri }} style={styles.image} />
         ) : (
-          <Text style={styles.noImageText}>Nenhuma imagem disponível</Text>
+          <Text>Nenhuma imagem disponível</Text>
         )}
       </View>
       <View style={styles.containerPraga}>
@@ -186,7 +172,7 @@ export default function instructions() {
 
         <View>
           <TouchableOpacity
-            onPress={handleMenu}
+            onPress={handleSend}
             style={[styles.buttonGreen, { opacity: selected ? 1 : 0.5 }]} // Botão meio transparente se nada for selecionado
             disabled={!selected} // Desativa se nada estiver selecionado
           >
@@ -227,9 +213,17 @@ const styles = StyleSheet.create({
   ContainerImage: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 170,
     width: "100%",
+    height: 310,
     backgroundColor: "#057B44",
+    marginTop: 160,
+  },
+  image: {
+    width: 270,
+    height: 270,
+    borderRadius: 10,
+    marginBottom: 20,
+    marginTop: 20,
   },
   containerPraga: {
     justifyContent: "center",

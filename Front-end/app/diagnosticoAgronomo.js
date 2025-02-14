@@ -60,9 +60,9 @@ export default function dianosticoAgronomo() {
           <Image
             source={{ uri: imageUri }}
             style={{
-              width: 500,
-              height: 300,
-              resizeMode: "center",
+              width: 280,
+              height: 280,
+              borderRadius: 10,
             }}
           />
         ) : (
@@ -112,10 +112,10 @@ const styles = StyleSheet.create({
   ContainerImage: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
-    marginTop: 50,
     width: "100%",
+    height: 310,
     backgroundColor: "#057B44",
+    marginTop: 160,
   },
   nomePraga: {
     fontSize: 30,
