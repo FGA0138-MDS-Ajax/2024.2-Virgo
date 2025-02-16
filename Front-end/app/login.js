@@ -12,6 +12,7 @@ import IconLogo from "../assets/svg/icon-logo.svg";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_LOGIN_URL } from "@env";
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -63,11 +64,9 @@ export default function LoginScreen() {
       return;
     }
 
-    const url = "http://192.168.0.160:3000/api/login/";
-
     try {
       // Envia os dados de login para o backend
-      const response = await axios.post(url, { email, password });
+      const response = await axios.post(API_LOGIN_URL, { email, password });
 
       // Verifique a resposta recebida
       console.log("Resposta do backend:", response);

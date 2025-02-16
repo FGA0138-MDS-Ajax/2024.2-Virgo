@@ -56,9 +56,9 @@ export default function instructions() {
           <Image
             source={{ uri: imageUri }}
             style={{
-              width: 500,
-              height: 300,
-              resizeMode: "center",
+              width: 280,
+              height: 280,
+              borderRadius: 10,
             }}
           />
         ) : (
@@ -101,14 +101,16 @@ const styles = StyleSheet.create({
   ContainerImage: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 1,
-    marginTop: 50,
     width: "100%",
+    height: 310,
     backgroundColor: "#057B44",
+    marginTop: 150,
   },
   nomePraga: {
     fontSize: 30,
     fontWeight: 500,
+    paddingHorizontal: 15,
+    textAlign: "center",
   },
   description: {
     fontWeight: "400",

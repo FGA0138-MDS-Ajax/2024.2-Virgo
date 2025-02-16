@@ -5,6 +5,8 @@ import { Text, View, Image } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_UPLOAD_VOTE_URL } from "@env";
+import { API_REJECT_URL } from "@env";
 
 export default function instructions() {
   const router = useRouter();
@@ -37,8 +39,8 @@ export default function instructions() {
       // Define a URL com base na seleção do usuário
       const apiUrl =
         selected === "bom"
-          ? "http://192.168.0.160:3000/api/files/upload_vote"
-          : `http://192.168.0.160:3000/api/files/reject/${filename}`;
+          ? API_UPLOAD_VOTE_URL
+          : `${API_REJECT_URL}/${filename}`;
 
       // Define o método HTTP com base na seleção do usuário
       const method = selected === "bom" ? "POST" : "POST";

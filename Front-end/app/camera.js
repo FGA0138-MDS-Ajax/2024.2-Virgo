@@ -17,7 +17,8 @@ import {
   View,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
-import { saveHistory } from "../services/historyService";
+import { API_USERS_URL } from "@env";
+import { API_UPLOAD_URL } from "@env";
 
 //Funçao que verifica se é AGRICULTOR ou AGRONOMO
 
@@ -37,7 +38,7 @@ async function checkUserRole(router) {
       return;
     }
 
-    const url = `http://192.168.0.160:3000/api/users/${id}`;
+    const url = `${API_USERS_URL}/${id}`;
     const headers = { Authorization: `Bearer ${token}` };
 
     const response = await axios.get(url, { headers });
@@ -162,7 +163,7 @@ export default function CameraScreen() {
   };
 
   async function handleUsePhoto() {
-    const url = "http://192.168.0.160:3000/api/files/upload";
+    const url = API_UPLOAD_URL;
 
     const token = await AsyncStorage.getItem("token");
     const userId = await AsyncStorage.getItem("userID");

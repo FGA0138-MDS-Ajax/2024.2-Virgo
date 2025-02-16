@@ -16,7 +16,6 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const router = useRouter();
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -45,6 +44,9 @@ export default function RootLayout() {
         <>
           <Stack.Screen name="index" />
           <Stack.Screen name="login" />
+          <Stack.Screen name="welcome" />
+          <Stack.Screen name="politica" />
+          <Stack.Screen name="termos" />
           <Stack.Screen name="AgricultorOrAgronomo" />
           <Stack.Screen name="registerAgricultor" />
           <Stack.Screen name="forgotPassword" />
@@ -53,12 +55,16 @@ export default function RootLayout() {
           <Stack.Screen name="passwordRedefinedSucess" />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="selectPlant" />
+          <Stack.Screen name="instrucoes" />
           <Stack.Screen name="camera" />
-          <Stack.Screen name="teste" />
+          <Stack.Screen name="diagnosticoAgricultor" />
+          <Stack.Screen name="diagnosticoAgronomo" />
           <Stack.Screen name="instructions" />
           <Stack.Screen name="termos" />
           <Stack.Screen name="politica" />
           <Stack.Screen name="historico" />
+          <Stack.Screen name="details" />
+          <Stack.Screen name="avaliacaoAgronomo" />
           <Stack.Screen name="avaliacaoSucess" />
           <Stack.Screen name="+not-found" />
         </>

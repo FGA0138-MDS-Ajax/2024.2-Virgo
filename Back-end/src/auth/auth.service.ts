@@ -22,7 +22,6 @@ export class AuthService {
       id: user.id,
       email: user.email,
       name: user.name,
-
     };
     const jwtToken = this.jwtService.sign(payload);
 
@@ -96,25 +95,32 @@ export class AuthService {
 
   async moveRejectedImage(imageFilename: string) {
     const oldPath = path.join(__dirname, '..', '..', 'uploads', imageFilename);
-    const newPath = path.join(__dirname, '..', '..', 'uploads', 'rejeitadas', imageFilename);
-  
+    const newPath = path.join(
+      __dirname,
+      '..',
+      '..',
+      'uploads',
+      'rejeitadas',
+      imageFilename,
+    );
+
     try {
       await fs.ensureDir(path.dirname(newPath));
-  
+
       await fs.move(oldPath, newPath, { overwrite: true });
-  
+
       return { message: 'Imagem movida para a pasta rejeitadas' };
     } catch (error) {
       console.error('Erro ao mover a imagem:', error);
       throw new Error('Falha ao mover a imagem');
     }
   }
-  
+
   async voteOnImage(imageFilename: string, vote: boolean) {
     if (!vote) {
       return this.moveRejectedImage(imageFilename);
     }
-  
+
     return { message: 'Voto registrado como SIM, imagem mantida' };
   }
 }

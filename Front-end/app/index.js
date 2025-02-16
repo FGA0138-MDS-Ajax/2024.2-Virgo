@@ -9,16 +9,6 @@ export default function WelcomeScreen() {
   const router = useRouter();
   const navigation = useNavigation();
 
-  const handleTermsOfService = () => {
-    console.log("Redirecionando para /termos...");
-    router.push("/termos");
-  };
-
-  const handlePrivacyPolicy = () => {
-    console.log("Redirecionando para /politica");
-    router.push("/politica");
-  };
-
   const handleLogin = () => {
     console.log("Redirecionando para /login...");
     router.push("/login"); // Redireciona para a tela de login

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { API_FORGOT_PASSWORD_URL } from "@env";
 
 export default function forgotPassword() {
   const router = useRouter();
@@ -46,7 +47,10 @@ export default function forgotPassword() {
       return; // Não envia ao backend se a validação falhou
     }
 
-    const url = "http://192.168.0.199:3000/api/forgot-password/";
+    const url = API_FORGOT_PASSWORD_URL;
+
+    console.log("Enviando requisição para:", url);
+    console.log("Dados enviados:", { email });
 
     axios
       .post(url, {
@@ -62,7 +66,7 @@ export default function forgotPassword() {
       })
       .catch(function (error) {
         console.log(
-          "Erro ao fazer login:",
+          "Erro recuperar senha:",
           error.response?.data || error.message
         );
       });

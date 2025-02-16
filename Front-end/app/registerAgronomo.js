@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-//FAZER VALIDAÇÃO INPUT CPF E CREA INDIVIDUAIS
+import { API_USERS_URL } from "@env";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -29,7 +29,7 @@ export default function LoginScreen() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [authError, setAuthError] = useState("");
 
-  const url = "http://192.168.0.160:3000/api/users/";
+  const url = API_USERS_URL;
 
   useEffect(() => {
     validateForm(); // Aciona a validação quando algum argumento muda

@@ -120,6 +120,8 @@ const styles = StyleSheet.create({
   nomePraga: {
     fontSize: 30,
     fontWeight: 500,
+    paddingHorizontal: 15,
+    textAlign: "center",
   },
   description: {
     fontWeight: "400",

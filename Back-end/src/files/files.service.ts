@@ -4,8 +4,11 @@ import * as path from 'path';
 
 @Injectable()
 export class FilesService {
-  private readonly uploadPath = path.join(__dirname, '../../uploads/votes');
-  private readonly rejectedPath = path.join(__dirname, '../../uploads/rejected');
+  private readonly uploadPath = path.join(__dirname, '../../uploads/');
+  private readonly rejectedPath = path.join(
+    __dirname,
+    '../../uploads/rejected',
+  );
 
   constructor() {
     // Criar pastas, se não existirem

@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { API_USERS_URL } from "@env";
 
 export default function forgotPassword() {
   const [currentPasswordError, setCurrentPasswordError] = useState("");
@@ -76,7 +77,7 @@ export default function forgotPassword() {
         return;
       }
 
-      const url = `http://192.168.0.160:3000/api/users/${id}`; // URL para redefinir a senha
+      const url = `${API_USERS_URL}/${id}`; // URL para redefinir a senha
 
       const data = {
         currentPassword: currentPassword,

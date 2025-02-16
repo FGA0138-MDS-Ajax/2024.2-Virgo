@@ -134,7 +134,16 @@ export class FilesController {
   @IsPublic()
   @Post('reject/:filename')
   async rejectFile(@Param('filename') filename: string) {
+    // 🔹 Exclui do histórico onde a foto corresponde ao filename recebido
+    await this.databaseService.historico.deleteMany({
+      where: { foto: filename },
+    });
+
+    console.log(`DEBUG - Imagem ${filename} removida do histórico.`);
+
     this.filesService.moveToRejected(filename);
-    return { message: `Imagem ${filename} movida para rejeitados.` };
+    return {
+      message: `Imagem ${filename} movida para rejeitados e removida do histórico.`,
+    };
   }
 }

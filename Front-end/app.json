@@ -53,9 +53,6 @@
           "photosPermission": "Permitir que este aplicativo acesse suas fotos."
         }
       ]
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }
