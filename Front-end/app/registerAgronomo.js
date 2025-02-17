@@ -169,7 +169,7 @@ export default function LoginScreen() {
             />
             <TextInput
               style={styles.passinput}
-              placeholder="CREA"
+              placeholder="CREA - DF000000"
               placeholderTextColor="#aaa"
               keyboardType="default"
               value={crea}
