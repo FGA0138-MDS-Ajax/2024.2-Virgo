@@ -1,4 +1,5 @@
 ## Como Rodar a IA?
+
 ```bash
 # Se estiver no linux:
 # Dar permissão p/ execução:
@@ -11,8 +12,10 @@ $ ./startIA.bat
 ```
 
 ## Como Rodar o Back-end?
+
 > **Atenção:**
 > Para rodar o projeto completo, é necessário rodar cada parte em terminais separados, então a IA fica em um terminal, o Back-end em outro e o aplicativo em si (Front) em outro, totalizando 3 terminais.
+
 ```bash
 # Entre na pasta
 $ cd .\Back-end\
@@ -37,6 +40,7 @@ $ npm start
 ```
 
 ## Como Rodar o Aplicativo (Front-end)?
+
 ```bash
 # Entre na pasta
 $ cd .\Front-end\
@@ -44,8 +48,8 @@ $ cd .\Front-end\
 # Instale dependências
 $ npm install
 
-# Configurar .env (obs: exemplo do arquivo .env dentro da pasta Front-end do projeto)
-
 # Iniciar:
 $ npx expo start
+
+# Configurar .env (obs: exemplo do arquivo .env dentro da pasta Front-end do projeto)
 ```
