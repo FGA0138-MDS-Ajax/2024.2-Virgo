@@ -1,0 +1,3160 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../documento-arquitetura/Bibliografia/">
+      
+      
+        <link rel="next" href="../relatorio-de-testagem/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Plano de testes - Documentação Virgo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plano-de-teste-cuidar-verde" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Documentação Virgo" class="md-header__button md-logo" aria-label="Documentação Virgo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentação Virgo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plano de testes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.1 10c1-1 2.4-1.7 3.9-1.9V2h2v6.1c1.5.2 2.9.9 3.9 1.9zm-1.8 3c-.2.6-.3 1.3-.3 2 0 3.9 3.1 7 7 7s7-3.1 7-7c0-.7-.1-1.4-.3-2z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 8.08V2h-2v6.08c-3.39.49-6 3.39-6 6.92 0 3.87 3.13 7 7 7s7-3.13 7-7c0-3.53-2.61-6.43-6-6.92M12 20c-2.76 0-5-2.24-5-5 0-1.13.39-2.16 1.03-3h7.94c.64.84 1.03 1.87 1.03 3 0 2.76-2.24 5-5 5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Página Inicial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../documento-visao/visao-geral-produto/" class="md-tabs__link">
+          
+  
+  Documento de Visão
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../documento-arquitetura/Representa%C3%A7%C3%A3o-Arquitetural/" class="md-tabs__link">
+          
+  
+  Documento de Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Documento de Plano de Testes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../documento-datasets/datasets/" class="md-tabs__link">
+        
+  
+    
+  
+  Documento dos Datasets
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../atas-reuniao/cliente/ata-reuniao-1/" class="md-tabs__link">
+          
+  
+  Atas de reuniao
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentação Virgo" class="md-nav__button md-logo" aria-label="Documentação Virgo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentação Virgo
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Página Inicial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Documento de Visão
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/visao-geral-produto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do Produto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/visao-geral-projeto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral do Projeto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/processo-dev-software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Processo de Desenvolvimento de Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/declara%C3%A7%C3%A3o-escopo-projeto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Declaração de Escopo do Projeto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Documento de Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Representa%C3%A7%C3%A3o-Arquitetural/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Representação Arquitetural
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Metas-e-retri%C3%A7%C3%B5es-arquiteturais/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metas e Retrições Arquiteturais
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Vis%C3%A3o-de-Casos-de-uso/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão de Casos de uso (escopo do produto)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Vis%C3%A3o-l%C3%B3gica/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Lógica
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Vis%C3%A3o-de-Implementa%C3%A7%C3%A3o/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão de Implementação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Regras-de-neg%C3%B3cio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Regras de negócio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Vis%C3%A3o-de-implanta%C3%A7%C3%A3o/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão de implantação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/Bibliografia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bibliografia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Documento de Plano de Testes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Plano de testes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Plano de testes
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-definicoes-preliminares" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Definições preliminares
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-requisitos-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Requisitos do Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tipos-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Tipos de Testes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Testes Unitários
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Testes de Integração
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-testes-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Testes de Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cobertura-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Cobertura dos Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cobertura dos Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-o-que-sera-testado" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 O que será Testado:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 O que será Testado:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes Unitários:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Integração:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-o-que-nao-sera-testado" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 O que não será Testado:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 O que não será Testado:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes De Sistema:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-sistema_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-metodologia-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Metodologia de Teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Metodologia de Teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-planejamento-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Planejamento dos Testes:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-unitario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes Unitário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-integracao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Integração
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#casos-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Casos de Teste
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-sistema_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ambiente-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Ambiente de Teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Ambiente de Teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Introdução
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-ferramentas-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Ferramentas Utilizadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-criterios-de-aceitacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 Critérios de Aceitação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4 Critérios de Aceitação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#741-criterios-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4.1 Critérios Funcionais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#742-criterios-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4.2 Critérios Não Funcionais
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-riscos-e-mitigacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 Riscos e Mitigações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 Riscos e Mitigações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#751-riscos-operacionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5.1 Riscos Operacionais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#752-riscos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5.2 Riscos de Uso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-estrategia-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.6 Estratégia de Teste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../relatorio-de-testagem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relatório de Testagem LSX_v2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-datasets/datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento dos Datasets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de reuniao
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de reuniao
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cliente
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Cliente
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 9
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/cliente/ata-reuniao-10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 10
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Equipe
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Equipe
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/equipe/ata-reuniao-1-equipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/equipe/ata-reuniao-2-equipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/equipe/ata-reuniao-3-equipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/equipe/ata-reuniao-4-equipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/equipe/ata-reuniao-5-equipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/heatmap/heatMap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Heat Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-definicoes-preliminares" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Definições preliminares
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-requisitos-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Requisitos do Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tipos-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Tipos de Testes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Testes Unitários
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Testes de Integração
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-testes-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Testes de Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cobertura-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Cobertura dos Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cobertura dos Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-o-que-sera-testado" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 O que será Testado:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 O que será Testado:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes Unitários:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Integração:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-o-que-nao-sera-testado" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 O que não será Testado:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 O que não será Testado:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes De Sistema:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-sistema_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-metodologia-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Metodologia de Teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Metodologia de Teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-planejamento-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Planejamento dos Testes:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-unitario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes Unitário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-integracao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Integração
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#casos-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Casos de Teste
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-sistema_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Sistema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ambiente-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Ambiente de Teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Ambiente de Teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Introdução
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-ferramentas-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Ferramentas Utilizadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-criterios-de-aceitacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 Critérios de Aceitação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4 Critérios de Aceitação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#741-criterios-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4.1 Critérios Funcionais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#742-criterios-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4.2 Critérios Não Funcionais
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-riscos-e-mitigacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 Riscos e Mitigações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 Riscos e Mitigações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#751-riscos-operacionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5.1 Riscos Operacionais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#752-riscos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5.2 Riscos de Uso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-estrategia-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.6 Estratégia de Teste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="plano-de-teste-cuidar-verde">Plano de Teste - Cuidar Verde</h1>
+<h2 id="1-introducao"><strong>1. Introdução</strong></h2>
+<p>Este documento apresenta o Plano de Testes do Cuidar Verde, detalhando a abordagem, os tipos de testes, os critérios de aceitação e os recursos necessários para garantir a qualidade e a funcionalidade do aplicativo.</p>
+<h2 id="11-definicoes-preliminares">1.1 Definições preliminares</h2>
+<p>Nessa seção serão definidas terminologias utilizadas ao longo do treinamento</p>
+<ul>
+<li>Unidade de treinamento padrão: a unidade de treinamento padrão utilizada nos modelos da equipe virgo utilizam 100 épocas de 150 imagens de um dataset, com distribuição aproximadamente normalizada entre as labels de cobertura</li>
+<li>Dataset padrão: o dataset padrão utilizado é o le_dataset em sua versão mais atual disponível.</li>
+</ul>
+<h2 id="2-objetivos"><strong>2. Objetivos</strong></h2>
+<p>O objetivo deste documento é definir uma estratégia eficaz de testes, garantindo que o aplicativo atenda aos requisitos funcionais e não funcionais, proporcionando uma experiência confiável e intuitiva aos usuários.</p>
+<h2 id="3-requisitos-do-sistema"><strong>3. Requisitos do Sistema</strong></h2>
+<ul>
+<li><a href="../../documento-visao/declara%C3%A7%C3%A3o-escopo-projeto/">declaração de escopo do projeto</a></li>
+</ul>
+<h2 id="4-tipos-de-testes"><strong>4. Tipos de Testes</strong></h2>
+<p>Para garantir a cobertura total do sistema, serão realizados os seguintes testes:</p>
+<h2 id="41-testes-unitarios">4.1 Testes Unitários</h2>
+<p>Os testes unitários visam validar o funcionamento correto de cada componente individualmente. Desenvolvidos por um dos integrantes do projeto, estes testes garantem que funções, classes e módulos operem conforme o esperado antes de serem integrados ao sistema.</p>
+<h2 id="42-testes-de-integracao">4.2 Testes de Integração</h2>
+<p>Os testes de integração serão realizados para verificar a comunicação entre diferentes módulos do sistema. O objetivo é garantir que os componentes interajam corretamente, evitando falhas na troca de informações entre partes distintas da aplicação.</p>
+<h2 id="43-testes-de-sistema">4.3 Testes de Sistema</h2>
+<p>Os testes de sistema cobrem o funcionamento do sistema tal como o usuário final utilizaria. Tais testes tem como objetivo garantir o funcionamento do produto final segundo as especificações e requisitos levantados ao longo do projeto e validados pelo cliente.</p>
+<h2 id="5-cobertura-dos-testes"><strong>5. Cobertura dos Testes</strong></h2>
+<h3 id="51-o-que-sera-testado"><strong>5.1 O que será Testado:</strong></h3>
+<h4 id="testes-unitarios"><strong>Testes Unitários:</strong></h4>
+<p><strong>Tela Login:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar CRUD login.</li>
+</ul>
+<p><strong>Tela Cadastro:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar CRUD cadastro.</li>
+</ul>
+<p><strong>Tela Esqueci Minha Senha:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidades esqueci minha senha</li>
+</ul>
+<p><strong>Tela Termos de Uso:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+</ul>
+<p><strong>Tela Política de Privacidade:</strong></p>
+<ul>
+<li>Validar renderização da tela.
+  <strong>Tela Agricultor ou Agrônomo:</strong></li>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidade da seleção de “cargo” do perfil (role)</li>
+</ul>
+<p><strong>Tela selectPlant:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidade seleção da planta</li>
+</ul>
+<p><strong>Tela Perfil:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidade Alterar senha</li>
+<li>Validar funcionalidade Sair</li>
+</ul>
+<p><strong>Tela Welcome</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+</ul>
+<p><strong>Tela Histórico:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidade seleção de histórico</li>
+</ul>
+<p><strong>Tela Instruções:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidade da tela de instruções.</li>
+</ul>
+<p><strong>Tela Câmera:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidades da câmera</li>
+</ul>
+<p><strong>Tela Diagnóstico:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+</ul>
+<p><strong>Tela Avaliação:</strong></p>
+<ul>
+<li>Validar renderização da tela.</li>
+<li>Validar funcionalidade de avaliação do diagnóstico</li>
+<li>Validar funcionalidade botão de voltar para o menu inicial</li>
+</ul>
+<p><strong>Modelo LSX</strong></p>
+<ul>
+<li>Capacidade de treinamento efetivo</li>
+<li>Capacidade de boa performance de treinamento</li>
+<li>Acurácia resultante de treinamento sob especificação</li>
+<li>Cobertura resultante de treinamento sob especificação</li>
+</ul>
+<h4 id="testes-de-integracao"><strong>Testes de Integração:</strong></h4>
+<p><strong>Api Login</strong></p>
+<p>Validar Token de Login.</p>
+<p><strong>Api Cadastro</strong></p>
+<p>Validar registro de usuário (nome,email,senha,role).</p>
+<p><strong>Api Esqueci minha senha</strong></p>
+<p>Validar atualização da senha.
+Validar envio de nova senha ao email.</p>
+<p><strong>Api Perfil</strong></p>
+<ul>
+<li>Validar requerimento de informações do usuário na tela perfil.</li>
+</ul>
+<p><strong>Api Câmera</strong></p>
+<ul>
+<li>Validar o envio da foto (jpeg).</li>
+</ul>
+<p><strong>Api Imagem</strong></p>
+<ul>
+<li>Validar o tratamento da imagem enviada.</li>
+</ul>
+<p><strong>Api CREA</strong></p>
+<p>Validar se CREA recebido está sendo enviado para a api e está correto/existe.</p>
+<p><strong>Api Avaliação</strong></p>
+<ul>
+<li>Validar se a característica “role” do usuário é Agrônomo.</li>
+<li>Validar disponibilidade do botão de avaliação.</li>
+<li>Validar envio da avaliação.</li>
+</ul>
+<p><strong>Api IA</strong></p>
+<ul>
+<li>Validar recebimento da imagem</li>
+<li>Validar envio da imagem para o backend</li>
+</ul>
+<h3 id="52-o-que-nao-sera-testado"><strong>5.2 O que não será Testado:</strong></h3>
+<p>Em planejamento, está em andamento para o máximo de funcionalidades serem testadas. Até o momento boa parte foi finalizada, e algumas funcionalidades são testadas por testes específicos, ou seja, funcionalidades testadas mas não por todos os testes.</p>
+<h4 id="testes-de-sistema"><strong>Testes De Sistema:</strong></h4>
+<h2 id="testes-de-sistema_1">Testes de Sistema</h2>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cadastro de Usuário</strong></td>
+<td>C01: Preenchimento correto do formulário</td>
+<td>O usuário preenche corretamente os campos obrigatórios</td>
+<td>Quando clicar no botão "Cadastrar". Então o sistema deve criar a conta e exibir mensagem de sucesso.</td>
+</tr>
+<tr>
+<td></td>
+<td>C02: Campos obrigatórios vazios</td>
+<td>O usuário não preenche todos os campos obrigatórios.</td>
+<td>Quando clicar em "Cadastrar". Então o sistema deve impedir o cadastro e exibir mensagem de erro.</td>
+</tr>
+<tr>
+<td></td>
+<td>C03: Senhas não coincidem</td>
+<td>O usuário preenche campos de senha e confirmação com valores diferentes.</td>
+<td>Quando clicar em "Cadastrar". Então o sistema deve impedir o cadastro e exibir mensagem de erro.</td>
+</tr>
+<tr>
+<td><strong>Login de Usuário</strong></td>
+<td>C01: Login com credenciais corretas</td>
+<td>Dado que o usuário insere e-mail e senha corretos</td>
+<td>Quando clicar no botão "Entrar". Então o sistema deve permitir o login.</td>
+</tr>
+<tr>
+<td></td>
+<td>C02: Login com credenciais incorretas</td>
+<td>Dado que o usuário insere e-mail ou senha incorretos</td>
+<td>Quando clicar em "Entrar". Então o sistema deve impedir o login e exibir mensagem de erro.</td>
+</tr>
+<tr>
+<td><strong>Recuperação de Senha</strong></td>
+<td>C01: Solicitação de recuperação</td>
+<td>Dado que o usuário esqueceu a senha</td>
+<td>Quando clicar em "Recuperar senha" e inserir o e-mail. Então o sistema deve enviar um token para o e-mail.</td>
+</tr>
+<tr>
+<td></td>
+<td>C02: Inserção correta do token</td>
+<td>Dado que o usuário recebeu o token e o insere corretamente</td>
+<td>Quando criar uma nova senha. Então o sistema deve redefinir a senha e permitir login.</td>
+</tr>
+<tr>
+<td><strong>Sair da Conta</strong></td>
+<td>C01: Usuário encerra sessão</td>
+<td>Dado que o usuário acessou o menu de perfil</td>
+<td>Então o sistema deve encerrar a sessão e voltar para a tela de login.</td>
+</tr>
+<tr>
+<td><strong>Seleção de Planta para Diagnóstico</strong></td>
+<td>C01: Usuário seleciona planta corretamente</td>
+<td>Dado que o usuário acessa a funcionalidade de diagnóstico</td>
+<td>Quando escolher uma planta existente. Então o sistema deve prosseguir para a etapa de captura de foto.</td>
+</tr>
+<tr>
+<td><strong>Identificação de Doença por Foto</strong></td>
+<td>C01: Captura de imagem</td>
+<td>Dado que o usuário tira uma foto</td>
+<td>Quando a imagem for carregada. Então o sistema deve analisá-la corretamente.</td>
+</tr>
+<tr>
+<td></td>
+<td>C02: Seleção de imagem</td>
+<td>Dado que o usuário seleciona uma foto da galeria</td>
+<td>Quando a imagem for carregada. Então o sistema deve analisá-la corretamente.</td>
+</tr>
+<tr>
+<td><strong>Histórico de Plantas</strong></td>
+<td>C01: Visualização do histórico</td>
+<td>Dado que o usuário acessa o histórico</td>
+<td>Quando houver registros de diagnósticos anteriores. Então o sistema deve exibir as últimas 10 imagens analisadas.</td>
+</tr>
+<tr>
+<td><strong>Aviso de Foto com Problema</strong></td>
+<td>C01: Foto com baixa qualidade</td>
+<td>Dado que o usuário envia uma foto tremida ou desfocada</td>
+<td>Quando a análise for realizada. Então o sistema deve exibir um aviso solicitando uma nova foto.</td>
+</tr>
+<tr>
+<td></td>
+<td>C02: Foto sem planta</td>
+<td>Dado que o usuário tira foto de um objeto irrelevante</td>
+<td>Quando enviar para análise. Então o sistema deve rejeitar a imagem e informar o motivo.</td>
+</tr>
+<tr>
+<td><strong>Instruções para Captura</strong></td>
+<td>C01: Exibição de instruções antes da foto</td>
+<td>Dado que o usuário acessa a câmera para diagnóstico</td>
+<td>Quando a tela for exibida. Então o sistema deve apresentar dicas visuais e textuais para captura.</td>
+</tr>
+<tr>
+<td><strong>Guia para Enquadramento</strong></td>
+<td>C01: Exibição de moldura</td>
+<td>Dado que o usuário acessa a câmera</td>
+<td>Quando a tela for carregada. Então o sistema deve exibir um guia de enquadramento.</td>
+</tr>
+<tr>
+<td><strong>Tirar Foto Novamente</strong></td>
+<td>C01: Solicitação de nova foto</td>
+<td>Dado que a primeira imagem foi rejeitada</td>
+<td>Quando o usuário for notificado. Então o sistema deve solicitar uma nova captura.</td>
+</tr>
+<tr>
+<td><strong>Feedback do Agrônomo</strong></td>
+<td>C01: Envio de feedback</td>
+<td>Dado que um usuário agrônomo recebe o diagnóstico da doença da planta, ele pode enviar um feedback</td>
+<td>Quando ele registrar um feedback positivo ou negativo. Então o sistema deve armazenar a resposta para melhoria da IA.</td>
+</tr>
+<tr>
+<td><strong>Análise de Imagens</strong></td>
+<td>C01: Identificação de doença</td>
+<td>Dado que o usuário envia uma foto para diagnóstico</td>
+<td>Quando a imagem for enviada para a IA. Então o sistema deve retornar um diagnóstico com 85% de precisão.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-metodologia-de-teste"><strong>6 Metodologia de Teste</strong></h2>
+<h3 id="61-planejamento-dos-testes"><strong>6.1 Planejamento dos Testes:</strong></h3>
+<p>Os testes foram estruturados com base na divisão dos integrantes em três áreas específicas: Inteligência Artificial (IA), Frontend e Backend. Cada equipe será responsável por testar e validar as funcionalidades dentro de sua respectiva área, assegurando que o aplicativo atenda aos requisitos de qualidade e desempenho esperados, com cada teste separado por nome e descrição, conforme as telas e funcionalidades a serem testadas, garantindo uma estrutura clara e acessível para futuras consultas e manutenções.</p>
+<h2 id="testes-unitario">Testes Unitário</h2>
+<table>
+<thead>
+<tr>
+<th>Código de caso de teste (CT-X)</th>
+<th>User Stories (US-X) associadas (se existentes)</th>
+<th>Funcionalidade</th>
+<th>Objetivos do Teste</th>
+<th>Passos do teste</th>
+<th>Critérios de aceitação</th>
+<th>esse teste ja foi feito?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CT-02</td>
+<td>US-01</td>
+<td>Validar Funcionalidade botão "Criar conta"</td>
+<td>Garantir que o botão "Criar conta" da tela "Ja tenho conta ou criar conta" funcione corretamente</td>
+<td>1. Abrir o aplicativo 2. Clicar no botão "Criar conta"</td>
+<td>• O usuário deve ser redirecionado para a tela Cadastrar</td>
+<td>não</td>
+</tr>
+<tr>
+<td>CT-04</td>
+<td>US-01</td>
+<td>Validar Funcionalidade botão "Eu sou agrônomo"</td>
+<td>Garantir que o botão "Eu sou agrônomo" da tela "AgricultorOrAgronomo" funcione corretamente</td>
+<td>1. Acessar tela "Criar conta" 2. Clicar no botão "Eu sou Agrônomo"</td>
+<td>• O usuário deve ser redirecionado para tela de cadastro de agrônomos</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>CT-03</td>
+<td>US-01</td>
+<td>Validar Funcionalidade botão "Eu sou agricultor"</td>
+<td>Garantir que o botão "Eu sou agricultor" da tela "AgricultorOrAgronomo" funcione corretamente</td>
+<td>1. Acessar tela "Criar conta" 2. Clicar no botão "Eu sou Agricultor"</td>
+<td>• O usuário deve ser redirecionado para tela de cadastro de agricultores</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-05</td>
+<td>US-01</td>
+<td>Validar CREA Cadastro Agricultor</td>
+<td>Garantir que o formulário da tela "registerAgricultor" funcione corretamente</td>
+<td>1. Acessar tela "Cadastro" com o cargo de agricultor 2. Preencher campos "Nome","Email","Senha","Confirmar senha" 3. Clicar no botão checkbox "Ao criar uma conta você concorda com os Termos de Serviço, incluindo nossa Política de Privacidade" 4. Clicar no botão "Cadastrar"</td>
+<td>• Após os passos descritos, o usuário é cadastrado no sistema e redirecionado a tela de "welcome".</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>CT-06</td>
+<td>US-01</td>
+<td>Validar CREA Cadastro Agrônomo</td>
+<td>Garantir que o formulário da tela "registerAgronomo" funcione corretamente</td>
+<td>1. Acessar tela "Cadastro" com o cargo de agrônomo 2. Preencher campos "Nome","Email","CREA","Senha","Confirmar senha" 3. Clicar no botão checkbox "Ao criar uma conta você concorda com os Termos de Serviço, incluindo nossa Política de Privacidade" 4. Clicar no botão "Cadastrar"</td>
+<td>• Após os passos descritos, o usuário é cadastrado no sistema, redirecionado para a tela de "welcome" e logo após redirecionado para a tela de "Login"</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>CT-01</td>
+<td>US-02</td>
+<td>Validar Funcionalidade botão "Já tenho conta"</td>
+<td>Garantir que o botão "Já tenho conta" da tela "Ja tenho conta ou criar conta" funcione corretamente</td>
+<td>1. Abrir o aplicativo 2. Clicar no botão "Já tenho conta"</td>
+<td>• O usuário deve ser redirecionado para a tela Login</td>
+<td>não</td>
+</tr>
+<tr>
+<td>CT-07</td>
+<td>US-02</td>
+<td>Validar CREA Login</td>
+<td>Garantir que o formulário da tela "Login" funcione corretamente</td>
+<td>1. Acessar tela "Login" 2. Preencher campos “Email” 3. Preencher campo “Senha” 4. Clicar no botão “Entrar”</td>
+<td>• Após os passos descritos, o usuário deve logar no sistema e ser redirecionado para a interface principal do aplicativo ("/tabs").</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>CT-08</td>
+<td>US-03</td>
+<td>Validar funcionalidade de Esqueci minha senha</td>
+<td>Garantir que o token de recuperação seja gerado</td>
+<td>1. Acessar tela de “Login” 2. Pressionar o botão “Esqueci minha senha” 3. Inserir email da conta.</td>
+<td>• Após os passos descritos, deve aparecer a mensagem “foi enviado ao email um token de acesso”</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-17</td>
+<td>US-03</td>
+<td>Processo de redefinição de senha</td>
+<td>Garantir que o usuário consiga alterar sua senha com segurança através do perfil, confirmando sua identidade com a senha atual e definindo uma nova senha válida.</td>
+<td>1 - Acessa a área de perfil. 2 - O usuário seleciona a opção “Alterar senha”. 3 - O sistema solicita que o usuário informe a senha atual. 4 - O usuário insere a senha atual e a nova senha. 5 - O usuário confirma a nova senha e envia a solicitação. 6 - O sistema valida a senha atual e verifica se a nova senha atende aos critérios de segurança. 7 - O sistema confirma a alteração da senha.</td>
+<td>• O sistema deve permitir que o usuário altere sua senha através do perfil, exigindo a senha atual para confirmação de identidade. A nova senha deve ser validada de acordo com os critérios de segurança antes da alteração ser concluída. Após a atualização, o sistema deve exibir uma mensagem de confirmação e o usuário deve conseguir acessar normalmente com a nova senha.</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-19</td>
+<td>US-04</td>
+<td>Validar funcionalidade de Sair da conta</td>
+<td>Garantir que o usuário consiga sair da conta</td>
+<td>1 - Acessar tela de Perfil 2 - Clicar no botão "Sair"</td>
+<td>• O usuário deve ter sua conta deslogada do aplicativo e deve ser redirecionado para a tela de Login</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-10</td>
+<td>US-06</td>
+<td>Validar Funcionalidade botão “Selecionar Planta”</td>
+<td>Garantir que o botão “Selecionar Planta” da tela “Home” funciona corretamente</td>
+<td>1. Acessar tela “Home” 2. Clicar no botão “Selecionar Plantar”</td>
+<td>• O usuário deve ser redirecionado para a tela selectPlant</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-11</td>
+<td>US-06</td>
+<td>Validar Funcionalidades da tela selectPlant</td>
+<td>Garantir que os botões de plantas funcionam corretamente</td>
+<td>1. Acessar tela "selectPlant" 2. Clicar em um botão de planta</td>
+<td>• O usuário deve ser redirecionado para tela de seleção de instruções e o plant_type deve ser definido pelo nome da planta selecionada</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-13</td>
+<td>US-06 US-07</td>
+<td>Validar Funcionalidades da câmera</td>
+<td>Garantir que os botões da câmera funcionam corretamente</td>
+<td>1. Acessar tela "camera" 2. Clicar nos botões de virar a câmera, flash e de tirar a foto</td>
+<td>• O usuário deve poder visualizar uma tela de opção entre descartar ou enviar a foto tirada.</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-16</td>
+<td>US-08</td>
+<td>Exibição do histórico de diagnósticos</td>
+<td>Garantir que o usuário consiga acessar e visualizar corretamente o histórico de diagnósticos, com todas as informações registradas, incluindo imagem enviada e resultado da análise.</td>
+<td>1 - O usuário acessa a funcionalidade de histórico de diagnósticos. 2 - O sistema exibe uma lista com os diagnósticos já realizados. 3 - O usuário seleciona um diagnóstico para visualizar os detalhes. 4 - O sistema exibe as informações do diagnóstico, incluindo a imagem enviada e o resultado da análise.</td>
+<td>• O sistema deve permitir que o usuário acesse o histórico de diagnósticos e visualize todas as análises registradas.</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-12</td>
+<td>US-11 US-12</td>
+<td>Validar Funcionalidades da tela Instruções</td>
+<td>Garantir que a tela de instruções funciona corretamente</td>
+<td>1. Acessar tela “Instruções” 2. Clicar no botão central</td>
+<td>• O usuário deve percorrer a tela de instrução completamente e depois ser redirecionado a tela de câmera</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-18</td>
+<td>US-14</td>
+<td>Exibição da opção de avaliação após o diagnóstico</td>
+<td>Garantir que, após receber o diagnóstico, o usuário visualize a opção de avaliação e consiga registrar sua opinião selecionando entre as opções "Bom" ou "Ruim".</td>
+<td>1- O usuário envia uma imagem para análise. 2 - O sistema processa a imagem e exibe o diagnóstico. 3 - Após a exibição do diagnóstico, o sistema apresenta a pergunta: "Gostaria de fazer uma avaliação?" 4 - O usuário pode escolher entre as opções "Bom" ou "Ruim". 5 - O sistema registra a avaliação do usuário.</td>
+<td>• Após a exibição do diagnóstico, o sistema deve apresentar ao usuário a pergunta "Gostaria de fazer uma avaliação?" com as opções "Bom" ou "Ruim". O usuário deve conseguir selecionar uma das opções, e o sistema deve registrar a escolha corretamente.</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-14</td>
+<td></td>
+<td>Validar a opção de descarte da imagem.</td>
+<td>Garantir que a tela de validação funciona corretamente.</td>
+<td>1 - Clicar no botão “Descartar foto” ou clicar no botão “Usar foto”</td>
+<td>• Caso o usuário escolher descartar, a imagem não deve ser armazenada e o usuário será redirecionado para a tela de câmera novamente. Se escolher usar a foto, a imagem deve ser salva no sistema e o usuário redirecionado a tela de diagnóstico</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-09</td>
+<td></td>
+<td>Validar Funcionalidade dos botões de navegação (tabs)</td>
+<td>Garantir que os botões de navegação funcionam corretamente</td>
+<td>1. Logar no aplicativo 2. Clicar em um botão de navegação (Histórico, Home, Perfil)</td>
+<td>• Após os passos descritos, o usuário deve ser redirecionado a respectiva tela selecionada.</td>
+<td></td>
+</tr>
+<tr>
+<td>CT-XX</td>
+<td>US-19</td>
+<td>Avaliar cobertura e acurácia da arquitetura modelo resultante do treinamento</td>
+<td>Testar se arquitetura do modelo possui cobertura sob especificação</td>
+<td>1. Utilizando o script de testes, carregar o modelo treinado. Utilizar scripts e modelos mais recentes. 2. Carregar conjunto de dados de teste diferente do le dataset, que foi utilizado para treinamento. 3. Para cada conjunto de dados de teste, avaliar a acurácia do modelo para o conjunto.</td>
+<td>• O modelo deve possuir 85% de acurácia para cada conjunto de dados de teste • O modelo deve possuir suporte a pelo menos 80 labels.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="testes-de-integracao_1">Testes de Integração</h2>
+<h2 id="casos-de-teste">Casos de Teste</h2>
+<table>
+<thead>
+<tr>
+<th>Código de Caso de Teste</th>
+<th>Funcionalidade</th>
+<th>Objetivos do Teste</th>
+<th>Passos do Teste</th>
+<th>Critérios de Aceitação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CT-01</td>
+<td>Validação do Token de Login</td>
+<td>Garantir que, após o login, o sistema gere um token válido para autenticação do usuário.</td>
+<td>1 - Acessar a tela de login. <br> 2 - Inserir credenciais válidas. <br> 3 - O sistema autentica o usuário e gera um token. <br> 4 - O sistema retorna o token na resposta da API.</td>
+<td>O sistema deve retornar um token válido na resposta da API. <br> O token deve permitir o acesso a funcionalidades restritas.</td>
+</tr>
+<tr>
+<td>CT-02</td>
+<td>Registro de Usuário na API de Cadastro</td>
+<td>Garantir que um usuário possa se cadastrar corretamente no sistema.</td>
+<td>1 - Acessar a tela de cadastro. <br> 2 - Inserir nome, e-mail, senha e role. <br> 3 - O sistema processa os dados e cria o usuário. <br> 4 - O usuário recebe uma confirmação de cadastro.</td>
+<td>O sistema deve criar o usuário corretamente no banco de dados. <br> O sistema deve retornar uma resposta de sucesso.</td>
+</tr>
+<tr>
+<td>CT-03</td>
+<td>Recuperação de Senha via API</td>
+<td>Garantir que um usuário possa redefinir sua senha corretamente.</td>
+<td>1 - Acessar a tela de recuperação de senha. <br> 2 - Inserir o e-mail cadastrado. <br> 3 - O sistema envia um link de redefinição de senha. <br> 4 - O usuário redefine a senha e faz login.</td>
+<td>O sistema deve enviar um e-mail com o link de redefinição. <br> O usuário deve conseguir redefinir a senha e acessar o sistema.</td>
+</tr>
+<tr>
+<td>CT-04</td>
+<td>Requisição de Dados do Perfil</td>
+<td>Garantir que a API retorne corretamente os dados do usuário.</td>
+<td>1 - O usuário acessa a tela de perfil. <br> 2 - O sistema solicita os dados à API. <br> 3 - A API retorna os dados do usuário. <br> 4 - O sistema exibe os dados na interface.</td>
+<td>A API deve retornar os dados corretos do usuário. <br> O sistema deve exibir as informações corretamente.</td>
+</tr>
+<tr>
+<td>CT-05</td>
+<td>Envio de Foto via API da Câmera</td>
+<td>Garantir que o usuário possa capturar e enviar uma imagem corretamente.</td>
+<td>1 - O usuário acessa a tela da câmera. <br> 2 - O usuário captura ou seleciona uma imagem. <br> 3 - O usuário envia a imagem para a API. <br> 4 - O sistema processa a imagem e retorna um status.</td>
+<td>A imagem deve ser enviada corretamente para a API. <br> A API deve processar a imagem e retornar um status de sucesso.</td>
+</tr>
+<tr>
+<td>CT-06</td>
+<td>Tratamento da Imagem na API</td>
+<td>Garantir que a API processe a imagem corretamente antes da análise.</td>
+<td>1 - O usuário envia uma imagem para análise. <br> 2 - A API recebe e processa a imagem. <br> 3 - O sistema verifica se a imagem está no formato correto. <br> 4 - O sistema retorna a imagem processada.</td>
+<td>A API deve processar a imagem corretamente. <br> Se houver erro no formato, o sistema deve informar o usuário.</td>
+</tr>
+<tr>
+<td>CT-07</td>
+<td>Validação do CREA na API</td>
+<td>Garantir que o CREA enviado seja validado corretamente.</td>
+<td>1 - O usuário insere seu CREA. <br> 2 - O sistema envia o CREA para validação. <br> 3 - A API verifica se o CREA é válido. <br> 4 - O sistema exibe o resultado da validação.</td>
+<td>Se o CREA for válido, o usuário pode prosseguir. <br> Se o CREA for inválido, o sistema deve exibir um erro.</td>
+</tr>
+<tr>
+<td>CT-08</td>
+<td>Envio e Validação da Avaliação</td>
+<td>Garantir que um agrônomo possa avaliar corretamente um diagnóstico.</td>
+<td>1 - O usuário acessa a tela de avaliação. <br> 2 - O sistema verifica se o usuário tem permissão para avaliar. <br> 3 - O usuário preenche e envia a avaliação. <br> 4 - O sistema armazena a avaliação.</td>
+<td>Apenas usuários com a role "Agrônomo" podem avaliar. <br> O sistema deve armazenar corretamente a avaliação.</td>
+</tr>
+<tr>
+<td>CT-09</td>
+<td>Envio de Imagem para a API de IA</td>
+<td>Garantir que a API de IA receba corretamente a imagem enviada pelo backend.</td>
+<td>1 - O usuário captura ou seleciona uma imagem. <br> 2 - O backend envia a imagem para a API de IA. <br> 3 - A API recebe e armazena temporariamente a imagem. <br> 4 - A API retorna um status de sucesso ou erro.</td>
+<td>A API deve receber a imagem corretamente. <br> Se houver erro no envio, o sistema deve retornar uma mensagem apropriada.</td>
+</tr>
+<tr>
+<td>CT-10</td>
+<td>Retorno do Diagnóstico para o Backend</td>
+<td>Garantir que a API de IA envie corretamente o resultado da análise ao backend.</td>
+<td>1 - A IA conclui o processamento da imagem. <br> 2 - A API envia o resultado da análise ao backend. <br> 3 - O backend recebe e armazena os dados. <br> 4 - O sistema exibe o diagnóstico para o usuário.</td>
+<td>O backend deve receber corretamente os dados processados pela IA. <br> O diagnóstico deve ser exibido corretamente na interface do usuário. <br> Se a IA não conseguir processar a imagem, uma mensagem de erro clara deve ser exibida.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="testes-de-sistema_2">Testes de Sistema</h2>
+<p><strong>Cadastro de Usuário</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cadastro de Usuário</td>
+<td>Cenário 01: Preenchimento correto do formulário</td>
+<td>O usuário preenche corretamente os campos obrigatórios.</td>
+<td>Quando clicar no botão "Cadastrar". Então o sistema deve criar a conta e exibir mensagem de sucesso.</td>
+</tr>
+<tr>
+<td></td>
+<td>Cenário 02: Campos obrigatórios vazios</td>
+<td>O usuário não preenche todos os campos obrigatórios.</td>
+<td>Quando clicar em "Cadastrar". Então o sistema deve impedir o cadastro e exibir mensagem de erro.</td>
+</tr>
+<tr>
+<td></td>
+<td>Cenário 03: Senhas não coincidem</td>
+<td>O usuário preenche campos de senha e confirmação com valores diferentes.</td>
+<td>Quando clicar em "Cadastrar". Então o sistema deve impedir o cadastro e exibir mensagem de erro.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Login de Usuário</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login de Usuário</td>
+<td>Cenário 01: Login com credenciais corretas</td>
+<td>Dado que o usuário insere e-mail e senha corretos</td>
+<td>Quando clicar no botão "Entrar". Então o sistema deve permitir o login.</td>
+</tr>
+<tr>
+<td></td>
+<td>Cenário 02: Login com credenciais incorretas</td>
+<td>Dado que o usuário insere e-mail ou senha incorretos</td>
+<td>Quando clicar em "Entrar". Então o sistema deve impedir o login e exibir mensagem de erro</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recuperação de Senha</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recuperação de Senha</td>
+<td>Cenário 01: Solicitação de recuperação</td>
+<td>Dado que o usuário esqueceu a senha</td>
+<td>Quando clicar em "Recuperar senha" e inserir o e-mail. Então o sistema deve enviar um token para o e-mail.</td>
+</tr>
+<tr>
+<td></td>
+<td>Cenário 02: Inserção correta do Token</td>
+<td>Dado que o usuário recebeu o token e o insere corretamente</td>
+<td>Quando criar uma nova senha. Então o sistema deve redefinir a senha e permitir login</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sair da Conta</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sair da Conta</td>
+<td>Cenário 01: Usuário encerra sessão</td>
+<td>Dado que o usuário acessou o menu de perfil</td>
+<td>Então o sistema deve encerrar a sessão e voltar para a tela de login</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Seleção de Planta para Diagnóstico</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seleção de Planta para Diagnóstico</td>
+<td>Cenário 01: Usuário seleciona planta corretamente</td>
+<td>Dado que o usuário acessa a funcionalidade de diagnóstico</td>
+<td>Quando escolher uma planta existente. Então o sistema deve prosseguir para a etapa de captura de foto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Identificação de Doença por Foto</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identificação de Doença por Foto</td>
+<td>Cenário 01: Captura de imagem</td>
+<td>Dado que o usuário tira uma foto</td>
+<td>Quando a imagem for carregada. Então o sistema deve analisá-la corretamente.</td>
+</tr>
+<tr>
+<td></td>
+<td>Cenário 02: Seleção de imagem</td>
+<td>Dado que o usuário seleciona uma foto da galeria</td>
+<td>Quando a imagem for carregada. Então o sistema deve analisá-la corretamente.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Histórico de Plantas</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Histórico de Plantas</td>
+<td>Cenário 01: Visualização do histórico</td>
+<td>Dado que o usuário acessa o histórico</td>
+<td>Quando houver registros de diagnósticos anteriores. Então o sistema deve exibir as últimas 10 imagens analisadas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aviso de Foto com Problema</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aviso de Foto com Problema</td>
+<td>Cenário 01: Foto com baixa qualidade</td>
+<td>Dado que o usuário envia uma foto tremida ou desfocada</td>
+<td>Quando a análise for realizada. Então o sistema deve exibir um aviso solicitando uma nova foto.</td>
+</tr>
+<tr>
+<td></td>
+<td>Cenário 02: Foto sem planta</td>
+<td>Dado que o usuário tira foto de um objeto irrelevante</td>
+<td>Quando enviar para análise. Então o sistema deve rejeitar a imagem e informar o motivo.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Instruções para Captura</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instruções para Captura</td>
+<td>Cenário 01: Exibição de instruções antes da foto</td>
+<td>Dado que o usuário acessa a câmera para diagnóstico</td>
+<td>Quando a tela for exibida. Então o sistema deve apresentar dicas visuais e textuais para captura.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Guia para Enquadramento</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guia para Enquadramento</td>
+<td>Cenário 01: Exibição de moldura</td>
+<td>Dado que o usuário acessa a câmera</td>
+<td>Quando a tela for carregada. Então o sistema deve exibir guia de enquadramento</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tirar Foto Novamente</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tirar Foto Novamente</td>
+<td>Cenário 01: Solicitação de nova foto</td>
+<td>Dado que a primeira imagem foi rejeitada</td>
+<td>Quando o usuário for notificado. Então o sistema deve solicitar uma nova captura</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Feedback do Agrônomo</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feedback do Agrônomo</td>
+<td>Cenário 01: Envio de feedback</td>
+<td>Dado que um usuário agrônomo recebe o diagnóstico da doença da planta, ele pode enviar um feedback</td>
+<td>Quando ele registrar um feedback positivo ou negativo. Então o sistema deve armazenar a resposta para melhoria da IA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análise de Imagens</strong></p>
+<table>
+<thead>
+<tr>
+<th>Funcionalidade</th>
+<th>Cenário</th>
+<th>Descrição</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Análise de Imagens</td>
+<td>Cenário 01: Identificação de doença</td>
+<td>Dado que o usuário envia uma foto para diagnóstico</td>
+<td>Quando a imagem for enviada para a IA. Então o sistema deve retornar um diagnóstico com 85% de precisão</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-ambiente-de-teste"><strong>7 Ambiente de Teste</strong></h2>
+<h3 id="71-introducao"><strong>7.1 Introdução</strong></h3>
+<p>O plano de testes do projeto Cuidar Verde tem como objetivo garantir a funcionalidade, usabilidade e confiabilidade do sistema, que é desenvolvido com foco em identificar doenças em plantas por meio de fotografias capturadas por agricultores. A plataforma utiliza inteligência artificial para análise das imagens e fornece diagnósticos precisos, que podem ser validados por agrônomos através de feedbacks. Este documento detalha o ambiente de teste, critérios de aceitação, riscos e mitigações, e a estratégia adotada para validar o sistema.</p>
+<p>A abordagem de testes foi projetada para abranger todos os aspectos do sistema, incluindo o frontend (React Native), o backend (Nest.js), a inteligência artificial (TensorFlow), e o banco de dados (PostgreSQL). O Jest será o framework unificado para execução de testes em todas as camadas do sistema, promovendo consistência e eficiência.</p>
+<h3 id="72-ferramentas-utilizadas"><strong>7.2 Ferramentas Utilizadas</strong></h3>
+<p>O projeto foi desenvolvido utilizando as seguintes ferramentas tecnológicas:</p>
+<ul>
+<li>Expo: Para desenvolvimento e testes do frontend.</li>
+<li>Node.js: Base para o ambiente de desenvolvimento.</li>
+<li>React Native: Framework principal para a criação do aplicativo móvel.</li>
+<li>Nest.js: Estrutura backend para gestão de lógica de negócios.</li>
+<li>TensorFlow: Biblioteca de IA para criação e treinamento do modelo.</li>
+<li>PostgreSQL: Banco de dados para persistência de informações.</li>
+<li>Jest: Framework de testes para backend e frontend.</li>
+</ul>
+<h3 id="74-criterios-de-aceitacao"><strong>7.4 Critérios de Aceitação</strong></h3>
+<h4 id="741-criterios-funcionais"><strong>7.4.1 Critérios Funcionais</strong></h4>
+<p><strong>Testes Unitários:</strong></p>
+<ul>
+<li>
+<p>Todos os métodos das classes (Model, Controller e View) devem passar sem erros.</p>
+</li>
+<li>
+<p>A IA deve retornar diagnósticos com pelo menos 85% de precisão.</p>
+</li>
+<li>
+<p>As validações de entrada de dados devem rejeitar imagens não relacionadas a plantas.</p>
+</li>
+</ul>
+<p><strong>Testes de Integração:</strong></p>
+<ul>
+<li>As interações entre os módulos devem funcionar corretamente, com dados sendo gravados e lidos do banco de dados.</li>
+<li>O fluxo de imagens capturadas e processadas pela IA deve ser validado.</li>
+</ul>
+<p><strong>Testes de Sistema:</strong></p>
+<ul>
+<li>A interface deve permitir a execução do fluxo completo pelo usuário, desde o cadastro até o diagnóstico.</li>
+<li>A navegação e usabilidade devem ser intuitivas.</li>
+</ul>
+<h4 id="742-criterios-nao-funcionais"><strong>7.4.2 Critérios Não Funcionais</strong></h4>
+<ul>
+<li>O sistema deve responder a diagnósticos em até 3 segundos.</li>
+<li>A interface deve ser responsiva, funcionando em dispositivos Android com especificações mínimas.</li>
+<li>A segurança das credenciais dos usuários deve ser garantida.
+  A configuração do ambiente de teste para o projeto Cuidar Verde segue um conjunto de etapas estruturadas para garantir que os testes sejam executados de forma isolada, consistente e confiável. Abaixo, detalhamos o ambiente e as ferramentas utilizadas:</li>
+</ul>
+<p><strong>Configuração do Ambiente Virtual</strong></p>
+<p>A primeira etapa na preparação do ambiente de teste é a criação de um ambiente virtual isolado, utilizando o Node.js e o gerenciador de pacotes npm. Este isolamento assegura que as dependências do projeto não entrem em conflito com outros pacotes instalados no sistema.</p>
+<ul>
+<li>
+<p><strong>Criação do ambiente virtual:</strong>
+  Um ambiente virtual é configurado com o comando npm init no diretório do projeto, permitindo o gerenciamento independente de dependências.</p>
+</li>
+<li>
+<p><strong>Instalação de Dependências:</strong>
+  As dependências principais do projeto, incluindo Nest.js, React Native, Expo, e Jest, são instaladas via npm e documentadas no arquivo package.json para rastreamento. Outras bibliotecas relevantes para IA, como TensorFlow, também são adicionadas.</p>
+</li>
+</ul>
+<p><strong>Estrutura dos Testes</strong>
+A estrutura dos testes é organizada de forma a permitir a manutenção e escalabilidade do projeto:</p>
+<ul>
+<li>Arquivos -specs:</li>
+</ul>
+<p>O projeto utiliza arquivos -specs, armazenados junto aos arquivos correspondentes. Essa abordagem facilita a organização dos testes, garantindo que cada funcionalidade tenha sua própria cobertura específica.</p>
+<p><strong>Banco de Dados de Teste</strong></p>
+<ul>
+<li>
+<p><strong>Banco de Dados Isolado:</strong>
+  O PostgreSQL é configurado para criar um banco de dados de teste separado, garantindo que os dados de desenvolvimento ou produção não sejam afetados.</p>
+</li>
+<li>
+<p><strong>Configuração Automatizada:</strong>
+  Durante a execução dos testes, o banco de dados de teste é criado automaticamente, e ao final de cada ciclo de testes, ele é destruído para evitar inconsistências.</p>
+</li>
+<li>
+<p><strong>Arquivo de Configuração:</strong>
+  As configurações para o banco de dados de teste são definidas em um arquivo específico (ormconfig.test.json) para separação clara do ambiente de desenvolvimento.</p>
+</li>
+</ul>
+<p><strong>Estrutura Básica de Teste Unitário</strong></p>
+<ul>
+<li>
+<p><strong>Definição das Classes de Teste:</strong>
+  As classes de teste utilizam o framework Jest, configurado para identificar e executar testes com métodos nomeados test_.</p>
+</li>
+<li>
+<p><strong>Métodos de Teste:</strong>
+  Cada método dentro de uma classe realiza uma verificação específica, como validação de entradas e saídas de métodos individuais.</p>
+</li>
+<li>
+<p><strong>Asserções:</strong>
+  São utilizadas as funções expect().toBe(), expect().toEqual() e expect().toThrow() do Jest para garantir que os resultados obtidos sejam consistentes com os esperados.</p>
+</li>
+</ul>
+<p><strong>Testes de Integração</strong></p>
+<ul>
+<li>
+<p><strong>Fluxo de Integração:</strong>
+  Verifica a interação entre o backend (Nest.js), banco de dados (PostgreSQL) e a camada de interface (React Native).</p>
+</li>
+<li>
+<p><strong>Execução das Requisições:</strong>
+  Utiliza bibliotecas como axios para simular requisições HTTP ao backend e verificar respostas.</p>
+</li>
+<li>
+<p><strong>Persistência de Dados:</strong>
+  Testa se os dados são armazenados corretamente no banco de dados e recuperados conforme esperado.</p>
+</li>
+</ul>
+<p><strong>Planejamento Inicial</strong></p>
+<p>Para mitigar riscos no ambiente de teste e evitar comprometimento do banco de dados de produção, todo o planejamento inicial dos testes será executado em uma branch específica denominada test. Essa abordagem assegura que alterações ou falhas durante a execução dos testes não afetem o código principal do projeto.</p>
+<h3 id="75-riscos-e-mitigacoes"><strong>7.5 Riscos e Mitigações</strong></h3>
+<h4 id="751-riscos-operacionais"><strong>7.5.1 Riscos Operacionais</strong></h4>
+<p><strong>Risco 1:</strong> A IA não atingir a precisão mínima de 85%.</p>
+<ul>
+<li><strong>Mitigação:</strong> Re-treinamento contínuo utilizando datasets adicionais e feedbacks coletados.
+  <strong>Risco 2:</strong> Incompatibilidade com dispositivos antigos.</li>
+<li><strong>Mitigação:</strong> Testes extensivos em emuladores e dispositivos reais com especificações mínimas.
+  <strong>Risco 3:</strong> Tamanho da IA compromete a performance dos testes, causando lentidão e dificuldades na análise.</li>
+<li><strong>Mitigação:</strong> Dividir os testes em batches menores e monitorar gráficos de performance, ajustando o modelo para otimizar tempo de resposta.</li>
+</ul>
+<h4 id="752-riscos-de-uso">7.5.2 Riscos de Uso</h4>
+<p><strong>Risco 1:</strong> A IA processa fotos que não são de plantas e fornece diagnósticos incorretos.</p>
+<ul>
+<li><strong>Mitigação:</strong> Implementar validações robustas para detectar se a imagem é de uma planta antes de enviá-la para análise.</li>
+</ul>
+<p><strong>Risco 2:</strong> Agricultores capturarem imagens inadequadas.</p>
+<ul>
+<li><strong>Mitigação:</strong> Incluir tutoriais interativos na interface e mensagens claras sobre como capturar boas imagens.</li>
+</ul>
+<p><strong>Risco 3:</strong> Feedbacks não utilizados corretamente para re-treinamento da IA.</p>
+<ul>
+<li><strong>Mitigação:</strong> Automatizar rotinas de integração e validação de feedbacks no modelo de IA.</li>
+</ul>
+<h3 id="76-estrategia-de-teste">7.6 Estratégia de Teste</h3>
+<p>Os testes serão organizados nas seguintes categorias e etapas:</p>
+<ul>
+<li><strong>Testes Unitários:</strong> Foco na validação isolada de métodos e funções em cada camada do sistema. Para validação dos métodos das classes Model, View e Controller.</li>
+<li><strong>Testes de Integração:</strong> Garantia de que os módulos do sistema interagem corretamente. Para validar a interação entre módulos e persistência de dados.</li>
+<li><strong>Testes de Sistema:</strong> Simulação de fluxos completos do usuário. Para simulação do fluxo completo do usuário.</li>
+</ul>
+<p><strong>Execução dos Testes</strong></p>
+<ul>
+<li>Testes unitários serão executados primeiro, seguidos pelos testes de integração.</li>
+<li>Testes exploratórios serão aplicados para identificar falhas que os scripts não detectam.</li>
+</ul>
+<p><strong>Framework Utilizado</strong></p>
+<p>O <strong>Jest</strong> será o framework principal para todos os testes, tanto no backend quanto no frontend, proporcionando consistência e simplicidade na execução e análise dos resultados.</p>
+<h1 id="10-tabela-de-versionamento"><strong>10. Tabela de Versionamento</strong></h1>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Data</th>
+<th>Descrição da Alteração</th>
+<th>Nome(s) Integrante(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>11/02/2025</td>
+<td>Desenvolvimento do documento de Plano de Testes</td>
+<td>Leonardo Barcellos &amp; Arthur Leite &amp; Ryan Augusto</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>13/02/2025</td>
+<td>Desenvolvimento do Plano de Testes de Sistema</td>
+<td>Pedro Túlio Curvelo Camilo</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../../documento-arquitetura/Bibliografia/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Bibliografia">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Bibliografia
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../relatorio-de-testagem/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Relatório de Testagem LSX_v2">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Relatório de Testagem LSX_v2
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
