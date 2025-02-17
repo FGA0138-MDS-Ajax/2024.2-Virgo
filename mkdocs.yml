@@ -16,7 +16,9 @@ nav:
       - Regras de negócio: "documento-arquitetura/Regras-de-negócio.md"
       - Visão de implantação: "documento-arquitetura/Visão-de-implantação.md"
       - Bibliografia: "documento-arquitetura/Bibliografia.md"
-  - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
+  - Documento de Plano de Testes:
+      - Plano de testes: "documento-plano-testes/documento-plano-testes.md"
+      - Relatório de Testagem LSX_v2: "documento-plano-testes/relatorio-de-testagem.md"
   - Documento dos Datasets: "documento-datasets/datasets.md"
   - Atas de reuniao:
       - Cliente:
