@@ -19,12 +19,21 @@ $ cd .\Back-end\
 
 # Instale dependências
 $ npm install
-# Após configurações de .env, migrate dev e docker compose up:
 
 # Subir container no docker.
+# Instalar o Docker no desktop, logar no Docker utilizando a conta do GitHub e com o Docker do desktop aberto:
+$ docker compose up
+
+$ npx prisma generate
+
+# Configurar .env (obs: exemplo do arquivo .env dentro da pasta Back-end do projeto)
+$ npx prisma migrate dev
 
 # Iniciar servidor:
 $ npm run start:dev
+
+# Se não funcionar tentar:
+$ npm start
 ```
 
 ## Como Rodar o Aplicativo (Front-end)?
@@ -32,10 +41,11 @@ $ npm run start:dev
 # Entre na pasta
 $ cd .\Front-end\
 
+# Instale dependências
+$ npm install
+
+# Configurar .env (obs: exemplo do arquivo .env dentro da pasta Front-end do projeto)
+
 # Iniciar:
 $ npx expo start
 ```
-> **Atenção:**
-> Para conectar o servidor no app (usar os endpoints), é necessário mudar os end-points das páginas .js na pasta Front-end/app, trocando as URLS para seu endereço ip local (endereço que aparece embaixo do QR-CODE), Exemplo: const url = "http://(endereço):3000/api/files/upload";
-
-
