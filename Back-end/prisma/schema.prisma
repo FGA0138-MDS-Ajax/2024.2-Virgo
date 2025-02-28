@@ -8,17 +8,35 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid()) @unique
+  id        String     @id @default(uuid()) @unique
   name      String
-  email     String   @unique
+  email     String     @unique
   password  String
-  role Role
-  createdAt DateTime @default(now())  
-  updatedAt DateTime @updatedAt
+  role      Role
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  Agronomo   Agronomo?   @relation("AgronomoRelation")
+  historico Historico[]
+}
+
+model Agronomo {
+  userId  String @unique
+  user    User   @relation("AgronomoRelation", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  crea    String @unique
+}
+
+model Historico {
+  id          String   @id @default(uuid()) @unique
+  userId      String   
+  diagnostico String
+  dataHora    DateTime @default(now())
+  foto        String   // Caminho ou URL da foto
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 enum Role {
   AGRICULTOR
   AGRONOMO
 }
-

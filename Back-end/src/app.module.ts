@@ -7,10 +7,12 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { MyLoggerModule } from './my-logger/my-logger.module';
 import { AuthModule } from './auth/auth.module';
-
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { FileModule } from './files/files.module';
 @Module({
   imports: [
     DatabaseModule,
+    FileModule,
     UsersModule,
     ThrottlerModule.forRoot([
       {
@@ -31,9 +33,13 @@ import { AuthModule } from './auth/auth.module';
   providers: [
     AppService,
     {
-      provide: APP_GUARD,
-      useClass: ThrottlerGuard,
+        provide: APP_GUARD,
+        useClass: JwtAuthGuard,
     },
+    {
+      provide: APP_GUARD,
+        useClass: ThrottlerGuard,
+      },
   ],
 })
 export class AppModule {}

@@ -3,17 +3,41 @@ import { Prisma } from '@prisma/client';
 import { DatabaseService } from 'src/database/database.service';
 import { NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+
 
 @Injectable()
 export class UsersService {
   constructor(private readonly databaseService: DatabaseService) {}
 
-  async create(createUserDto: Prisma.UserCreateInput) {
-    const user = {
-      ...createUserDto,
-      password: await bcrypt.hash(createUserDto.password, 10),
+  async create(createUserDto: CreateUserDto) {
+    const { crea, role, password, ...rest } = createUserDto;
+    // DESCOMENTAR LINHAS APENAS QUANDO NECESSARIO: LIMITE DE REQUISIÇÕES DA API DE VERIFICAR CREA É 100 POR MÊS
+    // if (role === 'AGRONOMO' && crea) {
+    //  const response = await this.checkCREA(crea);
+    //  if (!response) {
+    //    throw new Error('Invalid CREA');
+    //   }
+    // }
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const data: Prisma.UserCreateInput = {
+      ...rest,
+      password: hashedPassword,
+      role,
+      ...(role === 'AGRONOMO' && crea
+        ? {
+            Agronomo: {
+              create: {
+                crea,
+              },
+            },
+          }
+        : {}),
     };
-    return this.databaseService.user.create({ data: user });
+
+    return this.databaseService.user.create({ data });
   }
 
   async findAll(role?: 'AGRONOMO' | 'AGRICULTOR') {
@@ -29,20 +53,71 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    if (!id) {
+    const user = await this.databaseService.user.findUnique({
+      where: { id },
+      include: { Agronomo: true },
+    });
+
+    if (!user) {
       throw new NotFoundException('User not found');
     }
-    return this.databaseService.user.findUnique({
-      where: {
-        id: id,
-      },
-    });
+
+    return {
+      ...user,
+      crea:
+        user.role === 'AGRONOMO' && user.Agronomo
+          ? user.Agronomo.crea
+          : undefined,
+    };
   }
 
-  async update(id: string, updateUserDto: Prisma.UserUpdateInput) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const {
+      currentPassword,
+      newPassword,
+      crea,
+      role,
+      password,
+      ...otherUpdates
+    } = updateUserDto;
+
+    if (password && !currentPassword && !newPassword) {
+      throw new Error(
+        'Não é permitido atualizar a senha sem informar currentPassword e newPassword.',
+      );
+    }
+
+    if (currentPassword && newPassword) {
+      const user = await this.databaseService.user.findUnique({
+        where: { id },
+      });
+      if (!user || !(await bcrypt.compare(currentPassword, user.password))) {
+        throw new Error('Senha atual incorreta.');
+      }
+    }
+    const hashPassword = await bcrypt.hash(newPassword, 10);
+
+    let agronomoData:
+      | Prisma.AgronomoUpdateOneWithoutUserNestedInput
+      | undefined;
+    if (crea) {
+      agronomoData = {
+        update: {
+          crea,
+        },
+      };
+    }
+
+    const data: Prisma.UserUpdateInput = {
+      password: hashPassword,
+      ...otherUpdates,
+      ...(role && { role }),
+      ...(agronomoData && { Agronomo: agronomoData }),
+    };
+
     return this.databaseService.user.update({
-      where: { id: id },
-      data: updateUserDto,
+      where: { id },
+      data,
     });
   }
 
@@ -63,12 +138,35 @@ export class UsersService {
   }
 
   async updatePassword(userId: string, newPassword: string) {
-    const senha = await bcrypt.hash(newPassword,10);
+    const senha = await bcrypt.hash(newPassword, 10);
     return this.databaseService.user.update({
       where: { id: userId },
       data: {
-        password: senha, 
+        password: senha,
       },
     });
   }
+  /*
+  async checkCREA(crea: string) {
+    const url = `https://www.consultacrea.com.br/api/index.php?tipo=crea&uf=&q=${crea}&chave=1398838574&destino=json`;
+    const response = await axios.get(url);
+    const data = response.data;
+    console.log(response.data);
+    if (data.status == 'true' && data.total > 0) return true;
+  }
+*/
+  async findCREA(id: string) {
+    const agronomo = await this.databaseService.agronomo.findUnique({
+      where: {
+        userId: id,
+      },
+    });
+
+    if (!agronomo) {
+      throw new NotFoundException('User not found');
+    }
+
+    return agronomo;
+  }
+
 }
